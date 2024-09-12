@@ -1,3 +1,4 @@
+
 PlayerName = input("Name the protagonist: ")
 
 if PlayerName == "":
@@ -10,3 +11,5 @@ if PlayerName == "":
         print(f"Your name is {PlayerName}.")
 else:
     print(f"Your name is {PlayerName}.")
+
+#curse you githubbbbbb!!
