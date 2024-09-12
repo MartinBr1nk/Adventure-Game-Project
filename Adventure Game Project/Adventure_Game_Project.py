@@ -1,3 +1,13 @@
+#Imports
+import time
+import random
+
+#functions
+
+
+#Save data system here
+
+
 
 PlayerName = input("Name the protagonist: ")
 
@@ -12,4 +22,3 @@ if PlayerName == "":
 else:
     print(f"Your name is {PlayerName}.")
 
-#curse you githubbbbbb!!
