@@ -2,39 +2,18 @@
 import time
 import random
 from SaveData import *
+from Introduction import *
 
 #functions
 def Save(ValueName, Value):
     f = open("SaveData.py", "a")
     f.write(str(ValueName) + " = " + str(Value) + "\n")
     f.close()
+    #useless saving system, it doesnt really work for what I want but I'm leaving it in in case I need it later
 
 RandomVal = random.randint(0, 500)
-print(RandomVal)
-#Random Value generated at the start of every run that can cause special events to occour
+#Random Value generated at the start of every run that can cause special events to happen
 
-
-if RanPreviously == False:
-    PlayerName = input("Name the protagonist: ")
-    if PlayerName == "":
-
-        PlayerName = input("Enter a name, otherwise a default name will be chosen: ")
-        if PlayerName == "":
-
-            PlayerName = "Stanley"
-            #this is a placeholder name, I'm not actually going to steal EVERY idea from the stanley parable
-            print(f"Your name is {PlayerName}.")
-            #Save("RanPreviously", "True")
-            #Save("Name", PlayerName)
-
-        else:
-            print(f"Your name is {PlayerName}.")
-            #Save("RanPreviously", "True")
-            #Save("Name", PlayerName)
-
-    else:
-        print(f"Your name is {PlayerName}.")
-        #Save("RanPreviously", "True")
-        #Save("Name", PlayerName)
-
-        
+GameLoop = True
+while GameLoop == True:
+    IntroSequence()
