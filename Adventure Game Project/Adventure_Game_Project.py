@@ -7,10 +7,8 @@ import Enemies
 import Weapons
 
 Name = "Placeholder"
+
 #functions
-
-            
-
 def Save(ValueName, Value):
     f = open("SaveData.py", "a")
     f.write(str(ValueName) + " = " + str(Value) + "\n")
@@ -29,6 +27,11 @@ def print_fast(str):
         time.sleep(random.uniform(0.0005, 0.0001))
     print("\n")
 
+def print_REALLY_fast(str):
+    for letter in str:
+        print(letter, end = ""),
+        time.sleep(random.uniform(0.000005, 0.000001))
+    print("\n")
 
 def DeathScreen():
     print_fast("""
@@ -44,7 +47,7 @@ __   _______ _   _  ______ _____ ___________
     exit()
     #Death screen
 
-def Combat(TargetName, TargetHealth, TargetDamage, Range, Healing): #add range before healing
+def Combat(TargetName, TargetHealth, TargetDamage, Range, Healing):
     print(f"{TargetName} APPROACHES")
     print(f"{Name} ATTACKS FIRST")
     time.sleep(1)
@@ -104,15 +107,52 @@ def Combat(TargetName, TargetHealth, TargetDamage, Range, Healing): #add range b
             time.sleep(1)
             #Death :(
 
+def Menu():
+    MenuLoop = True
+    while MenuLoop == True:
+        print(r"""
+ __  __ ______ _   _ _    _ 
+|  \/  |  ____| \ | | |  | |
+| \  / | |__  |  \| | |  | |
+| |\/| |  __| | . ` | |  | |
+| |  | | |____| |\  | |__| |
+|_|  |_|______|_| \_|\____/ 
+
+1 - START GAME
+2 - HOW TO PLAY
+3 - SETTINGS
+4 - EXIT GAME
+
+        """)
+        try:
+            Choice = int(input("WHERE DO YOU WANT TO NAVIGATE TO?: "))
+            if Choice == 1:
+                MenuLoop = False
+
+            elif Choice == 2:
+                print("Tutorial not finished")
+                
+            elif Choice == 3:
+                print("settings not finished")
+
+            elif Choice == 4:
+                print("CLOSING GAME...")
+                exit()
+            else:
+                print("ENTER A VALID OPTION.")
+        except:
+            print("CHOSEN OPTION MUST BE A SINGLE INTEGER.")
+
 
 RandomVal = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
+
+Menu()
 
 GameLoop = True
 
 while GameLoop == True:
     print_fast(r"""
-    
  _____ _   _  _____   _   _  _____ _      _                   
 |_   _| | | ||  ___| | | | ||  ___| |    | |                  
   | | | |_| || |__   | |_| || |__ | |    | |                  
@@ -130,8 +170,7 @@ ____________ _____   ___ _____ _____ _____
 | |_/ / |_/ / | | |   | | |__ | /  \/ | |                     
 |  __/|    /| | | |   | |  __|| |     | |                     
 | |   | |\ \\ \_/ /\__/ / |___| \__/\ | |                     
-\_|   \_| \_|\___/\____/\____/ \____/ \_/                     
-
+\_|   \_| \_|\___/\____/\____/ \____/ \_/                    
     """)
 
     
@@ -139,4 +178,12 @@ ____________ _____   ___ _____ _____ _____
     Name = Introduction.PlayerName
 
     print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
-
+    print_slow("IMPACT IMMINENT...")
+    print("3...")
+    time.sleep(1)
+    print("2...")
+    time.sleep(1)
+    print("1...")
+    time.sleep(1)
+    print_fast("IMPACT SUCCESSFUL")
+    time.sleep(1)
