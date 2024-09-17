@@ -2,6 +2,8 @@
 import time
 import random
 import Introduction
+import Player
+import Enemies
 
 #functions
 def Save(ValueName, Value):
@@ -25,7 +27,10 @@ def print_fast(str):
 RandomVal = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
 
+
 GameLoop = True
+
+
 while GameLoop == True:
     print_fast(r"""
     
