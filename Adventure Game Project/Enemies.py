@@ -1,7 +1,4 @@
 #Enemies
-from http.client import REQUESTED_RANGE_NOT_SATISFIABLE
-
-
 class Enemy:
     def __init__(Self, Name, Health, Damage, Range, Healing, Terminal):
         Self.Name = Name
