@@ -1,13 +1,9 @@
 import time
 import random
-
-def CoolTyping(str):
-    for letter in str:
-        print(letter, end = ""),
-        time.sleep(random.uniform(0.3, 0.05))
-    print("\n")
+from Adventure_Game_Project import CoolTyping
 
 def IntroSequence():
+    global PlayerName
     CoolTyping("BOOT UP SEQUENCE READY")
     CoolTyping("CHECKING FIRMWARE VERISON")
     print("LATEST VERSION (15.09.2163)")
