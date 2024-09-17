@@ -1,6 +1,10 @@
 import time
 import random
-from Adventure_Game_Project import CoolTyping
+def CoolTyping(str):
+    for letter in str:
+        print(letter, end = ""),
+        time.sleep(random.uniform(0.1, 0.05))
+    print("\n")
 
 def IntroSequence():
     global PlayerName
