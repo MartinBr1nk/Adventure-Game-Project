@@ -4,8 +4,26 @@ import random
 import Introduction
 import Player
 import Enemies
+import Weapons
 
+Name = "Placeholder"
 #functions
+
+def Combat(TargetName, TargetHealth, TargetDamage):
+    print(f"{TargetName} APPROACHES")
+    print(f"{Name} ATTACKS FIRST")
+    time.sleep(1)
+    CombatLoop = True
+    while CombatLoop == True:
+        print(f"{TargetName} HAS {TargetHealth} HP")
+        print(f"""WEAPON CHOICES:
+       1 - Revolver - Medium Damage, High Accuracy
+       2 - Shotgun - High Damage, Low Accuracy
+       3 - Chaingun - Incredibly High Damage, High Accuracy, Can only be used ONCE per encounter """)
+        WeaponChoice = input("Choice: ").lower()
+        if WeaponChoice == 1 or "revolver":
+            TargetHealth = TargetHealth - 1
+
 def Save(ValueName, Value):
     f = open("SaveData.py", "a")
     f.write(str(ValueName) + " = " + str(Value) + "\n")
@@ -21,16 +39,15 @@ def print_slow(str):
 def print_fast(str):
     for letter in str:
         print(letter, end = ""),
-        time.sleep(random.uniform(0.005, 0.001))
+        time.sleep(random.uniform(0.0005, 0.0001))
     print("\n")
 
 RandomVal = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
 
-
 GameLoop = True
 
-
+Combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage)
 while GameLoop == True:
     print_fast(r"""
     
@@ -60,3 +77,4 @@ ____________ _____   ___ _____ _____ _____
     Name = Introduction.PlayerName
 
     print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
+
