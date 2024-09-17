@@ -2,5 +2,6 @@
 CurrentHealth = 500
 MaxHealth = 500
 def HealthCheck():
-    if CurrentHealth < MaxHealth:
+    global CurrentHealth
+    if CurrentHealth > MaxHealth:
         CurrentHealth = MaxHealth
