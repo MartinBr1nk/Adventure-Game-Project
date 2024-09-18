@@ -48,22 +48,22 @@ def IntroSequence():
     print("PLEASE ENTER A NAME SO YOUR CADEVER CAN BE IDENTIFIED")
     time.sleep(2)
     player_name = input("PILOT NAME: ")
-    if ["skibidi" in player_name.lower() or "gyatt" in player_name.lower()
-       or "rizz" in player_name.lower() or "sigma" in player_name.lower()
-       or "ohio" in player_name.lower() or "hawk" in player_name.lower()
-       or "tuah" in player_name.lower() or "aura" in player_name.lower()
-       or "fanum" in player_name.lower() or "alpha" in player_name.lower()
-       or "mew" in player_name.lower() or "mog" in player_name.lower()
-       or "gronk" in player_name.lower() or "glazing" in player_name.lower()
-       or "cenat" in player_name.lower()
-       ]:
+    if "skibidi" in player_name.lower() or "gyatt" in player_name.lower() \
+       or "rizz" in player_name.lower() or "sigma" in player_name.lower() \
+       or "ohio" in player_name.lower() or "hawk" in player_name.lower() \
+       or "tuah" in player_name.lower() or "aura" in player_name.lower() \
+       or "fanum" in player_name.lower() or "alpha" in player_name.lower() \
+       or "mew" in player_name.lower() or "mog" in player_name.lower()\
+       or "gronk" in player_name.lower() or "glazing" in player_name.lower()\
+       or "cenat" in player_name.lower():
         #if these terms are within your name, the game just kills you before you can start.
         cool_typing("RELEASING TOXIC GAS...")
         time.sleep(3)
         cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL EXPEDITION PROJECT.")
         time.sleep(1)
         death_screen()
-
+    elif "gaster" in player_name.lower():
+        player_name = "W.D Gaster"
     elif player_name == "":
         time.sleep(1)
         player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE CHOSEN FOR YOU: ")

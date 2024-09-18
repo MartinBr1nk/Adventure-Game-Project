@@ -214,7 +214,7 @@ ____________ _____   ___ _____ _____ _____
 
     
     Introduction.IntroSequence()
-    name = Introduction.PlayerName
+    name = Introduction.player_name
 
     print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
     print_slow("IMPACT IMMINENT...")
@@ -235,6 +235,17 @@ ____________ _____   ___ _____ _____ _____
     combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, Enemies.Filth.Damage, Enemies.Filth.Healing)
     time.sleep(1)
 
-    direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :")
+    direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :").lower()
+    if direction == "left":
+        input("left path")
+    elif direction == "right":
+        input("right path")
+    elif direction == "forward":
+        input("forward path")
+        code_1 = True
+
+    else:
+        print("PICK A VALID DIRECTION.")
+        time.sleep(1)
 
 
