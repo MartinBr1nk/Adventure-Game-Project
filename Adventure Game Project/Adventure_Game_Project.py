@@ -126,7 +126,7 @@ def Menu():
 |_|  |_|______|_| \_|\____/ 
 
 1 - START GAME
-2 - HOW TO PLAY
+2 - HOW TO PLAY (CHOOSE THIS ON A FIRST PLAYTHROUGH.)
 3 - SETTINGS
 4 - EXIT GAME
 
@@ -138,8 +138,24 @@ def Menu():
                 time.sleep(3)
                 ClearScreen()
             elif Choice == 2:
-                print("Tutorial not finished")
-                time.sleep(3)
+                print("UPPERCASE text passes automatically")
+                time.sleep(1)
+                print("lowercase text must have you enter any key to continue. Try this now")
+                input()
+                print("Combat is turn based, firstly you take a turn and then the enemy takes their turn, as long as they are not dead.")
+                input()
+                print("The way you restore your fuel (Health) is by sucessfully killing enemies.")
+                input()
+                print("THIS IS THE ONLY WAY TO RESTORE HP.")
+                time.sleep(1)
+                print("Stronger enemies restore more fuel, while weaker enemies will restore less fuel")
+                input()
+                print("Every path in the game will eventually lead to an exit. Every way forward will lead to progress.")
+                input()
+                print("This doesnt mean that some paths will be easy, each path will have their own challenges and secrets that you can discover and overcome.")
+                input()
+                print("Press any key when you are ready to return to the menu")
+                input()
                 ClearScreen()
             elif Choice == 3:
                 print("settings not finished")
@@ -200,4 +216,3 @@ ____________ _____   ___ _____ _____ _____
     time.sleep(1)
     print_fast("IMPACT SUCCESSFUL")
     time.sleep(1)
-
