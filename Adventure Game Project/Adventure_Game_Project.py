@@ -232,7 +232,9 @@ ____________ _____   ___ _____ _____ _____
     time.sleep(1)
     print_slow("THREAT DETECTED")
 
-    combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, Enemies.Filth.Damage, Enemies.Filth.Healing)
+    combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
+           Enemies.Filth.Range, Enemies.Filth.Healing)
+    #Gets the Name, Heath, Damage, Range and player healing for combat
     time.sleep(1)
 
     direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :").lower()
@@ -247,5 +249,3 @@ ____________ _____   ___ _____ _____ _____
     else:
         print("PICK A VALID DIRECTION.")
         time.sleep(1)
-
-
