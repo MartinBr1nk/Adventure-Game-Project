@@ -231,6 +231,7 @@ ____________ _____   ___ _____ _____ _____
     input("You reach a dark, open room with three locked doors to your left, right and directly in front of you.")
     time.sleep(1)
     print_slow("THREAT DETECTED")
+
     combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, Enemies.Filth.Damage, Enemies.Filth.Healing)
     time.sleep(1)
 

@@ -34,12 +34,14 @@ def IntroSequence():
     cool_typing("CHECKING FIRMWARE VERISON")
     print("LATEST VERSION (15.09.2163)")
     time.sleep(1)
+
     print("PEFORMING SYSTEM DIAGNOSTICS")
     cool_typing("AUDIO             OK")
     cool_typing("VIDEO FEED        ERROR")
     cool_typing("MECHANICS         OK")
     print("DUE TO VIDEO FEED MALFUNCTION, PLEASE NOTE YOUR ENVIROMENT AS YOU PROCEED")
     time.sleep(3)
+
     print("DIAGNOSTIC COMPLETE")
     time.sleep(3)
 
@@ -48,12 +50,13 @@ def IntroSequence():
     player_name = input("PILOT NAME: ")
     if ["skibidi" in player_name.lower() or "gyatt" in player_name.lower()
        or "rizz" in player_name.lower() or "sigma" in player_name.lower()
-      or "ohio" in player_name.lower() or "hawk" in player_name.lower()
-     or "tuah" in player_name.lower() or "aura" in player_name.lower()
-    or "fanum" in player_name.lower() or "alpha" in player_name.lower()
-   or "mew" in player_name.lower() or "mog" in player_name.lower()
-  or "gronk" in player_name.lower() or "glazing" in player_name.lower()
- or "cenat" in player_name.lower()]:
+       or "ohio" in player_name.lower() or "hawk" in player_name.lower()
+       or "tuah" in player_name.lower() or "aura" in player_name.lower()
+       or "fanum" in player_name.lower() or "alpha" in player_name.lower()
+       or "mew" in player_name.lower() or "mog" in player_name.lower()
+       or "gronk" in player_name.lower() or "glazing" in player_name.lower()
+       or "cenat" in player_name.lower()
+       ]:
         #if these terms are within your name, the game just kills you before you can start.
         cool_typing("RELEASING TOXIC GAS...")
         time.sleep(3)
@@ -69,7 +72,6 @@ def IntroSequence():
             time.sleep(1)
             print(f"SET NAME - {player_name}.")
             time.sleep(1)
-
         else:
             player_name = f"{player_name}-{random.randint(1, 999999)}"
             print(f"SET NAME - {player_name}.")
