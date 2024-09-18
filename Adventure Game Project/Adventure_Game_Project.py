@@ -9,6 +9,10 @@ import Weapons
 Name = "Placeholder"
 
 #functions
+def ClearScreen():
+    for x in range(25):
+        print("\n")
+
 def Save(ValueName, Value):
     f = open("SaveData.py", "a")
     f.write(str(ValueName) + " = " + str(Value) + "\n")
@@ -20,18 +24,21 @@ def print_slow(str):
         print(letter, end = ""),
         time.sleep(random.uniform(0.1, 0.05))
     print("\n")
+    #prints text letter-by-letter slowly
 
 def print_fast(str):
     for letter in str:
         print(letter, end = ""),
         time.sleep(random.uniform(0.0005, 0.0001))
     print("\n")
+    #prints text letter-by-letter quickly
 
 def print_REALLY_fast(str):
     for letter in str:
         print(letter, end = ""),
         time.sleep(random.uniform(0.000005, 0.000001))
     print("\n")
+    #prints text letter-by-letter REALLY quickly
 
 def DeathScreen():
     print_fast("""
@@ -128,20 +135,26 @@ def Menu():
             Choice = int(input("WHERE DO YOU WANT TO NAVIGATE TO?: "))
             if Choice == 1:
                 MenuLoop = False
-
+                time.sleep(3)
+                ClearScreen()
             elif Choice == 2:
                 print("Tutorial not finished")
-                
+                time.sleep(3)
+                ClearScreen()
             elif Choice == 3:
                 print("settings not finished")
-
+                time.sleep(3)
+                ClearScreen()
             elif Choice == 4:
                 print("CLOSING GAME...")
                 exit()
             else:
                 print("ENTER A VALID OPTION.")
+                time.sleep(1)
         except:
             print("CHOSEN OPTION MUST BE A SINGLE INTEGER.")
+        else:
+            pass
 
 
 RandomVal = random.randint(0, 500)
@@ -187,3 +200,4 @@ ____________ _____   ___ _____ _____ _____
     time.sleep(1)
     print_fast("IMPACT SUCCESSFUL")
     time.sleep(1)
+
