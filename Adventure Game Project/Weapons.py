@@ -1,5 +1,5 @@
 #Weapons
-ChaingunUsed = False
+chaingun_used = False
 class Weapon:
     def __init__(Self, Name, Damage, Range, Info, Terminal):
         Self.Name = Name

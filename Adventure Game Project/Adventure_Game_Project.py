@@ -6,14 +6,14 @@ import Player
 import Enemies
 import Weapons
 
-Name = "Placeholder"
-
+name = "Placeholder"
+direction = "placeholder"
 #functions
-def ClearScreen():
+def clear_screen():
     for x in range(25):
         print("\n")
 
-def Save(ValueName, Value):
+def save(ValueName, Value):
     f = open("SaveData.py", "a")
     f.write(str(ValueName) + " = " + str(Value) + "\n")
     f.close()
@@ -40,7 +40,7 @@ def print_REALLY_fast(str):
     print("\n")
     #prints text letter-by-letter REALLY quickly
 
-def DeathScreen():
+def death_screen():
     print_fast("""
     
 __   _______ _   _  ______ _____ ___________ 
@@ -54,15 +54,15 @@ __   _______ _   _  ______ _____ ___________
     exit()
     #Death screen
 
-def Combat(TargetName, TargetHealth, TargetDamage, Range, Healing):
-    print(f"{TargetName} APPROACHES")
-    print(f"{Name} ATTACKS FIRST")
+def combat(target_name, target_health, target_damage, range, healing):
+    print(f"{target_name} APPROACHES")
+    print(f"{name} ATTACKS FIRST")
     time.sleep(1)
     CombatLoop = True
 
     while CombatLoop == True:
         #Puts you into a loop until you either lose or win
-        print(f"{TargetName} HAS {TargetHealth} HP")
+        print(f"{target_name} HAS {target_health} HP")
         time.sleep(1)
         print(f"""WEAPON CHOICES:
        1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
@@ -71,21 +71,21 @@ def Combat(TargetName, TargetHealth, TargetDamage, Range, Healing):
         time.sleep(1)
         WeaponChoice = int(input("Choice: "))
 
-        if WeaponChoice == 1 and Range <= Weapons.Revolver.Range:
-            TargetHealth = TargetHealth - int(Weapons.Revolver.Damage)
+        if WeaponChoice == 1 and range <= Weapons.Revolver.Range:
+            target_health = target_health - int(Weapons.Revolver.Damage)
             #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
 
-        elif WeaponChoice == 2 and Range <= Weapons.Shotgun.Range:
-            TargetHealth = TargetHealth - int(Weapons.Shotgun.Damage)
+        elif WeaponChoice == 2 and range <= Weapons.Shotgun.Range:
+            target_health = target_health - int(Weapons.Shotgun.Damage)
             #If the weapon selected is equal to 2 AND the range is greater than or equal to the enemies range value, you attack
 
-        elif WeaponChoice == 3 and Range <= Weapons.Chaingun.Range and Weapons.ChaingunUsed != True:
-            TargetHealth = TargetHealth - int(Weapons.Chaingun.Damage)
+        elif WeaponChoice == 3 and range <= Weapons.Chaingun.Range and Weapons.chaingun_used != True:
+            target_health = target_health - int(Weapons.Chaingun.Damage)
             #If the weapon selected is equal to 3 AND the range is greater than or equal to the enemies range value AND the chaingun is functional, you attack
             print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
-            Weapons.ChaingunUsed = True
+            Weapons.chaingun_used = True
 
-        elif WeaponChoice == 3 and Weapons.ChaingunUsed == True:
+        elif WeaponChoice == 3 and Weapons.chaingun_used == True:
             print("THE CHAINGUN HAS ALREADY BEEN USED. YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
             #prevents the chaingun from being used if it has already been used previously
 
@@ -93,28 +93,38 @@ def Combat(TargetName, TargetHealth, TargetDamage, Range, Healing):
             print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
             #In case the user enters a weapon that doesnt exist
 
-        print(f"{TargetName} HAS {TargetHealth} HP")
-        #Tells the player how much health the enemy has
-        print(f"{TargetName} ATTACKS!")
-        print(f"{TargetName} HITS AND CAUSES YOU TO LOSE {TargetDamage} FUEL.")
-        Player.CurrentHealth = Player.CurrentHealth - TargetDamage
-        print(f"YOU HAVE {Player.CurrentHealth} FUEL REMAINING.")
 
-        if TargetHealth < 0:
-            print(f"{TargetName} HAS DIED")
-            Player.CurrentHealth = Player.CurrentHealth + Healing
+        if target_health < 0:
+            print(f"{target_name} HAS DIED")
+            time.sleep(2)
+            Player.current_health = Player.current_health + healing
             Player.HealthCheck()
-            print(f"YOU HAVE {Player.CurrentHealth} HEALTH REMAINING.")
+            print(f"YOU HAVE {Player.current_health} FUEL REMAINING.")
+            time.sleep(2)
             CombatLoop = False
             #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
-        elif Player.CurrentHealth <= 0:
+        elif Player.current_health <= 0:
             CombatLoop = False
             print(f"YOU HAVE RAN OUT OF FUEL.")
-            DeathScreen()
+            time.sleep(2)
+            death_screen()
             time.sleep(1)
             #Death :(
+        else:
+            print(f"{target_name} HAS {target_health} HP")
+            time.sleep(1)
+            #Tells the player how much health the enemy has
+            print(f"{target_name} ATTACKS!")
+            time.sleep(1)
+            print(f"{target_name} HITS AND CAUSES YOU TO LOSE {target_damage} FUEL.")
+            time.sleep(1)
+            Player.current_health = Player.current_health - target_damage
+            print(f"YOU HAVE {Player.current_health} FUEL REMAINING.")
+            time.sleep(1)
+            print(f"YOU WIN.")
+            time.sleep(1)
 
-def Menu():
+def menu():
     MenuLoop = True
     while MenuLoop == True:
         print(r"""
@@ -136,7 +146,7 @@ def Menu():
             if Choice == 1:
                 MenuLoop = False
                 time.sleep(3)
-                ClearScreen()
+                clear_screen()
             elif Choice == 2:
                 print("UPPERCASE text passes automatically")
                 time.sleep(1)
@@ -156,11 +166,11 @@ def Menu():
                 input()
                 print("Press any key when you are ready to return to the menu")
                 input()
-                ClearScreen()
+                clear_screen()
             elif Choice == 3:
                 print("settings not finished")
                 time.sleep(3)
-                ClearScreen()
+                clear_screen()
             elif Choice == 4:
                 print("CLOSING GAME...")
                 exit()
@@ -173,14 +183,14 @@ def Menu():
             pass
 
 
-RandomVal = random.randint(0, 500)
+random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
 
-Menu()
+menu()
 
-GameLoop = True
+game_loop = True
 
-while GameLoop == True:
+while game_loop == True:
     print_fast(r"""
  _____ _   _  _____   _   _  _____ _      _                   
 |_   _| | | ||  ___| | | | ||  ___| |    | |                  
@@ -204,7 +214,7 @@ ____________ _____   ___ _____ _____ _____
 
     
     Introduction.IntroSequence()
-    Name = Introduction.PlayerName
+    name = Introduction.PlayerName
 
     print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
     print_slow("IMPACT IMMINENT...")
@@ -216,3 +226,14 @@ ____________ _____   ___ _____ _____ _____
     time.sleep(1)
     print_fast("IMPACT SUCCESSFUL")
     time.sleep(1)
+    input("As the dust clears, you can see a way forward through a tunnel, obscured by smoke and soot.")
+    input("There are no other paths you can see. You decide to walk through the obscured tunnel")
+    input("You reach a dark, open room with three locked doors to your left, right and directly in front of you.")
+    time.sleep(1)
+    print_slow("THREAT DETECTED")
+    combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, Enemies.Filth.Damage, Enemies.Filth.Healing)
+    time.sleep(1)
+
+    direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :")
+
+

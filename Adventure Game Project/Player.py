@@ -1,8 +1,8 @@
 #Playerdata
-CurrentHealth = 500
-MaxHealth = 500
+current_health = 500
+max_health = 500
 def HealthCheck():
-    global CurrentHealth
-    if CurrentHealth > MaxHealth:
-        CurrentHealth = MaxHealth
+    global current_health
+    if current_health > max_health:
+        current_health = max_health
         #if the player has above the max hp, it sets itself to the max hp
