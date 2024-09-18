@@ -156,7 +156,7 @@ def menu():
                 input()
                 print("The way you restore your fuel (Health) is by sucessfully killing enemies.")
                 input()
-                print("THIS IS THE ONLY WAY TO RESTORE HP.")
+                print("THIS IS THE ONLY WAY TO RESTORE FUEL.")
                 time.sleep(1)
                 print("Stronger enemies restore more fuel, while weaker enemies will restore less fuel")
                 input()
