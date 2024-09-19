@@ -6,11 +6,17 @@ import Player
 import Enemies
 import Weapons
 
+
+#Variables
 name = "Placeholder"
 direction = "placeholder"
 choice_loop = False
 skip = False
+endless_mode = False
+endless_enemies_killed = 0
 loss = 0
+
+
 #functions
 def clear_screen():
     for x in range(25):
@@ -108,15 +114,15 @@ def combat(target_name, target_health, target_damage, range, healing):
             time.sleep(2)
             Player.current_health = Player.current_health + healing
             Player.HealthCheck()
-            print(f"YOU HAVE {Player.current_health} FUEL REMAINING.")
+            print(f"{name} HAVE {Player.current_health} FUEL REMAINING.")
             time.sleep(2)
             combat_loop = False
-            print(f"YOU WIN.")
+            print(f"{name} WINS.")
             time.sleep(1)
             #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
         elif Player.current_health <= 0:
             combat_loop = False
-            print(f"YOU HAVE RAN OUT OF FUEL.")
+            print(f"{name} HAS RAN OUT OF FUEL.")
             time.sleep(2)
             death_screen()
             time.sleep(1)
@@ -127,10 +133,10 @@ def combat(target_name, target_health, target_damage, range, healing):
             #Tells the player how much health the enemy has
             print(f"{target_name} ATTACKS!")
             time.sleep(1)
-            print(f"{target_name} HITS AND CAUSES YOU TO LOSE {target_damage} FUEL.")
+            print(f"{target_name} HITS AND CAUSES {name} TO LOSE {target_damage} FUEL.")
             time.sleep(1)
             Player.current_health = Player.current_health - target_damage
-            print(f"YOU HAVE {Player.current_health} FUEL REMAINING.")
+            print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
             time.sleep(1)
         else:
             print("ERROR")
@@ -138,8 +144,9 @@ def combat(target_name, target_health, target_damage, range, healing):
 
 def menu():
     global skip
-    MenuLoop = True
-    while MenuLoop == True:
+    global endless_mode
+    menu_loop = True
+    while menu_loop == True:
         print(r"""
  __  __ ______ _   _ _    _ 
 |  \/  |  ____| \ | | |  | |
@@ -149,18 +156,28 @@ def menu():
 |_|  |_|______|_| \_|\____/ 
 
 1 - START GAME
-2 - HOW TO PLAY (CHOOSE THIS ON A FIRST PLAYTHROUGH.)
-3 - SETTINGS
-4 - EXIT GAME
+1 - ENDLESS FIGHTING MODE
+3 - HOW TO PLAY (CHOOSE THIS ON A FIRST PLAYTHROUGH.)
+4 - SETTINGS
+5 - EXIT GAME
 
         """)
         try:
-            Choice = int(input("WHERE DO YOU WANT TO NAVIGATE TO?: "))
-            if Choice == 1:
-                MenuLoop = False
+            menu_choice = int(input("WHERE DO YOU WANT TO NAVIGATE TO?: "))
+            if menu_choice == 1:
+                menu_loop = False
                 time.sleep(3)
                 clear_screen()
-            elif Choice == 2:
+
+            elif menu_choice == 2:
+                endless_mode = True
+                menu_loop = False
+                skip = True
+                print("STARTING ENDLESS MODE")
+                time.sleep(1)
+                clear_screen()
+
+            elif menu_choice == 3:
                 print("UPPERCASE text passes automatically, it is spoken by machines")
                 time.sleep(1)
                 print("lowercase text must have you enter any key to continue. Try this now")
@@ -180,17 +197,20 @@ def menu():
                 print("Press any key when you are ready to return to the menu")
                 input()
                 clear_screen()
-            elif Choice == 3:
+
+            elif menu_choice == 4:
                 print("settings not finished")
                 time.sleep(3)
                 clear_screen()
-            elif Choice == 4:
+
+            elif menu_choice == 5:
                 print("CLOSING GAME...")
                 exit()
-            elif Choice == 9:
+
+            elif menu_choice == 9:
                 print("skipping introduction!")
                 skip = True
-                MenuLoop = False
+                menu_loop = False
                 time.sleep(1)
                 clear_screen()
             else:
@@ -207,172 +227,206 @@ random_value = random.randint(0, 500)
 menu()
 
 game_loop = True
+if endless_mode == False:
 
-while game_loop == True:
-    print_fast(r"""
- _____ _   _  _____   _   _  _____ _      _                   
-|_   _| | | ||  ___| | | | ||  ___| |    | |                  
-  | | | |_| || |__   | |_| || |__ | |    | |                  
-  | | |  _  ||  __|  |  _  ||  __|| |    | |                  
-  | | | | | || |___  | | | || |___| |____| |____              
-  \_/ \_| |_/\____/  \_| |_/\____/\_____/\_____/              
- _______   ________ ___________ _____ _____ _____ _____ _   _ 
-|  ___\ \ / /| ___ \  ___|  _  \_   _|_   _|_   _|  _  | \ | |
-| |__  \ V / | |_/ / |__ | | | | | |   | |   | | | | | |  \| |
-|  __| /   \ |  __/|  __|| | | | | |   | |   | | | | | | . ` |
-| |___/ /^\ \| |   | |___| |/ / _| |_  | |  _| |_\ \_/ / |\  |
-\____/\/   \/\_|   \____/|___/  \___/  \_/  \___/ \___/\_| \_/        
-____________ _____   ___ _____ _____ _____                    
-| ___ \ ___ \  _  | |_  |  ___/  __ \_   _|                   
-| |_/ / |_/ / | | |   | | |__ | /  \/ | |                     
-|  __/|    /| | | |   | |  __|| |     | |                     
-| |   | |\ \\ \_/ /\__/ / |___| \__/\ | |                     
-\_|   \_| \_|\___/\____/\____/ \____/ \_/                    
-    """)
+    while game_loop == True:
+        print_fast(r"""
+     _____ _   _  _____   _   _  _____ _      _                   
+    |_   _| | | ||  ___| | | | ||  ___| |    | |                  
+      | | | |_| || |__   | |_| || |__ | |    | |                  
+      | | |  _  ||  __|  |  _  ||  __|| |    | |                  
+      | | | | | || |___  | | | || |___| |____| |____              
+      \_/ \_| |_/\____/  \_| |_/\____/\_____/\_____/              
+     _______   ________ ___________ _____ _____ _____ _____ _   _ 
+    |  ___\ \ / /| ___ \  ___|  _  \_   _|_   _|_   _|  _  | \ | |
+    | |__  \ V / | |_/ / |__ | | | | | |   | |   | | | | | |  \| |
+    |  __| /   \ |  __/|  __|| | | | | |   | |   | | | | | | . ` |
+    | |___/ /^\ \| |   | |___| |/ / _| |_  | |  _| |_\ \_/ / |\  |
+    \____/\/   \/\_|   \____/|___/  \___/  \_/  \___/ \___/\_| \_/        
+    ____________ _____   ___ _____ _____ _____                    
+    | ___ \ ___ \  _  | |_  |  ___/  __ \_   _|                   
+    | |_/ / |_/ / | | |   | | |__ | /  \/ | |                     
+    |  __/|    /| | | |   | |  __|| |     | |                     
+    | |   | |\ \\ \_/ /\__/ / |___| \__/\ | |                     
+    \_|   \_| \_|\___/\____/\____/ \____/ \_/                    
+        """)
 
-    if skip == False:
-        Introduction.IntroSequence()
-        name = Introduction.player_name
-    else:
-        name = "Pixel"
-    print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
-    print_slow("IMPACT IMMINENT...")
-    print("3...")
-    time.sleep(1)
-    print("2...")
-    time.sleep(1)
-    print("1...")
-    time.sleep(1)
-    print_fast("IMPACT SUCCESSFUL")
-    time.sleep(1)
-    input("As the dust clears, you can see a way forward through a tunnel, obscured by smoke.")
-    input("There are no other paths you can see. You decide to walk through the obscured tunnel")
-    input("You reach a dark, open room with three locked doors to your left, right and directly in front of you.")
-    time.sleep(1)
+        if skip == False:
+            Introduction.IntroSequence()
+            name = Introduction.player_name
+        else:
+            name = "Pixel"
+        print_slow(f"{name} IS APPROACHING... THE MOUTH OF HELL")
+        print_slow("IMPACT IMMINENT...")
+        print("3...")
+        time.sleep(1)
+        print("2...")
+        time.sleep(1)
+        print("1...")
+        time.sleep(1)
+        print_fast("IMPACT SUCCESSFUL")
+        time.sleep(1)
+        input("As the dust clears, you can see a way forward through a tunnel, obscured by smoke.")
+        input("There are no other paths you can see. You decide to walk through the obscured tunnel")
+        input("You reach a dark, open room with three locked doors to your left, right and directly in front of you.")
+        time.sleep(1)
 
-    combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
-           Enemies.Filth.Range, Enemies.Filth.Healing)
-    #Gets the Name, Heath, Damage, Range and player healing for combat
-    time.sleep(1)
-    choice_loop = True
-    while choice_loop == True:
-        direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :").lower()
-        if direction == "left":
-            choice_loop = False
-            input("The door to your left slams open and allows you to pass through.")
-            input("Ahead of you lies a long, cylindrical metal corridor.")
-            input("The walls have been heated to an extreme temperature.")
-            input("Suddenly...")
-            print_slow("TRANSMISSION INCOMING...")
-            time.sleep(1)
+        combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
+               Enemies.Filth.Range, Enemies.Filth.Healing)
+        #Gets the Name, Heath, Damage, Range and player healing for combat
+        time.sleep(1)
+        choice_loop = True
+        while choice_loop == True:
+            direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :").lower()
+            if direction == "left":
+                choice_loop = False
+                input("The door to your left slams open and allows you to pass through.")
+                input("Ahead of you lies a long, cylindrical metal corridor.")
+                input("The walls have been heated to an extreme temperature.")
+                input("Suddenly...")
+                print_slow("TRANSMISSION INCOMING...")
+                time.sleep(1)
 
-            input("A voice comes from the speakers in your suits cockpit:")
-            input("'Hello Explorer, this is a transmission from Headquarters.'")
-            input("'It appears the Mouth of Hell has been overtaken by an unknown force,'")
-            input("'We advise caution when attempting to -KZZZZZKT-'")
-            print_slow("TRANSMISSION OVER.")
+                input("A voice comes from the speakers in your suits cockpit:")
+                input(f"'Hello {name}, this is a transmission from Headquarters.'")
+                input("'It appears the Mouth of Hell has been overtaken by an unknown force,'")
+                input("'We advise caution when attempting to -KZZZZZKT-'")
+                print_slow("TRANSMISSION OVER.")
 
-            combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
-                  Enemies.Stray.Range, Enemies.Stray.Healing)
+                combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                      Enemies.Stray.Range, Enemies.Stray.Healing)
 
             
-            choice_loop = True
-            input("The only way forward is to continue along the corridor, it doesnt appear that there are any more doors.")
-            input("However, you could attempt to look around this room.")
-            input("This may be dangerous as the walls of the room have been heated to an extreme temperature. ")
-            while choice_loop == True:
-                #keeps the player in a loop until they make a valid choice.
-                choice = input("Inspect the Room? Yes/No: ").lower()
-                if "y" in choice:
-                    input("You decide to inspect the room.")
-                    print("!!! EXTREME HEAT DETECTED !!!")
-                    time.sleep(2)
-                    print("!!! ENGAGING COOLING MECHANISM !!!")
-                    Player.current_health = Player.current_health - 100
-                    time.sleep(2)
-                    print(f"YOU HAVE LOST 100 OUT OF {Player.max_health} FUEL.")
-                    print(f"YOU HAVE {Player.current_health} FUEL LEFT")
-                    time.sleep(1)
-                    input("You decide to continue along the corridor, as there does not appear to be anything else in this room")
-                    choice_loop = False
+                choice_loop = True
+                input("The only way forward is to continue along the corridor, it doesnt appear that there are any more doors.")
+                input("However, you could attempt to look around this room.")
+                input("This may be dangerous as the walls of the room have been heated to an extreme temperature. ")
+                while choice_loop == True:
+                    #keeps the player in a loop until they make a valid choice.
+                    choice = input("Inspect the Room? Yes/No: ").lower()
+                    if "y" in choice:
+                        input("You decide to inspect the room.")
+                        print("!!! EXTREME HEAT DETECTED !!!")
+                        time.sleep(2)
+                        print("!!! ENGAGING COOLING MECHANISM !!!")
+                        Player.current_health = Player.current_health - 100
+                        time.sleep(2)
+                        print(f"YOU HAVE LOST 100 OUT OF {Player.max_health} FUEL.")
+                        print(f"YOU HAVE {Player.current_health} FUEL LEFT")
+                        time.sleep(1)
+                        input("You decide to continue along the corridor, as there does not appear to be anything else in this room")
+                        choice_loop = False
 
-                elif "n" in choice:
-                    input("You decide against inspecting the corridor.")
-                    input("You continue along the corridor, as there does not appear to be anything else in this room")
-                    choice_loop = False
-
-                else:
-                    print("INVALID OPTION.")
-                    time.sleep(1)
-
-            input("Just as you left to the next room...")
-            combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage,
-                  Enemies.Schism.Range, Enemies.Schism.Healing)
-            input("Ahead of you lies a crossroad, Door A appears to be the standard door with no differences to the other doors you have been passing through.")
-            input("Door B has an 'EXIT' sign above it, it seems to be damaged and would require a lot of force to break through.")
-            input("If you want to get through door B you will have to spend 25 - 100 fuel to smash through it.")
-            choice_loop = True
-            if choice_loop == True:
-                choice = input("Smash through the door?").lower()
-
-                if "y" in choice:
-                    print_slow("PREPARING TO DESTROY DOOR")
-                    loss = random.randint(25, 100)
-                    Player.current_health = Player.current_health - loss
-
-                    if Player.current_health <= 0:
-                        print_slow("FUEL AT CRITICAL LEVELS")
-                        print_slow("POWERING DOWN...")
-                        death_screen()
+                    elif "n" in choice:
+                        input("You decide against inspecting the corridor.")
+                        input("You continue along the corridor, as there does not appear to be anything else in this room")
+                        choice_loop = False
 
                     else:
-                        print_slow("ATTEMPT SUCCESSFUL")
-                        print(f"{loss} FUEL LOST IN THE PROCESS. YOU HAVE {Player.current_health} FUEL LEFT")
+                        print("INVALID OPTION.")
                         time.sleep(1)
-                    input("Behind the door is a large chasm in the ground, there appears to be a path to your left that may be connected to the path that Door A would take you to. You can see the shadow of a massive husk from this path.")
-                    input("Suddenly...")
-                    print_slow("PATH AHEAD DETECTED")
-                    input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
-                    input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
-                    print_slow("BEGINNING DECENT...")
-                    #Put exit code here once I finish The Mouth of Hell
 
-                elif "n" in choice:
-                    input("You decide to take the standard door around")
-                    input("Ahead of you lies a corridor filled with enemies, and at the end you can see a right turn that would lead you to where Door B is connected to.")
-                    combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
-                        Enemies.Stray.Range, Enemies.Stray.Healing)
-                    combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, \
-                        Enemies.Filth.Range, Enemies.Filth.Healing)
-                    combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
-                        Enemies.Schism.Range, Enemies.Schism.Healing)
-                    print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
-                    combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
-                        Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                input("Just as you left to the next room...")
+                combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage,
+                      Enemies.Schism.Range, Enemies.Schism.Healing)
+                input("Ahead of you lies a crossroad, Door A appears to be the standard door with no differences to the other doors you have been passing through.")
+                input("Door B has an 'EXIT' sign above it, it seems to be damaged and would require a lot of force to break through.")
+                input("If you want to get through door B you will have to spend 25 - 100 fuel to smash through it.")
+                choice_loop = True
+                if choice_loop == True:
+                    choice = input("Smash through the door?").lower()
 
-                    input("Behind the turning is a large chasm in the ground, there appears to be a door to your right that is connected to the path that Door B would take you to.")
-                    input("Suddenly...")
-                    print_slow("PATH AHEAD DETECTED")
-                    input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
-                    input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
-                    print_slow("BEGINNING DECENT...")
-                    #Put exit code here once I finish The Mouth of Hell
-                else:
-                    print("INVALID OPTION")
-                    time.sleep(1)
+                    if "y" in choice:
+                        print_slow("PREPARING TO DESTROY DOOR")
+                        loss = random.randint(25, 100)
+                        Player.current_health = Player.current_health - loss
+
+                        if Player.current_health <= 0:
+                            print_slow("FUEL AT CRITICAL LEVELS")
+                            print_slow("POWERING DOWN...")
+                            death_screen()
+
+                        else:
+                            print_slow("ATTEMPT SUCCESSFUL")
+                            print(f"{loss} FUEL LOST IN THE PROCESS. YOU HAVE {Player.current_health} FUEL LEFT")
+                            time.sleep(1)
+                        input("Behind the door is a large chasm in the ground, there appears to be a path to your left that may be connected to the path that Door A would take you to. You can see the shadow of a massive husk from this path.")
+                        input("Suddenly...")
+                        print_slow("PATH AHEAD DETECTED")
+                        input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
+                        input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
+                        print_slow("BEGINNING DECENT...")
+                        #Put exit code here once I finish The Mouth of Hell
+
+                    elif "n" in choice:
+                        input("You decide to take the standard door around")
+                        input("Ahead of you lies a corridor filled with enemies, and at the end you can see a right turn that would lead you to where Door B is connected to.")
+
+                        combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                            Enemies.Stray.Range, Enemies.Stray.Healing)
+
+                        combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, \
+                            Enemies.Filth.Range, Enemies.Filth.Healing)
+
+                        combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
+                            Enemies.Schism.Range, Enemies.Schism.Healing)
+
+                        print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
+                        combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
+                            Enemies.Colossus.Range, Enemies.Colossus.Healing)
+
+                        input("Behind the turning is a large chasm in the ground, there appears to be a door to your right that is connected to the path that Door B would take you to.")
+                        input("Suddenly...")
+                        print_slow("PATH AHEAD DETECTED")
+                        input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
+                        input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
+                        print_slow("BEGINNING DECENT...")
+                        #Put exit code here once I finish The Mouth of Hell
+                    else:
+                        print("INVALID OPTION")
+                        time.sleep(1)
 
         
 
-        elif direction == "right":
-            input("right path")
-            choice_loop = False
+            elif direction == "right":
+                input("right path")
+                choice_loop = False
 
-        elif direction == "forward":
-            input("forward path")
-            choice_loop = False
-            konami_1 = True
+            elif direction == "forward":
+                input("forward path")
+                choice_loop = False
+                konami_1 = True
 
-        else:
-            print("PICK A VALID DIRECTION.")
-            time.sleep(1)
+            else:
+                print("PICK A VALID DIRECTION.")
+                time.sleep(1)
 
+elif endless_mode == True:
+    name = input("NAME: ")
+    time.sleep(1)
+
+    while endless_mode == True:
+        random_enemy = random.randint(1, 4)
+        if random_enemy == 1:
+            combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, \
+               Enemies.Filth.Range, Enemies.Filth.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+
+        elif random_enemy == 2:
+            combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+               Enemies.Stray.Range, Enemies.Stray.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+
+        elif random_enemy == 3:
+            combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
+               Enemies.Schism.Range, Enemies.Schism.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+
+        elif random_enemy == 4:
+            combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
+               Enemies.Colossus.Range, Enemies.Colossus.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+
+        print(f"{endless_enemies_killed} ENEMIES KILLED!")
+        time.sleep(1)
+        #Picks a random enemy from all avalible enemy types
