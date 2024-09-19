@@ -10,7 +10,7 @@ name = "Placeholder"
 direction = "placeholder"
 choice_loop = False
 skip = False
-
+loss = 0
 #functions
 def clear_screen():
     for x in range(25):
@@ -190,6 +190,9 @@ def menu():
             elif Choice == 9:
                 print("skipping introduction!")
                 skip = True
+                MenuLoop = False
+                time.sleep(1)
+                clear_screen()
             else:
                 print("ENTER A VALID OPTION.")
                 time.sleep(1)
@@ -263,6 +266,7 @@ ____________ _____   ___ _____ _____ _____
             input("Suddenly...")
             print_slow("TRANSMISSION INCOMING...")
             time.sleep(1)
+
             input("A voice comes from the speakers in your suits cockpit:")
             input("'Hello Explorer, this is a transmission from Headquarters.'")
             input("'It appears the Mouth of Hell has been overtaken by an unknown force,'")
@@ -278,6 +282,7 @@ ____________ _____   ___ _____ _____ _____
             input("However, you could attempt to look around this room.")
             input("This may be dangerous as the walls of the room have been heated to an extreme temperature. ")
             while choice_loop == True:
+                #keeps the player in a loop until they make a valid choice.
                 choice = input("Inspect the Room? Yes/No: ").lower()
                 if "y" in choice:
                     input("You decide to inspect the room.")
@@ -301,10 +306,40 @@ ____________ _____   ___ _____ _____ _____
                     print("INVALID OPTION.")
                     time.sleep(1)
 
+            input("Just as you left to the next room...")
+            combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage,
+                  Enemies.Schism.Range, Enemies.Schism.Healing)
+            input("Ahead of you lies a crossroad, Door A appears to be the standard door with no differences to the other doors you have been passing through.")
+            input("Door B has an 'EXIT' sign above it, it seems to be damaged and would require a lot of force to break through.")
+            input("If you want to get through door B you will have to spend 25 - 100 fuel to smash through it.")
+            choice_loop = True
+            if choice_loop == True:
+                choice = input("Smash through the door?").lower()
+                if "y" in choice:
+                    print_slow("PREPARING TO DESTROY DOOR")
+                    loss = random.randint(25, 100)
+                    Player.current_health = Player.current_health - loss
+                    if Player.current_health <= 0:
+                        print_slow("FUEL AT CRITICAL LEVELS")
+                        print_slow("POWERING DOWN...")
+                        death_screen()
+                    else:
+                        print_slow("ATTEMPT SUCCESSFUL")
+                        print(f"{loss} FUEL LOST IN THE PROCESS. YOU HAVE {Player.current_health} FUEL LEFT")
+                        time.sleep(1)
+                    print("continue")
+                elif "n" in choice:
+                    print("no smashy :(")
+                else:
+                    print("INVALID OPTION")
+                    time.sleep(1)
+
+        
 
         elif direction == "right":
             input("right path")
             choice_loop = False
+
         elif direction == "forward":
             input("forward path")
             choice_loop = False
