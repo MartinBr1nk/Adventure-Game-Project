@@ -148,7 +148,7 @@ def menu():
                 time.sleep(3)
                 clear_screen()
             elif Choice == 2:
-                print("UPPERCASE text passes automatically")
+                print("UPPERCASE text passes automatically, it is spoken by machines")
                 time.sleep(1)
                 print("lowercase text must have you enter any key to continue. Try this now")
                 input()
@@ -226,7 +226,7 @@ ____________ _____   ___ _____ _____ _____
     time.sleep(1)
     print_fast("IMPACT SUCCESSFUL")
     time.sleep(1)
-    input("As the dust clears, you can see a way forward through a tunnel, obscured by smoke and soot.")
+    input("As the dust clears, you can see a way forward through a tunnel, obscured by smoke.")
     input("There are no other paths you can see. You decide to walk through the obscured tunnel")
     input("You reach a dark, open room with three locked doors to your left, right and directly in front of you.")
     time.sleep(1)
@@ -244,8 +244,7 @@ ____________ _____   ___ _____ _____ _____
         input("right path")
     elif direction == "forward":
         input("forward path")
-        code_1 = True
-
+        konami_1 = True
     else:
         print("PICK A VALID DIRECTION.")
         time.sleep(1)
