@@ -8,6 +8,9 @@ import Weapons
 
 name = "Placeholder"
 direction = "placeholder"
+choice_loop = False
+skip = False
+
 #functions
 def clear_screen():
     for x in range(25):
@@ -55,62 +58,70 @@ __   _______ _   _  ______ _____ ___________
     #Death screen
 
 def combat(target_name, target_health, target_damage, range, healing):
+    print_slow("THREAT DETECTED")
     print(f"{target_name} APPROACHES")
     print(f"{name} ATTACKS FIRST")
     time.sleep(1)
-    CombatLoop = True
+    combat_loop = True
+    weapon_loop = True
 
-    while CombatLoop == True:
+    while combat_loop == True:
         #Puts you into a loop until you either lose or win
         print(f"{target_name} HAS {target_health} HP")
         time.sleep(1)
-        print(f"""WEAPON CHOICES:
-       1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
-       2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
-       3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info} """)
-        time.sleep(1)
-        WeaponChoice = int(input("Choice: "))
+        while weapon_loop == True:
+            #puts you in a loop until you pick a valid weapon
+            print(f"""WEAPON CHOICES:
+           1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
+           2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
+           3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info} """)
+            weapon_choice = int(input("Choice: "))
 
-        if WeaponChoice == 1 and range <= Weapons.Revolver.Range:
-            target_health = target_health - int(Weapons.Revolver.Damage)
-            #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
+            if weapon_choice == 1 and range <= Weapons.Revolver.Range:
+                target_health = target_health - int(Weapons.Revolver.Damage)
+                #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
+                weapon_loop = False
 
-        elif WeaponChoice == 2 and range <= Weapons.Shotgun.Range:
-            target_health = target_health - int(Weapons.Shotgun.Damage)
-            #If the weapon selected is equal to 2 AND the range is greater than or equal to the enemies range value, you attack
+            elif weapon_choice == 2 and range <= Weapons.Shotgun.Range:
+                target_health = target_health - int(Weapons.Shotgun.Damage)
+                #If the weapon selected is equal to 2 AND the range is greater than or equal to the enemies range value, you attack
+                weapon_loop = False
 
-        elif WeaponChoice == 3 and range <= Weapons.Chaingun.Range and Weapons.chaingun_used != True:
-            target_health = target_health - int(Weapons.Chaingun.Damage)
-            #If the weapon selected is equal to 3 AND the range is greater than or equal to the enemies range value AND the chaingun is functional, you attack
-            print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
-            Weapons.chaingun_used = True
+            elif weapon_choice == 3 and range <= Weapons.Chaingun.Range and Weapons.chaingun_used != True:
+                target_health = target_health - int(Weapons.Chaingun.Damage)
+                #If the weapon selected is equal to 3 AND the range is greater than or equal to the enemies range value AND the chaingun is functional, you attack
+                print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
+                Weapons.chaingun_used = True
+                weapon_loop = False
 
-        elif WeaponChoice == 3 and Weapons.chaingun_used == True:
-            print("THE CHAINGUN HAS ALREADY BEEN USED. YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
-            #prevents the chaingun from being used if it has already been used previously
+            elif weapon_choice == 3 and Weapons.chaingun_used == True:
+                print("THE CHAINGUN HAS ALREADY BEEN USED. YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
+                #prevents the chaingun from being used if it has already been used previously
+            else:
+                print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
+                #In case the user enters a weapon that doesnt exist
 
-        else:
-            print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
-            #In case the user enters a weapon that doesnt exist
-
-
-        if target_health < 0:
+        weapon_loop = True
+        #sets weapon loop back to true so the next turn will work
+        if target_health <= 0:
             print(f"{target_name} HAS DIED")
             time.sleep(2)
             Player.current_health = Player.current_health + healing
             Player.HealthCheck()
             print(f"YOU HAVE {Player.current_health} FUEL REMAINING.")
             time.sleep(2)
-            CombatLoop = False
+            combat_loop = False
+            print(f"YOU WIN.")
+            time.sleep(1)
             #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
         elif Player.current_health <= 0:
-            CombatLoop = False
+            combat_loop = False
             print(f"YOU HAVE RAN OUT OF FUEL.")
             time.sleep(2)
             death_screen()
             time.sleep(1)
             #Death :(
-        else:
+        elif target_health > 0:
             print(f"{target_name} HAS {target_health} HP")
             time.sleep(1)
             #Tells the player how much health the enemy has
@@ -121,10 +132,12 @@ def combat(target_name, target_health, target_damage, range, healing):
             Player.current_health = Player.current_health - target_damage
             print(f"YOU HAVE {Player.current_health} FUEL REMAINING.")
             time.sleep(1)
-            print(f"YOU WIN.")
-            time.sleep(1)
+        else:
+            print("ERROR")
+            exit()
 
 def menu():
+    global skip
     MenuLoop = True
     while MenuLoop == True:
         print(r"""
@@ -174,6 +187,9 @@ def menu():
             elif Choice == 4:
                 print("CLOSING GAME...")
                 exit()
+            elif Choice == 9:
+                print("skipping introduction!")
+                skip = True
             else:
                 print("ENTER A VALID OPTION.")
                 time.sleep(1)
@@ -181,7 +197,6 @@ def menu():
             print("CHOSEN OPTION MUST BE A SINGLE INTEGER.")
         else:
             pass
-
 
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
@@ -212,9 +227,11 @@ ____________ _____   ___ _____ _____ _____
 \_|   \_| \_|\___/\____/\____/ \____/ \_/                    
     """)
 
-    
-    Introduction.IntroSequence()
-    name = Introduction.player_name
+    if skip == False:
+        Introduction.IntroSequence()
+        name = Introduction.player_name
+    else:
+        name = "Pixel"
 
     print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
     print_slow("IMPACT IMMINENT...")
@@ -230,21 +247,70 @@ ____________ _____   ___ _____ _____ _____
     input("There are no other paths you can see. You decide to walk through the obscured tunnel")
     input("You reach a dark, open room with three locked doors to your left, right and directly in front of you.")
     time.sleep(1)
-    print_slow("THREAT DETECTED")
 
     combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
            Enemies.Filth.Range, Enemies.Filth.Healing)
     #Gets the Name, Heath, Damage, Range and player healing for combat
     time.sleep(1)
+    choice_loop = True
+    while choice_loop == True:
+        direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :").lower()
+        if direction == "left":
+            choice_loop = False
+            input("The door to your left slams open and allows you to pass through.")
+            input("Ahead of you lies a long, cylindrical metal corridor.")
+            input("The walls have been heated to an extreme temperature.")
+            input("Suddenly...")
+            print_slow("TRANSMISSION INCOMING...")
+            time.sleep(1)
+            input("A voice comes from the speakers in your suits cockpit:")
+            input("'Hello Explorer, this is a transmission from Headquarters.'")
+            input("'It appears the Mouth of Hell has been overtaken by an unknown force,'")
+            input("'We advise caution when attempting to -KZZZZZKT-'")
+            print_slow("TRANSMISSION OVER.")
 
-    direction = input("The doors have unlocked, allowing you to progress either left, right or forward. :").lower()
-    if direction == "left":
-        input("left path")
-    elif direction == "right":
-        input("right path")
-    elif direction == "forward":
-        input("forward path")
-        konami_1 = True
-    else:
-        print("PICK A VALID DIRECTION.")
-        time.sleep(1)
+            combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                  Enemies.Stray.Range, Enemies.Stray.Healing)
+
+            
+            choice_loop = True
+            input("The only way forward is to continue along the corridor, it doesnt appear that there are any more doors.")
+            input("However, you could attempt to look around this room.")
+            input("This may be dangerous as the walls of the room have been heated to an extreme temperature. ")
+            while choice_loop == True:
+                choice = input("Inspect the Room? Yes/No: ").lower()
+                if "y" in choice:
+                    input("You decide to inspect the room.")
+                    print("!!! EXTREME HEAT DETECTED !!!")
+                    time.sleep(2)
+                    print("!!! ENGAGING COOLING MECHANISM !!!")
+                    Player.current_health = Player.current_health - 100
+                    time.sleep(2)
+                    print(f"YOU HAVE LOST 100 OUT OF {Player.max_health} FUEL.")
+                    print(f"YOU HAVE {Player.current_health} FUEL LEFT")
+                    time.sleep(1)
+                    input("You decide to continue along the corridor, as there does not appear to be anything else in this room")
+                    choice_loop = False
+
+                elif "n" in choice:
+                    input("You decide against inspecting the corridor.")
+                    input("You continue along the corridor, as there does not appear to be anything else in this room")
+                    choice_loop = False
+
+                else:
+                    print("INVALID OPTION.")
+                    time.sleep(1)
+
+
+        elif direction == "right":
+            input("right path")
+            choice_loop = False
+        elif direction == "forward":
+            input("forward path")
+            choice_loop = False
+            konami_1 = True
+
+        else:
+            print("PICK A VALID DIRECTION.")
+            time.sleep(1)
+
