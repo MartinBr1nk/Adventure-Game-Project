@@ -235,7 +235,6 @@ ____________ _____   ___ _____ _____ _____
         name = Introduction.player_name
     else:
         name = "Pixel"
-
     print_slow("THE PILOT IS APPROACHING... THE MOUTH OF HELL")
     print_slow("IMPACT IMMINENT...")
     print("3...")
@@ -315,21 +314,49 @@ ____________ _____   ___ _____ _____ _____
             choice_loop = True
             if choice_loop == True:
                 choice = input("Smash through the door?").lower()
+
                 if "y" in choice:
                     print_slow("PREPARING TO DESTROY DOOR")
                     loss = random.randint(25, 100)
                     Player.current_health = Player.current_health - loss
+
                     if Player.current_health <= 0:
                         print_slow("FUEL AT CRITICAL LEVELS")
                         print_slow("POWERING DOWN...")
                         death_screen()
+
                     else:
                         print_slow("ATTEMPT SUCCESSFUL")
                         print(f"{loss} FUEL LOST IN THE PROCESS. YOU HAVE {Player.current_health} FUEL LEFT")
                         time.sleep(1)
-                    print("continue")
+                    input("Behind the door is a large chasm in the ground, there appears to be a path to your left that may be connected to the path that Door A would take you to. You can see the shadow of a massive husk from this path.")
+                    input("Suddenly...")
+                    print_slow("PATH AHEAD DETECTED")
+                    input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
+                    input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
+                    print_slow("BEGINNING DECENT...")
+                    #Put exit code here once I finish The Mouth of Hell
+
                 elif "n" in choice:
-                    print("no smashy :(")
+                    input("You decide to take the standard door around")
+                    input("Ahead of you lies a corridor filled with enemies, and at the end you can see a right turn that would lead you to where Door B is connected to.")
+                    combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                        Enemies.Stray.Range, Enemies.Stray.Healing)
+                    combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage, \
+                        Enemies.Filth.Range, Enemies.Filth.Healing)
+                    combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
+                        Enemies.Schism.Range, Enemies.Schism.Healing)
+                    print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
+                    combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
+                        Enemies.Colossus.Range, Enemies.Colossus.Healing)
+
+                    input("Behind the turning is a large chasm in the ground, there appears to be a door to your right that is connected to the path that Door B would take you to.")
+                    input("Suddenly...")
+                    print_slow("PATH AHEAD DETECTED")
+                    input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
+                    input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
+                    print_slow("BEGINNING DECENT...")
+                    #Put exit code here once I finish The Mouth of Hell
                 else:
                     print("INVALID OPTION")
                     time.sleep(1)
