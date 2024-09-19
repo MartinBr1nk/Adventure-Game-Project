@@ -10,10 +10,12 @@ import Weapons
 #Variables
 name = "Placeholder"
 direction = "placeholder"
+prim_alt_choice = ""
 choice_loop = False
 skip = False
 endless_mode = False
 endless_enemies_killed = 0
+endless_chaingun_cooldown = 0
 loss = 0
 
 
@@ -75,6 +77,7 @@ def combat(target_name, target_health, target_damage, range, healing):
         #Puts you into a loop until you either lose or win
         print(f"{target_name} HAS {target_health} HP")
         time.sleep(1)
+
         while weapon_loop == True:
             #puts you in a loop until you pick a valid weapon
             print(f"""WEAPON CHOICES:
@@ -114,12 +117,13 @@ def combat(target_name, target_health, target_damage, range, healing):
             time.sleep(2)
             Player.current_health = Player.current_health + healing
             Player.HealthCheck()
-            print(f"{name} HAVE {Player.current_health} FUEL REMAINING.")
+            print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
             time.sleep(2)
             combat_loop = False
             print(f"{name} WINS.")
             time.sleep(1)
             #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
+
         elif Player.current_health <= 0:
             combat_loop = False
             print(f"{name} HAS RAN OUT OF FUEL.")
@@ -127,6 +131,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             death_screen()
             time.sleep(1)
             #Death :(
+
         elif target_health > 0:
             print(f"{target_name} HAS {target_health} HP")
             time.sleep(1)
@@ -138,9 +143,11 @@ def combat(target_name, target_health, target_damage, range, healing):
             Player.current_health = Player.current_health - target_damage
             print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
             time.sleep(1)
+
         else:
             print("ERROR")
             exit()
+            #debug message
 
 def menu():
     global skip
@@ -155,8 +162,8 @@ def menu():
 | |  | | |____| |\  | |__| |
 |_|  |_|______|_| \_|\____/ 
 
-1 - START GAME
-1 - ENDLESS FIGHTING MODE
+1 - START CAMPAIGN
+2 - ENDLESS FIGHTING MODE
 3 - HOW TO PLAY (CHOOSE THIS ON A FIRST PLAYTHROUGH.)
 4 - SETTINGS
 5 - EXIT GAME
@@ -217,7 +224,7 @@ def menu():
                 print("ENTER A VALID OPTION.")
                 time.sleep(1)
         except:
-            print("CHOSEN OPTION MUST BE A SINGLE INTEGER.")
+            print("CHOSEN OPTION MUST BE A SINGLE NUMBER.")
         else:
             pass
 
@@ -401,6 +408,9 @@ if endless_mode == False:
                 print("PICK A VALID DIRECTION.")
                 time.sleep(1)
 
+
+
+
 elif endless_mode == True:
     name = input("NAME: ")
     time.sleep(1)
@@ -426,7 +436,17 @@ elif endless_mode == True:
             combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
                Enemies.Colossus.Range, Enemies.Colossus.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
+        #Picks a random enemy from all avalible enemy types
 
         print(f"{endless_enemies_killed} ENEMIES KILLED!")
         time.sleep(1)
-        #Picks a random enemy from all avalible enemy types
+
+        if Weapons.chaingun_used == True:
+            endless_chaingun_cooldown = endless_chaingun_cooldown + 1
+            if endless_chaingun_cooldown == 5:
+                print_slow("CHAINGUN RESTORED!")
+                Weapons.chaingun_used = False
+            else:
+                print(f"{5 - endless_chaingun_cooldown} KILLS UNTIL THE CHAINGUN IS RESTORED")
+                time.sleep(2)
+            #If the chaingun has been used, after 5 kills it will be restored

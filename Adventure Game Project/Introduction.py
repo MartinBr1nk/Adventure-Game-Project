@@ -68,16 +68,14 @@ def IntroSequence():
         time.sleep(1)
         player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE CHOSEN FOR YOU: ")
         if player_name == "":
-            player_name = f"PILOT-{random.randint(1, 999999)}"
+            player_name = "PILOT"
             time.sleep(1)
             print(f"SET NAME - {player_name}.")
             time.sleep(1)
         else:
-            player_name = f"{player_name}-{random.randint(1, 999999)}"
             print(f"SET NAME - {player_name}.")
             time.sleep(1)
     else:
-        player_name = f"{player_name}-{random.randint(1, 999999)}"
         print(f"SET NAME - {player_name}.")
 
     cool_typing("STATUS UPDATE - APPROACHING HELL")
