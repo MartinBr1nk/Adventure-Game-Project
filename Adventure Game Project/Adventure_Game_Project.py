@@ -438,12 +438,12 @@ if endless_mode == False:
                 while choice_loop == True:
                     choice = input("Do you go left or right?: ")
                     if "l" in choice:
-                        print("wow moving left shocking!!!")
                         choice_loop = False
 
                     elif "r" in choice:
-                        print("wow moving right incredible!!")
                         choice_loop = False
+                        input("You enter a room resembling a cavern with no way through.")
+                        input("You could attempt to explore the room to check if anything")
 
                     else:
                         print("PICK A VALID OPTION.")
