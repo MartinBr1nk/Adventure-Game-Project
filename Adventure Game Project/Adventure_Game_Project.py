@@ -255,8 +255,7 @@ def menu():
 
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
-combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
-                            Enemies.Schism.Range, Enemies.Schism.Healing)
+
 menu()
 
 game_loop = True
@@ -433,6 +432,21 @@ if endless_mode == False:
                 print_slow("TRANSMISSION OVER.")
                 combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
                        Enemies.Filth.Range, Enemies.Filth.Healing)
+
+                choice_loop = True
+                input("There is a door to your left and a door to your right")
+                while choice_loop == True:
+                    choice = input("Do you go left or right?: ")
+                    if "l" in choice:
+                        print("wow moving left shocking!!!")
+                        choice_loop = False
+
+                    elif "r" in choice:
+                        print("wow moving right incredible!!")
+                        choice_loop = False
+
+                    else:
+                        print("PICK A VALID OPTION.")
 
             elif direction == "forward":
                 input("forward path")
