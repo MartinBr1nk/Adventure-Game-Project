@@ -443,8 +443,28 @@ if endless_mode == False:
                     elif "r" in choice:
                         choice_loop = False
                         input("You enter a room resembling a cavern with no way through.")
-                        input("You could attempt to explore the room to check if anything")
-
+                        input("You could explore the room to check if anything")
+                        choice_loop = True
+                        while choice_loop == True:
+                            choice = input("Explore the room?: ").lower()
+                            if "y" in choice:
+                                choice_loop = False
+                                input("You find a small lever hidden amongst the rocks in the room.")
+                                input("You decide to pull the lever.")
+                                input("The ground beneath you suddenly begins to open into a chasm")
+                                print_slow("PATH AHEAD DETECTED")
+                                print_slow("BEGINNING DECENT...")
+                                #Put exit code here once I finish The Mouth of Hell
+                                break
+                            elif "n" in choice:
+                                choice_loop = False
+                                input("Suddenly...")
+                                print_slow("Something wicked this way comes")
+                                combat(Enemies.SomethingWicked.Name, Enemies.SomethingWicked.Health, Enemies.SomethingWicked.Damage, \
+                                       Enemies.SomethingWicked.Range, Enemies.SomethingWicked.Healing)
+                                #starts a easter egg fight that is impossible to win
+                            else:
+                                print("PLEASE CHOOSE A VALID OPTION.")
                     else:
                         print("PICK A VALID OPTION.")
 
