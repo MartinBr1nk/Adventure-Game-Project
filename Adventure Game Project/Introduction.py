@@ -62,8 +62,19 @@ def IntroSequence():
         cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL EXPEDITION PROJECT.")
         time.sleep(1)
         death_screen()
+
     elif "gaster" in player_name.lower():
+        cool_typing("VERY VERY INTRESTING.")
         player_name = "W.D Gaster"
+
+    elif "farming" in player_name.lower() or "martin" in player_name.lower():
+        cool_typing("FARMING MODE INITIATED.")
+        time.sleep(1)
+        cool_typing("LOADING.................")
+        time.sleep(5)
+        print("just kidding :)")
+        time.sleep(3)
+
     elif player_name == "":
         time.sleep(1)
         player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE CHOSEN FOR YOU: ")
