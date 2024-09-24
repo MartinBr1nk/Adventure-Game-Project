@@ -419,16 +419,24 @@ if endless_mode == False:
                         print("INVALID OPTION")
                         time.sleep(1)
 
-        
-
             elif direction == "right":
-                input("right path")
                 choice_loop = False
+                input("The door to your right slams closed behind you, ahead of you lies a fork in the road with doors to the left and right.")
+                input("Suddenly...")
+                print_slow("TRANSMISSION INCOMING...")
+                time.sleep(1)
+
+                input("A voice comes from the speakers in your suits cockpit:")
+                input(f"'Hello {name}, this is a transmission from Headquarters.'")
+                input("'It appears the Mouth of Hell has been overtaken by an unknown force,'")
+                input("'We advise caution when attempting to -KZZZZZKT-'")
+                print_slow("TRANSMISSION OVER.")
+                combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
+                       Enemies.Filth.Range, Enemies.Filth.Healing)
 
             elif direction == "forward":
                 input("forward path")
                 choice_loop = False
-                konami_1 = True
 
             else:
                 print("PICK A VALID DIRECTION.")
