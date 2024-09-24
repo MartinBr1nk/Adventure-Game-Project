@@ -439,7 +439,15 @@ if endless_mode == False:
                     choice = input("Do you go left or right?: ")
                     if "l" in choice:
                         choice_loop = False
-
+                        input("You enter a long corridoor, with a large enemy blocking the path forward.")
+                        input("You can see a potential exit ahead")
+                        input("Suddenly...")
+                        combat(Enemies.Colossus.Filth.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage,\
+                                Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                        input("You continue ahead through the corridoor and reach a chasm in the ground")
+                        print_slow("PATH AHEAD DETECTED")
+                        print_slow("BEGINNING DECENT...")
+                        #Put exit code here once I finish The Mouth of Hell
                     elif "r" in choice:
                         choice_loop = False
                         input("You enter a room resembling a cavern with no way through.")
