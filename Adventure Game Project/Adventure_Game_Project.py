@@ -526,3 +526,5 @@ elif endless_mode == True:
                 print(f"{5 - endless_chaingun_cooldown} KILLS UNTIL THE CHAINGUN IS RESTORED")
                 time.sleep(2)
             #If the chaingun has been used, after 5 kills it will be restored
+
+#end
