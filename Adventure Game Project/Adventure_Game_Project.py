@@ -17,6 +17,8 @@ endless_mode = False
 endless_enemies_killed = 0
 endless_chaingun_cooldown = 0
 loss = 0
+alt_fire = "h"
+
 
 
 #functions
@@ -84,47 +86,51 @@ def combat(target_name, target_health, target_damage, range, healing):
            1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
            2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
            3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info} """)
-            weapon_choice = int(input("Choice: "))
+            weapon_choice = str(input("Choice: ")).lower()
+            alt_fire = input("Use the alternate firing option? (Yes/No)").lower()
+            if "n" in alt_fire:
+                if weapon_choice == "1" or "revo" in weapon_choice and range <= Weapons.Revolver.Range:
+                    target_health = target_health - int(Weapons.Revolver.Damage)
+                    #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
+                    weapon_loop = False
 
-            if weapon_choice == 1 and range <= Weapons.Revolver.Range:
-                target_health = target_health - int(Weapons.Revolver.Damage)
-                #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
-                weapon_loop = False
+                elif weapon_choice == "2" or "shot" in weapon_choice and range <= Weapons.Shotgun.Range:
+                    target_health = target_health - int(Weapons.Shotgun.Damage)
+                    #If the weapon selected is equal to 2 AND the range is greater than or equal to the enemies range value, you attack
+                    weapon_loop = False
 
-            elif weapon_choice == 2 and range <= Weapons.Shotgun.Range:
-                target_health = target_health - int(Weapons.Shotgun.Damage)
-                #If the weapon selected is equal to 2 AND the range is greater than or equal to the enemies range value, you attack
-                weapon_loop = False
+                elif weapon_choice == "3" or "chain" in weapon_choice and range <= Weapons.Chaingun.Range and Weapons.chaingun_used != True:
+                    target_health = target_health - int(Weapons.Chaingun.Damage)
+                    #If the weapon selected is equal to 3 AND the range is greater than or equal to the enemies range value AND the chaingun is functional, you attack
+                    print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
+                    Weapons.chaingun_used = True
+                    weapon_loop = False
 
-            elif weapon_choice == 3 and range <= Weapons.Chaingun.Range and Weapons.chaingun_used != True:
-                target_health = target_health - int(Weapons.Chaingun.Damage)
-                #If the weapon selected is equal to 3 AND the range is greater than or equal to the enemies range value AND the chaingun is functional, you attack
-                print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
-                Weapons.chaingun_used = True
-                weapon_loop = False
+                elif weapon_choice == 3 and Weapons.chaingun_used == True:
+                    print("THE CHAINGUN HAS ALREADY BEEN USED. YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
+                    #prevents the chaingun from being used if it has already been used previously
+                else:
+                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
+                    #In case the user enters a weapon that doesnt exist
+            elif "y" in alt_fire:
+                if weapon_choice == "1" or "revo" in weapon_choice:
+                    target_health = target_health - int(Weapons.Revolver.Damage) * 2
+                    Player.current_health = Player.current_health - 10
+                    #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
+                    weapon_loop = False
 
-            elif weapon_choice == 3 and Weapons.chaingun_used == True:
-                print("THE CHAINGUN HAS ALREADY BEEN USED. YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
-                #prevents the chaingun from being used if it has already been used previously
+                elif weapon_choice == "2" or "shot" in weapon_choice:
+                    target_health = target_health - int(Weapons.Shotgun.Damage)
+                    Player.current_health = Player.current_health - 50
+                    #If the weapon selected is equal to 2 you shoot an infinite range shotgun projectile and take 50 damage
+                    weapon_loop = False
             else:
-                print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
-                #In case the user enters a weapon that doesnt exist
+                print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
+                time.sleep(1)
 
         weapon_loop = True
         #sets weapon loop back to true so the next turn will work
-        if target_health <= 0:
-            print(f"{target_name} HAS DIED")
-            time.sleep(2)
-            Player.current_health = Player.current_health + healing
-            Player.HealthCheck()
-            print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
-            time.sleep(2)
-            combat_loop = False
-            print(f"{name} WINS.")
-            time.sleep(1)
-            #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
-
-        elif Player.current_health <= 0:
+        if Player.current_health <= 0:
             combat_loop = False
             print(f"{name} HAS RAN OUT OF FUEL.")
             time.sleep(2)
@@ -143,6 +149,25 @@ def combat(target_name, target_health, target_damage, range, healing):
             Player.current_health = Player.current_health - target_damage
             print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
             time.sleep(1)
+            if Player.current_health <= 0:
+                combat_loop = False
+                print(f"{name} HAS RAN OUT OF FUEL.")
+                time.sleep(2)
+                death_screen()
+                time.sleep(1)
+                #Death :(
+
+        elif target_health <= 0:
+            print(f"{target_name} HAS DIED")
+            time.sleep(2)
+            Player.current_health = Player.current_health + healing
+            Player.HealthCheck()
+            print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
+            time.sleep(2)
+            combat_loop = False
+            print(f"{name} WINS.")
+            time.sleep(1)
+            #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
 
         else:
             print("ERROR")
@@ -230,7 +255,8 @@ def menu():
 
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can cause special events to happen
-
+combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
+                            Enemies.Schism.Range, Enemies.Schism.Healing)
 menu()
 
 game_loop = True
