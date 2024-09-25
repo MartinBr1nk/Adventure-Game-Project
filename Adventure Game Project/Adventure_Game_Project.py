@@ -624,7 +624,8 @@ if endless_mode == False:
                                            "fuel to jump the gap?: ").lower()
                             if "y" in choice:
                                 choice_loop = False
-                                Player.current_health = Player.current_health / 2
+                                Player.current_health = \
+                                    Player.current_health / 2
                                 int(Player.current_health)
                                 #player loses half of their fuel if
                                 #they play it safe

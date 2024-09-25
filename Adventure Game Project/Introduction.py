@@ -57,7 +57,8 @@ def IntroSequence():
        or "mew" in player_name.lower() or "mog" in player_name.lower()\
        or "gronk" in player_name.lower() or "glazing" in player_name.lower()\
        or "cenat" in player_name.lower():
-        #if these terms are within your name, the game just kills you before you can start.
+        #if these terms are within your name,
+        #the game just kills you before you can start.
         cool_typing("RELEASING TOXIC GAS...")
         time.sleep(3)
         cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL"
