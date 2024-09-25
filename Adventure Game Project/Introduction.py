@@ -39,7 +39,8 @@ def IntroSequence():
     cool_typing("AUDIO             OK")
     cool_typing("VIDEO FEED        ERROR")
     cool_typing("MECHANICS         OK")
-    print("DUE TO VIDEO FEED MALFUNCTION, PLEASE NOTE YOUR ENVIROMENT AS YOU PROCEED")
+    print("DUE TO VIDEO FEED MALFUNCTION, PLEASE NOTE YOUR ENVIROMENT "
+          "AS YOU PROCEED")
     time.sleep(3)
 
     print("DIAGNOSTIC COMPLETE")
@@ -59,7 +60,8 @@ def IntroSequence():
         #if these terms are within your name, the game just kills you before you can start.
         cool_typing("RELEASING TOXIC GAS...")
         time.sleep(3)
-        cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL EXPEDITION PROJECT.")
+        cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL"
+                   "EXPEDITION PROJECT.")
         time.sleep(1)
         death_screen()
 
@@ -77,7 +79,8 @@ def IntroSequence():
 
     elif player_name == "":
         time.sleep(1)
-        player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE CHOSEN FOR YOU: ")
+        player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE "
+                            "CHOSEN FOR YOU: ")
         if player_name == "":
             player_name = "PILOT"
             time.sleep(1)
