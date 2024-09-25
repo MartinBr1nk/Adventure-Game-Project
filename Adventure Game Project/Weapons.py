@@ -8,22 +8,31 @@ class Weapon:
         Self.Info = Info
         Self.Terminal = Terminal
 
-Revolver = Weapon("Revolver", 15, 9999999, "Low Damage, "
-                  "Perfect Accuracy - "
+Revolver = Weapon("Revolver",
+                  15,
+                  9999999,
+                  "Low Damage, "
+                  "Perfect Accuracy -"
                   "Alt fire causes the revolver to deal 2x damage "
                   "but causes a small shock to be administered to the user, "
                   "take 10 damage.", "A revolver that uses electromagnets "
-                  "to fire its bullets at incredible speeds.")
+                  "to fire its bullets at incredible speeds.",)
 
-Shotgun = Weapon("Shotgun", 50, 5, "High Damage, "
+Shotgun = Weapon("Shotgun",
+                 50,
+                 5,
+                 "High Damage, "
                  "Horrific Accuracy (5 Meter range) - "
                  "Alt fire causes all the bullets to be condensed into one "
-                 "projectile that has infinite range. Take 50 self damage, "
+                 "projectile that has infinite range. Take 50 self damage",
                  "A shotgun that fires an array of metal shards at fast "
                  "speeds, a single shard can only cause a single cut while "
                  "many shards can tear apart enemies.")
 
-Chaingun = Weapon("Chaingun", 500, 200, "Incredibly High Damage, "
+Chaingun = Weapon("Chaingun",
+                  500,
+                  200,
+                  "Incredibly High Damage, "
                   "High Accuracy (200 Meter range), Can only be used ONCE "
                   "until it breaks and needs a repair", 
                   "An experimental weapon with an incredible fire rate. "

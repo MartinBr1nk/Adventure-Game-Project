@@ -99,42 +99,63 @@ def combat(target_name, target_health, target_damage, range, healing):
            2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
            3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info} """)
             weapon_choice = str(input("Choice: ")).lower()
-            alt_fire = input("Use the alternate firing option? (Yes/No)").lower()
+            alt_fire = input("Use the alternate firing option? "
+                             "(Yes/No)").lower()
             if "n" in alt_fire:
-                if weapon_choice == "1" or "revo" in weapon_choice and range <= Weapons.Revolver.Range:
-                    target_health = target_health - int(Weapons.Revolver.Damage)
-                    #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
+                if weapon_choice == "1" or "revo" in weapon_choice \
+                and range <= Weapons.Revolver.Range:
+                    target_health = target_health - \
+                        int(Weapons.Revolver.Damage)
+                    #If the weapon selected is equal to 1 AND the range is
+                    #greater than or equal to the enemies range value,
+                    #you attack
                     weapon_loop = False
 
-                elif weapon_choice == "2" or "shot" in weapon_choice and range <= Weapons.Shotgun.Range:
-                    target_health = target_health - int(Weapons.Shotgun.Damage)
-                    #If the weapon selected is equal to 2 AND the range is greater than or equal to the enemies range value, you attack
+                elif weapon_choice == "2" or "shot" in weapon_choice \
+                   and range <= Weapons.Shotgun.Range:
+                    target_health = target_health - \
+                        int(Weapons.Shotgun.Damage)
+                    #If the weapon selected is equal to 2 AND the range
+                    #is greater than or equal to the enemies range value,
+                    #you attack
                     weapon_loop = False
 
-                elif weapon_choice == "3" or "chain" in weapon_choice and range <= Weapons.Chaingun.Range and Weapons.chaingun_used != True:
+                elif weapon_choice == "3" or "chain" in weapon_choice and \
+                    range <= Weapons.Chaingun.Range and Weapons.chaingun_used\
+                    != True:
                     target_health = target_health - int(Weapons.Chaingun.Damage)
-                    #If the weapon selected is equal to 3 AND the range is greater than or equal to the enemies range value AND the chaingun is functional, you attack
-                    print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
+                    #If the weapon selected is equal to 3 AND the range is
+                    #greater than or equal to the enemies range value AND the
+                    #chaingun is functional, you attack
+                    print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
+                          "UNTIL REPAIRED")
                     Weapons.chaingun_used = True
                     weapon_loop = False
 
                 elif weapon_choice == 3 and Weapons.chaingun_used == True:
-                    print("THE CHAINGUN HAS ALREADY BEEN USED. YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
+                    print("THE CHAINGUN HAS ALREADY BEEN USED. "
+                          "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
                     #prevents the chaingun from being used if it has already been used previously
                 else:
-                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
+                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
+                         " PICK THE NUMBER RELATED TO THE WEAPON.")
                     #In case the user enters a weapon that doesnt exist
             elif "y" in alt_fire:
                 if weapon_choice == "1" or "revo" in weapon_choice:
-                    target_health = target_health - int(Weapons.Revolver.Damage) * 2
+                    target_health = target_health - \
+                        int(Weapons.Revolver.Damage) * 2
                     Player.current_health = Player.current_health - 10
-                    #If the weapon selected is equal to 1 AND the range is greater than or equal to the enemies range value, you attack
+                    #If the weapon selected is equal to 1 AND the range
+                    #is greater than or equal to the enemies range value,
+                    #you attack
                     weapon_loop = False
 
                 elif weapon_choice == "2" or "shot" in weapon_choice:
-                    target_health = target_health - int(Weapons.Shotgun.Damage)
+                    target_health = target_health - \
+                        int(Weapons.Shotgun.Damage)
                     Player.current_health = Player.current_health - 50
-                    #If the weapon selected is equal to 2 you shoot an infinite range shotgun projectile and take 50 damage
+                    #If the weapon selected is equal to 2 you shoot an infinite range
+                    #shotgun projectile and take 50 damage
                     weapon_loop = False
             else:
                 print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
@@ -156,7 +177,8 @@ def combat(target_name, target_health, target_damage, range, healing):
             #Tells the player how much health the enemy has
             print(f"{target_name} ATTACKS!")
             time.sleep(1)
-            print(f"{target_name} HITS AND CAUSES {name} TO LOSE {target_damage} FUEL.")
+            print(f"{target_name} HITS AND CAUSES {name} TO LOSE "
+                  "{target_damage} FUEL.")
             time.sleep(1)
             Player.current_health = Player.current_health - target_damage
             print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
@@ -179,7 +201,8 @@ def combat(target_name, target_health, target_damage, range, healing):
             combat_loop = False
             print(f"{name} WINS.")
             time.sleep(1)
-            #Victory!!! combat ends and the player heals, determined by the enemies healing factor.
+            #Victory!!! combat ends and the player heals,
+            #determined by the enemies healing factor.
 
         else:
             print("ERROR")
@@ -224,23 +247,32 @@ def menu():
                 clear_screen()
 
             elif menu_choice == 3:
-                print("UPPERCASE text passes automatically, it is spoken by machines")
+                print("UPPERCASE text passes automatically, "
+                      "it is spoken by machines")
                 time.sleep(1)
-                print("lowercase text must have you enter any key to continue. Try this now")
+                print("lowercase text must have you enter any key to "
+                      "continue. Try this now")
                 input()
-                print("Combat is turn based, firstly you take a turn and then the enemy takes their turn, as long as they are not dead.")
+                print("Combat is turn based, firstly you take a turn and then"
+                    " the enemy takes their turn, as long as they are not dead.")
                 input()
-                print("The way you restore your fuel (Health) is by sucessfully killing enemies.")
+                print("The way you restore your fuel (Health) is by "
+                      "sucessfully killing enemies.")
                 input()
                 print("THIS IS THE ONLY WAY TO RESTORE FUEL.")
                 time.sleep(1)
-                print("Stronger enemies restore more fuel, while weaker enemies will restore less fuel")
+                print("Stronger enemies restore more fuel, while weaker "
+                      "enemies will restore less fuel")
                 input()
-                print("Every path in the game will eventually lead to an exit. Every way forward will lead to progress.")
+                print("Every path in the game will eventually lead to an exit."
+                    " Every way forward will lead to progress.")
                 input()
-                print("This doesnt mean that some paths will be easy, each path will have their own challenges and secrets that you can discover and overcome.")
+                print("This doesnt mean that some paths will be easy, "
+                      "each path will have their own challenges and secrets "
+                      "that you can discover and overcome.")
                 input()
-                print("Press any key when you are ready to return to the menu")
+                print("Press any key when you are ready to return to the "
+                      "menu")
                 input()
                 clear_screen()
 
@@ -268,7 +300,8 @@ def menu():
             pass
 
 random_value = random.randint(0, 500)
-#Random Value generated at the start of every run that can cause special events to happen
+#Random Value generated at the start of every run that can
+#cause special events to happen
 
 menu()
 
@@ -320,17 +353,19 @@ if endless_mode == False:
         "left, right and directly in front of you.")
         time.sleep(1)
 
-        combat(Enemies.Filth.Name, Enemies.Filth.Health, Enemies.Filth.Damage,\
+        combat(Enemies.Filth.Name, Enemies.Filth.Health, \
+            Enemies.Filth.Damage,\
                Enemies.Filth.Range, Enemies.Filth.Healing)
         #Gets the Name, Heath, Damage, Range and player healing for combat
         time.sleep(1)
         choice_loop = True
         while choice_loop == True:
             direction = input("The doors have unlocked, allowing you to "
-                              "progress either left, right or forward. :").lower()
+                              "progress either left, right "
+                             "or forward. :").lower()
             if direction == "left":
                 choice_loop = False
-                input("The door to your left slams open and allows you to"
+                input("The door to your left slams open and allows you to "
                      "pass through.")
                 input("Ahead of you lies a long, cylindrical metal corridor.")
                 input("The walls have been heated to an extreme temperature.")
@@ -347,7 +382,8 @@ if endless_mode == False:
                 input("'We advise caution when attempting to -KZZZZZKT-'")
                 print_slow("TRANSMISSION OVER.")
 
-                combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                combat(Enemies.Stray.Name, Enemies.Stray.Health, \
+                    Enemies.Stray.Damage, \
                       Enemies.Stray.Range, Enemies.Stray.Healing)
 
             
@@ -357,7 +393,7 @@ if endless_mode == False:
                       "are any more doors.")
                 input("However, you could attempt to look around this room.")
                 input("This may be dangerous as the walls of the room have "
-                      "been heated to an extreme temperature. ")
+                      "been heated to an extreme temperature.")
                 while choice_loop == True:
                     #keeps the player in a loop until they make a valid choice
                     choice = input("Inspect the Room? Yes/No: ").lower()
@@ -373,7 +409,8 @@ if endless_mode == False:
                         print(f"YOU HAVE {Player.current_health} FUEL LEFT")
                         time.sleep(1)
                         input("You decide to continue along the corridor, "
-                              "as there does not appear to be anything else in this room")
+                              "as there does not appear to be anything else "
+                              "in this room")
                         choice_loop = False
 
                     elif "n" in choice:
@@ -387,7 +424,8 @@ if endless_mode == False:
                         time.sleep(1)
 
                 input("Just as you left to the next room...")
-                combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage,
+                combat(Enemies.Schism.Name, Enemies.Schism.Health, \
+                    Enemies.Schism.Damage,
                       Enemies.Schism.Range, Enemies.Schism.Healing)
                 input("Ahead of you lies a crossroad, Door A appears to "
                       "be the standard door with no differences to the "
@@ -454,9 +492,11 @@ if endless_mode == False:
                             Enemies.Schism.Range, Enemies.Schism.Healing)
 
                         print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
-                        combat(Enemies.Colossus.Name, Enemies.Colossus.Health, \
+                        combat(Enemies.Colossus.Name, \
+                               Enemies.Colossus.Health, \
                                Enemies.Colossus.Damage, \
-                               Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                               Enemies.Colossus.Range, \
+                               Enemies.Colossus.Healing)
 
                         input("Behind the turning is a large chasm in the "
                         "ground, there appears to be a door to your right "
@@ -508,9 +548,10 @@ if endless_mode == False:
                               "enemy blocking the path forward.")
                         input("You can see a potential exit ahead")
                         input("Suddenly...")
-                        combat(Enemies.Colossus.Filth.Name, Enemies.Colossus.Health, \
+                        combat(Enemies.Colossus.Filth.Name, \
+                            Enemies.Colossus.Health, \
                             Enemies.Colossus.Damage,\
-                                Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                            Enemies.Colossus.Range, Enemies.Colossus.Healing)
                         input("You continue ahead through the corridoor "
                               "and reach a chasm in the ground")
                         print_slow("PATH AHEAD DETECTED")
@@ -576,7 +617,7 @@ if endless_mode == False:
 
             elif direction == "forward":
                 choice_loop = False
-                input("The door ahead of you slams open allowing you to"
+                input("The door ahead of you slams open allowing you to "
                      "continue forward.")
                 input("The room behind the door is a large, winding "
                       "staircase above a massive spinning fan, "
