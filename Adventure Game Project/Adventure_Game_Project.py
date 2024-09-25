@@ -388,7 +388,9 @@ if endless_mode == False:
                         input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
                         input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
                         print_slow("BEGINNING DECENT...")
-                        #Put exit code here once I finish The Mouth of Hell
+
+                        game_loop = False
+                        #Gets the player out of the first area, allowing them to progress to the next area
 
                     elif "n" in choice:
                         input("You decide to take the standard door around")
@@ -413,7 +415,9 @@ if endless_mode == False:
                         input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
                         input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
                         print_slow("BEGINNING DECENT...")
-                        #Put exit code here once I finish The Mouth of Hell
+
+                        game_loop = False
+                        #Gets the player out of the first area, allowing them to progress to the next area
                     else:
                         print("INVALID OPTION")
                         time.sleep(1)
@@ -447,7 +451,10 @@ if endless_mode == False:
                         input("You continue ahead through the corridoor and reach a chasm in the ground")
                         print_slow("PATH AHEAD DETECTED")
                         print_slow("BEGINNING DECENT...")
-                        #Put exit code here once I finish The Mouth of Hell
+
+                        game_loop = False
+                        #Gets the player out of the first area, allowing them to progress to the next area
+
                     elif "r" in choice:
                         choice_loop = False
                         input("You enter a room resembling a cavern with no way through.")
@@ -462,10 +469,22 @@ if endless_mode == False:
                                 input("The ground beneath you suddenly begins to open into a chasm")
                                 print_slow("PATH AHEAD DETECTED")
                                 print_slow("BEGINNING DECENT...")
-                                #Put exit code here once I finish The Mouth of Hell
-                                break
+
+                                game_loop = False
+                                #Gets the player out of the first area, allowing them to progress to the next area
                             elif "n" in choice:
                                 choice_loop = False
+                                input("You notice a small tablet on the ground.")
+                                input("You pick it up and it reads:")
+                                input("""
+                                Log #14
+                                The Mouth of Hell research station has been twisted into an industrial hellscape, we just woke up and the
+                                smell of smoke and fumes has flooded the entire station and rooms have been twisted into a confusing
+                                labyrinth of industrial equipment and hellish creations that no sane person would make.
+                                We're all so scared and nobody is coming for us.
+                                Have they just abandoned us?
+                                """)
+                                time.sleep(1)
                                 input("Suddenly...")
                                 print_slow("Something wicked this way comes")
                                 combat(Enemies.SomethingWicked.Name, Enemies.SomethingWicked.Health, Enemies.SomethingWicked.Damage, \
@@ -492,6 +511,7 @@ if endless_mode == False:
 
                 input("You can see many enemies lying on the staircase")
                 input("if you use a charge of your chaingun you may be able to destroy the floor beneath some of the enemies.")
+                choice_loop = True
                 if choice_loop == True:
                     choice = input("Do you use your chaingun?: ").lower()
                     if "y" in choice:
@@ -504,13 +524,15 @@ if endless_mode == False:
                         input("There is a huge gap between you and the next door.")
                         input("You'll have to jump the gap.")
                         input("To successfully jump the gap you will have to use HALF of your fuel to make the jump.")
-                        input("You could risk it and lose only a third of your fuel to jump the gap but there is a chance you may fall and be shredded.")
+                        input("You could risk it and lose 50 fuel to jump the gap but there is a chance you may fall and be shredded.")
                         choice_loop = True
                         while choice_loop == True:
                             choice = input("Play it safe and use half your fuel to jump the gap?: ").lower()
                             if "y" in choice:
                                 choice_loop = False
                                 Player.current_health = Player.current_health / 2
+                                int(Player.current_health)
+                                #player loses half of their fuel if they play it safe
                                 print(f"{Player.current_health} FUEL REMAINING.")
                                 time.sleep(1)
                             elif "n" in choice:
@@ -522,10 +544,13 @@ if endless_mode == False:
                                     time.sleep(1)
                                     print_slow("EMERGENCY EJ-")
                                     death_screen()
+                                    #if they fail the jump, they die
                                 else:
-                                    Player.current_health = Player.current_health / 1.3
+                                    Player.current_health = Player.current_health - 50
                                     print(f"{Player.current_health} FUEL REMAINING.")
                                     time.sleep(1)
+                                    #if they successfully jump they only lose 50 fuel
+
                             input("You have successfuly jumped the gap.")
                             input("The door at the end slams open and you can see a chasm that drops down for a indeterminate distance.")
                             input("Suddenly...")
@@ -533,7 +558,9 @@ if endless_mode == False:
                             input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
                             input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
                             print_slow("BEGINNING DECENT...")
-                            #Put exit code here once I finish The Mouth of Hell
+
+                            game_loop = False
+                            #Gets the player out of the first area, allowing them to progress to the next area
                     elif "n" in choice:
                         choice_loop = False
                         input("You decide against using the chaingun.")
@@ -548,6 +575,7 @@ if endless_mode == False:
                         combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
                             Enemies.Colossus.Range, Enemies.Colossus.Healing)
                         input("You can now continue further.")
+                        #Enemy gauntlet
 
                         input("The door at the end slams open and you can see a chasm that drops down for a indeterminate distance.")
                         input("Suddenly...")
@@ -555,8 +583,10 @@ if endless_mode == False:
                         input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
                         input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
                         print_slow("BEGINNING DECENT...")
-                        #Put exit code here once I finish The Mouth of Hell
-                        
+
+                        game_loop = False
+                        #Gets the player out of the first area, allowing them to progress to the next area
+
                     else:
                         print("INVALID OPTION.")
                         print("\n")
