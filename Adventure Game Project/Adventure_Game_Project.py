@@ -23,8 +23,9 @@ alt_fire = "h"
 
 #functions
 def clear_screen():
-    for x in range(25):
+    for clear_x in range(50):
         print("\n")
+        #"Clears" the screen by pushing everything else away
 
 
 
