@@ -477,8 +477,90 @@ if endless_mode == False:
                         print("PICK A VALID OPTION.")
 
             elif direction == "forward":
-                input("forward path")
                 choice_loop = False
+                input("The door ahead of you slams open allowing you to continue forward.")
+                input("The room behind the door is a large, winding staircase above a massive spinning fan, falling would result in instant death")
+                input("Suddenly...")
+                print_slow("TRANSMISSION INCOMING...")
+                time.sleep(1)
+
+                input("A voice comes from the speakers in your suits cockpit:")
+                input(f"'Hello {name}, this is a transmission from Headquarters.'")
+                input("'It appears the Mouth of Hell has been overtaken by an unknown force,'")
+                input("'We advise caution when attempting to -KZZZZZKT-'")
+                print_slow("TRANSMISSION OVER.")
+
+                input("You can see many enemies lying on the staircase")
+                input("if you use a charge of your chaingun you may be able to destroy the floor beneath some of the enemies.")
+                if choice_loop == True:
+                    choice = input("Do you use your chaingun?: ").lower()
+                    if "y" in choice:
+                        choice_loop = False
+                        Weapons.chaingun_used = True
+                        print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL REPAIRED")
+                        time.sleep(1)
+                        input("The staircase ahead crumbles infront of you, leaving a massive gap that you need to cross.")
+                        input("However, all the enemies that you would have had to fought have fell and been shredded by the fan beneath.")
+                        input("There is a huge gap between you and the next door.")
+                        input("You'll have to jump the gap.")
+                        input("To successfully jump the gap you will have to use HALF of your fuel to make the jump.")
+                        input("You could risk it and lose only a third of your fuel to jump the gap but there is a chance you may fall and be shredded.")
+                        choice_loop = True
+                        while choice_loop == True:
+                            choice = input("Play it safe and use half your fuel to jump the gap?: ").lower()
+                            if "y" in choice:
+                                choice_loop = False
+                                Player.current_health = Player.current_health / 2
+                                print(f"{Player.current_health} FUEL REMAINING.")
+                                time.sleep(1)
+                            elif "n" in choice:
+                                choice_loop = False
+                                input("You brace yourself to jump.")
+                                jump_risk = random.randint(1, 5)
+                                if jump_risk == 1:
+                                    print_slow("JUMP FAILED")
+                                    time.sleep(1)
+                                    print_slow("EMERGENCY EJ-")
+                                    death_screen()
+                                else:
+                                    Player.current_health = Player.current_health / 1.3
+                                    print(f"{Player.current_health} FUEL REMAINING.")
+                                    time.sleep(1)
+                            input("You have successfuly jumped the gap.")
+                            input("The door at the end slams open and you can see a chasm that drops down for a indeterminate distance.")
+                            input("Suddenly...")
+                            print_slow("PATH AHEAD DETECTED")
+                            input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
+                            input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
+                            print_slow("BEGINNING DECENT...")
+                            #Put exit code here once I finish The Mouth of Hell
+                    elif "n" in choice:
+                        choice_loop = False
+                        input("You decide against using the chaingun.")
+                        input("You'll have to fight through several tough enemies to get through now.")
+                        combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                            Enemies.Stray.Range, Enemies.Stray.Healing)
+                        combat(Enemies.Stray.Name, Enemies.Stray.Health, Enemies.Stray.Damage, \
+                            Enemies.Stray.Range, Enemies.Stray.Healing)
+                        combat(Enemies.Schism.Name, Enemies.Schism.Health, Enemies.Schism.Damage, \
+                            Enemies.Schism.Range, Enemies.Schism.Healing)
+                        print_slow("GIANT ENEMY AHEAD.")
+                        combat(Enemies.Colossus.Name, Enemies.Colossus.Health, Enemies.Colossus.Damage, \
+                            Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                        input("You can now continue further.")
+
+                        input("The door at the end slams open and you can see a chasm that drops down for a indeterminate distance.")
+                        input("Suddenly...")
+                        print_slow("PATH AHEAD DETECTED")
+                        input("Your suit suddenly begins walking towards the chasm and prepares to jump in")
+                        input("The suit controls have been taken over by the suits AI, you cannot prevent its decent.")
+                        print_slow("BEGINNING DECENT...")
+                        #Put exit code here once I finish The Mouth of Hell
+                        
+                    else:
+                        print("INVALID OPTION.")
+                        print("\n")
+                        time.sleep(1)
 
             else:
                 print("PICK A VALID DIRECTION.")
