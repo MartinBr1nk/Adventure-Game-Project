@@ -135,7 +135,8 @@ def combat(target_name, target_health, target_damage, range, healing):
                 elif weapon_choice == 3 and Weapons.chaingun_used == True:
                     print("THE CHAINGUN HAS ALREADY BEEN USED. "
                           "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
-                    #prevents the chaingun from being used if it has already been used previously
+                    #prevents the chaingun from being used if it has already
+                    #been used previously
                 else:
                     print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
                          " PICK THE NUMBER RELATED TO THE WEAPON.")
@@ -232,21 +233,26 @@ def menu():
 
         """)
         try:
-            menu_choice = int(input("WHERE DO YOU WANT TO NAVIGATE TO?: "))
-            if menu_choice == 1:
+            menu_choice = str(input("WHERE DO YOU WANT TO NAVIGATE TO?: ")).lower()
+            if "1" in menu_choice or "start" in menu_choice \
+                or "play" in menu_choice:
                 menu_loop = False
                 time.sleep(3)
                 clear_screen()
+                #Starts the game
 
-            elif menu_choice == 2:
+            elif "2" in menu_choice or "endless" in menu_choice:
                 endless_mode = True
                 menu_loop = False
                 skip = True
                 print("STARTING ENDLESS MODE")
                 time.sleep(1)
                 clear_screen()
+                #Starts endless mode
 
-            elif menu_choice == 3:
+            elif "3" in menu_choice or "tutorial" in menu_choice or \
+                "how" in menu_choice:
+                clear_screen()
                 print("UPPERCASE text passes automatically, "
                       "it is spoken by machines")
                 time.sleep(1)
@@ -275,22 +281,27 @@ def menu():
                       "menu")
                 input()
                 clear_screen()
+                #Prints tutorial.
 
-            elif menu_choice == 4:
+            elif "4" in menu_choice or "settings" in menu_choice:
                 print("settings not finished")
                 time.sleep(3)
                 clear_screen()
+                #Opens the settings menu.
 
-            elif menu_choice == 5:
+            elif "5" in menu_choice or "exit" in menu_choice:
                 print("CLOSING GAME...")
                 exit()
+                #Closes the game
 
-            elif menu_choice == 9:
+            elif "9" in menu_choice or "skip" in menu_choice:
                 print("skipping introduction!")
                 skip = True
                 menu_loop = False
                 time.sleep(1)
                 clear_screen()
+                #skips the menu and intro sequence.
+
             else:
                 print("ENTER A VALID OPTION.")
                 time.sleep(1)
