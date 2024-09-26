@@ -102,6 +102,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             weapon_choice = str(input("Choice: ")).lower()
             alt_fire = input("Use the alternate firing option? "
                              "(Yes/No)").lower()
+
             if "n" in alt_fire:
                 if weapon_choice == "1" or "revo" in weapon_choice \
                 and range <= Weapons.Revolver.Range:
@@ -138,10 +139,13 @@ def combat(target_name, target_health, target_damage, range, healing):
                           "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
                     #prevents the chaingun from being used if it has already
                     #been used previously
+
                 else:
                     print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
                          " PICK THE NUMBER RELATED TO THE WEAPON.")
                     #In case the user enters a weapon that doesnt exist
+
+
             elif "y" in alt_fire:
                 if weapon_choice == "1" or "revo" in weapon_choice:
                     target_health = target_health - \
@@ -159,6 +163,7 @@ def combat(target_name, target_health, target_damage, range, healing):
                     #If the weapon selected is equal to 2 you shoot an infinite range
                     #shotgun projectile and take 50 damage
                     weapon_loop = False
+
             else:
                 print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
                 time.sleep(1)
