@@ -836,8 +836,18 @@ if endless_mode == False:
             print("1...")
             time.sleep(1)
             print_fast("IMPACT SUCCESSFUL")
+            time.sleep(1)
 
-
+            input("Ahead of you lies a vast, endless field "
+            "filled with small villages and castles.")
+            input("The arcitechture of this circle of hell appears "
+            "to be inspired by the medieval period")
+            input("However, the trees and grass appear to be fake")
+            input("the leaves appear to be flickering in an out of existence")
+            input("The sky appears to look like a CRT screen despite the "
+                  "fact that it appears to stretch on forever")
+            input("Calming music and sounds of birds play from small poorly"
+                  "hidden speakers throughout the field")
         else:
             print("ERROR")
 

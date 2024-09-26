@@ -54,6 +54,11 @@ Colossus = Enemy("Colossus",
                  "their opponents. They fight to ensure that hell does not "
                  "become bored with them")
 
-SomethingWicked = Enemy("Something Wicked", 99999999, 99999999, 1, 1, "????")
+SomethingWicked = Enemy("Something Wicked",
+                        99999999,
+                        99999999,
+                        1,
+                        1,
+                        "????")
 
 #All the enemies in the game
