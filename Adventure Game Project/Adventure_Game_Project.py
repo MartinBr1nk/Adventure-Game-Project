@@ -18,7 +18,7 @@ endless_enemies_killed = 0
 endless_chaingun_cooldown = 0
 loss = 0
 alt_fire = "h"
-
+global circle
 
 
 #functions
@@ -216,6 +216,7 @@ def combat(target_name, target_health, target_damage, range, healing):
 def menu():
     global skip
     global endless_mode
+    global circle
     menu_loop = True
     while menu_loop == True:
         print(r"""
@@ -237,10 +238,27 @@ def menu():
             menu_choice = str(input("WHERE DO YOU WANT TO NAVIGATE TO?: ")).lower()
             if "1" in menu_choice or "start" in menu_choice \
                 or "play" in menu_choice:
-                menu_loop = False
-                time.sleep(3)
-                clear_screen()
-                #Starts the game
+
+                print("""WHAT CIRCLE WILL YOU START IN?:
+                0 - THE MOUTH OF HELL
+                1 - LIMBO
+                """)
+                menu_choice = str(input(":"))
+                if "0" in menu_choice or "mouth" in menu_choice:
+                    menu_loop = False
+                    circle = 0
+                    time.sleep(3)
+                    clear_screen()
+                    #Starts the game
+                elif "1" in menu_choice or "limbo" in menu_choice:
+                    menu_loop = False
+                    circle = 1
+                    time.sleep(3)
+                    clear_screen()
+                    #Starts the game
+                else:
+                    print("INVALID OPTION")
+                    time.sleep(1)
 
             elif "2" in menu_choice or "endless" in menu_choice:
                 endless_mode = True
@@ -298,7 +316,6 @@ def menu():
             elif "9" in menu_choice or "skip" in menu_choice:
                 print("skipping introduction!")
                 skip = True
-                menu_loop = False
                 time.sleep(1)
                 clear_screen()
                 #skips the menu and intro sequence.
@@ -320,7 +337,8 @@ menu()
 game_loop = True
 if endless_mode == False:
 
-    while game_loop == True:
+    if circle == 0:
+        clear_screen()
         print_fast(r"""
      _____ _   _  _____   _   _  _____ _      _                   
     |_   _| | | ||  ___| | | | ||  ___| |    | |                  
@@ -346,7 +364,7 @@ if endless_mode == False:
             Introduction.IntroSequence()
             name = Introduction.player_name
         else:
-            name = "Pixel"
+            name = input("Name - ")
         print_slow(f"{name} IS APPROACHING... THE MOUTH OF HELL")
         print_slow("IMPACT IMMINENT...")
         print("3...")
@@ -480,7 +498,7 @@ if endless_mode == False:
                               "suits AI, you cannot prevent its decent.")
                         print_slow("BEGINNING DECENT...")
 
-                        game_loop = False
+                        circle = 1
                         #Gets the player out of the first area, allowing them
                         #to prograss to the next area
 
@@ -522,7 +540,7 @@ if endless_mode == False:
                               "the suits AI, you cannot prevent its decent.")
                         print_slow("BEGINNING DECENT...")
 
-                        game_loop = False
+                        circle = 1
                         #Gets the player out of the first area, allowing them
                         #to progress to the next area
                     else:
@@ -569,7 +587,7 @@ if endless_mode == False:
                         print_slow("PATH AHEAD DETECTED")
                         print_slow("BEGINNING DECENT...")
 
-                        game_loop = False
+                        circle = 1
                         #Gets the player out of the first area, allowing them
                         #to progress to the next area
 
@@ -592,7 +610,7 @@ if endless_mode == False:
                                 print_slow("PATH AHEAD DETECTED")
                                 print_slow("BEGINNING DECENT...")
 
-                                game_loop = False
+                                circle = 1
                                 #Gets the player out of the first area, 
                                 #allowing them to progress to the next area
                             elif "n" in choice:
@@ -717,7 +735,7 @@ if endless_mode == False:
                                   "prevent its decent.")
                             print_slow("BEGINNING DECENT...")
 
-                            game_loop = False
+                            circle = 1
                             #Gets the player out of the first area,
                             #allowing them to progress to the next area
                     elif "n" in choice:
@@ -752,7 +770,7 @@ if endless_mode == False:
                               "suits AI, you cannot prevent its decent.")
                         print_slow("BEGINNING DECENT...")
 
-                        game_loop = False
+                        circle = 1
                         #Gets the player out of the first area,
                         #allowing them to progress to the next area
 
@@ -764,6 +782,49 @@ if endless_mode == False:
             else:
                 print("PICK A VALID DIRECTION.")
                 time.sleep(1)
+    
+                
+                
+    elif circle == 1:
+        clear_screen()
+        print_fast(r"""
+     _____ _   _  _____   _   _  _____ _      _                   
+    |_   _| | | ||  ___| | | | ||  ___| |    | |                  
+      | | | |_| || |__   | |_| || |__ | |    | |                  
+      | | |  _  ||  __|  |  _  ||  __|| |    | |                  
+      | | | | | || |___  | | | || |___| |____| |____              
+      \_/ \_| |_/\____/  \_| |_/\____/\_____/\_____/              
+     _______   ________ ___________ _____ _____ _____ _____ _   _ 
+    |  ___\ \ / /| ___ \  ___|  _  \_   _|_   _|_   _|  _  | \ | |
+    | |__  \ V / | |_/ / |__ | | | | | |   | |   | | | | | |  \| |
+    |  __| /   \ |  __/|  __|| | | | | |   | |   | | | | | | . ` |
+    | |___/ /^\ \| |   | |___| |/ / _| |_  | |  _| |_\ \_/ / |\  |
+    \____/\/   \/\_|   \____/|___/  \___/  \_/  \___/ \___/\_| \_/        
+    ____________ _____   ___ _____ _____ _____                    
+    | ___ \ ___ \  _  | |_  |  ___/  __ \_   _|                   
+    | |_/ / |_/ / | | |   | | |__ | /  \/ | |                     
+    |  __/|    /| | | |   | |  __|| |     | |                     
+    | |   | |\ \\ \_/ /\__/ / |___| \__/\ | |                     
+    \_|   \_| \_|\___/\____/\____/ \____/ \_/                    
+        """)
+        if skip == False:
+            Introduction.IntroSequence()
+            name = Introduction.player_name
+        else:
+            name = input("Name - ")
+        print_slow(f"{name} IS APPROACHING... CIRCLE 1 - LIMBO")
+        print_slow("IMPACT IMMINENT...")
+        print("3...")
+        time.sleep(1)
+        print("2...")
+        time.sleep(1)
+        print("1...")
+        time.sleep(1)
+        print_fast("IMPACT SUCCESSFUL")
+
+
+    else:
+        print("ERROR")
 
 
 
