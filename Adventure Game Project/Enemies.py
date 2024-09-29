@@ -1,6 +1,6 @@
 #Enemies
 class Enemy:
-    def __init__(Self, Name, Health, Damage, Range, Healing, Terminal):
+    def __init__(Self, Name, Health, Damage, Range, Healing, Class, Terminal):
         #All the values each enemy can have
         Self.Name = Name
         Self.Health = Health
@@ -14,6 +14,7 @@ Filth = Enemy("Filth",
               20,
               1,
               15,
+              "Husk",
               "A weak soul that was not powerful "
               "enough in life to even form a full body in hell. "
               "It does not think and only sprints towards what it "
@@ -24,6 +25,7 @@ Stray = Enemy("Stray",
               25,
               20,
               30,
+              "Husk",
               "A soul that was strong enough in "
               "life to form a full ,albeit weak, body in hell. "
               "It is capible of basic thought and throws projectiles "
@@ -35,6 +37,7 @@ Schism = Enemy("Schism",
                25,
                15,
                50,
+               "Husk",
                "A rare occourance where two "
                "Strays attempt to form in the same place, "
                "causing this husk to form. It fires a barrage "
@@ -47,6 +50,7 @@ Colossus = Enemy("Colossus",
                  50,
                  1,
                  150,
+                 "Husk",
                  "An incredibly powerful "
                  "husk that is formed when someone with a very strong soul "
                  "forms in hell. This enemy has a full awareness of their "
@@ -59,6 +63,7 @@ SomethingWicked = Enemy("Something Wicked",
                         99999999,
                         1,
                         1,
+                        "????",
                         "????")
 
 #All the enemies in the game

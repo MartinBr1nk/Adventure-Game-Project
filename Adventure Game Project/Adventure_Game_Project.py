@@ -21,6 +21,7 @@ alt_fire = "h"
 global circle
 
 
+
 #functions
 def clear_screen():
     for clear_x in range(50):
@@ -335,11 +336,16 @@ def menu():
         else:
             pass
 
+
+
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can
 #cause special events to happen
 
 menu()
+
+
+
 
 game_loop = True
 if endless_mode == False:
@@ -848,7 +854,8 @@ if endless_mode == False:
             input("The arcitechture of this circle of hell appears "
             "to be inspired by the medieval period")
             input("However, the trees and grass appear to be fake")
-            input("the leaves appear to be flickering in an out of existence")
+            input("the leaves appear to be flickering in an out of existence,"
+            " as if they were just holograms")
             input("The sky appears to look like a CRT screen despite the "
                   "fact that it appears to stretch on forever")
             input("Calming music and sounds of birds play from small poorly"
