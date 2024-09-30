@@ -69,6 +69,7 @@ def IntroSequence():
     elif "gaster" in player_name.lower():
         cool_typing("VERY VERY INTRESTING.")
         player_name = "W.D Gaster"
+        #Easter egg that references another game
 
     elif "farming" in player_name.lower() or "martin" in player_name.lower():
         cool_typing("FARMING MODE INITIATED.")
@@ -76,6 +77,7 @@ def IntroSequence():
         cool_typing("LOADING.................")
         time.sleep(5)
         print("just kidding :)")
+        #Easter egg
         time.sleep(3)
 
     elif player_name == "":
@@ -87,6 +89,7 @@ def IntroSequence():
             time.sleep(1)
             print(f"SET NAME - {player_name}.")
             time.sleep(1)
+            #Picks a default name if the user does not enter anything.
         else:
             print(f"SET NAME - {player_name}.")
             time.sleep(1)
