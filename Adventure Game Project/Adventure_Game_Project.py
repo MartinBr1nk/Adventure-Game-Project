@@ -103,50 +103,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             alt_fire = input("Use the alternate firing option? "
                              "(Yes/No)").lower()
 
-            if "n" in alt_fire:
-                if weapon_choice == "1" or "revo" in weapon_choice \
-                and range <= Weapons.Revolver.Range:
-                    target_health = target_health - \
-                        int(Weapons.Revolver.Damage)
-                    #If the weapon selected is equal to 1 AND the range is
-                    #greater than or equal to the enemies range value,
-                    #you attack
-                    weapon_loop = False
-
-                elif weapon_choice == "2" or "shot" in weapon_choice \
-                   and range <= Weapons.Shotgun.Range:
-                    target_health = target_health - \
-                        int(Weapons.Shotgun.Damage)
-                    #If the weapon selected is equal to 2 AND the range
-                    #is greater than or equal to the enemies range value,
-                    #you attack
-                    weapon_loop = False
-
-                elif weapon_choice == "3" or "chain" in weapon_choice and \
-                    range <= Weapons.Chaingun.Range and Weapons.chaingun_used\
-                    != True:
-                    target_health = target_health - int(Weapons.Chaingun.Damage)
-                    #If the weapon selected is equal to 3 AND the range is
-                    #greater than or equal to the enemies range value AND the
-                    #chaingun is functional, you attack
-                    print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
-                          "UNTIL REPAIRED")
-                    Weapons.chaingun_used = True
-                    weapon_loop = False
-
-                elif weapon_choice == 3 and Weapons.chaingun_used == True:
-                    print("THE CHAINGUN HAS ALREADY BEEN USED. "
-                          "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
-                    #prevents the chaingun from being used if it has already
-                    #been used previously
-
-                else:
-                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
-                         " PICK THE NUMBER RELATED TO THE WEAPON.")
-                    #In case the user enters a weapon that doesnt exist
-
-
-            elif "y" in alt_fire:
+            if "y" in alt_fire:
                 if weapon_choice == "1" or "revo" in weapon_choice:
                     target_health = target_health - \
                         int(Weapons.Revolver.Damage) * 2
@@ -163,6 +120,48 @@ def combat(target_name, target_health, target_damage, range, healing):
                     #If the weapon selected is equal to 2 you shoot an infinite range
                     #shotgun projectile and take 50 damage
                     weapon_loop = False
+
+            elif "n" in alt_fire:
+                if "1" in weapon_choice or "revo" in weapon_choice \
+                and range <= Weapons.Revolver.Range:
+                    target_health = target_health - \
+                        int(Weapons.Revolver.Damage)
+                    #If the weapon selected is equal to 1 AND the range is
+                    #greater than or equal to the enemies range value,
+                    #you attack
+                    weapon_loop = False
+
+                elif "2" in weapon_choice or "shot" in weapon_choice \
+                   and range <= Weapons.Shotgun.Range:
+                    target_health = target_health - \
+                        int(Weapons.Shotgun.Damage)
+                    #If the weapon selected is equal to 2 AND the range
+                    #is greater than or equal to the enemies range value,
+                    #you attack
+                    weapon_loop = False
+
+                elif "3" in weapon_choice or "chain" in weapon_choice and \
+                    range <= Weapons.Chaingun.Range and Weapons.chaingun_used\
+                    == False:
+                    target_health = target_health - int(Weapons.Chaingun.Damage)
+                    #If the weapon selected is equal to 3 AND the range is
+                    #greater than or equal to the enemies range value AND the
+                    #chaingun is functional, you attack
+                    print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
+                          "UNTIL REPAIRED")
+                    Weapons.chaingun_used = True
+                    weapon_loop = False
+
+                elif "3" in weapon_choice or "chain" in weapon_choice and Weapons.chaingun_used == True:
+                    print("THE CHAINGUN HAS ALREADY BEEN USED. "
+                          "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
+                    #prevents the chaingun from being used if it has already
+                    #been used previously
+
+                else:
+                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
+                         " PICK THE NUMBER RELATED TO THE WEAPON.")
+                    #In case the user enters a weapon that doesnt exist
 
             else:
                 print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
@@ -894,8 +893,10 @@ if endless_mode == False:
             while choice_loop:
                 choice = input("Do you go left or right?: ").lower()
                 if "l" in choice:
+                    choice_loop = False
                     input("left wow")
                 elif "r" in choice:
+                    choice_loop = False
                     input("no way you went right thats crazy")
                 else:
                     print("INVALID OPTION")
@@ -945,6 +946,7 @@ elif endless_mode == True:
             if endless_chaingun_cooldown == 5:
                 print_slow("CHAINGUN RESTORED!")
                 Weapons.chaingun_used = False
+                endless_chaingun_cooldown = 0
             else:
                 print(f"{5 - endless_chaingun_cooldown} KILLS UNTIL THE "
                       "CHAINGUN IS RESTORED")
