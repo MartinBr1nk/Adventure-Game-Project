@@ -885,15 +885,46 @@ if endless_mode == False:
             input("Ahead of you lies a fork in the road.")
             input("To the left there is a large castle you could attempt to enter.")
             input("To the right there is a small village.")
+
+
             choice_loop = True
             while choice_loop:
                 choice = input("Do you go left or right?: ").lower()
                 if "l" in choice:
                     choice_loop = False
                     input("left wow")
+
                 elif "r" in choice:
                     choice_loop = False
-                    input("no way you went right thats crazy")
+                    input("You approach the small village.")
+                    input("It appears to be completely devoid of life.")
+                    input("Suddenly...")
+                    combat(Enemies.Colossus.Name, \
+                          Enemies.Colossus.Health, Enemies.Colossus.Damage,\
+                          Enemies.Colossus.Range, Enemies.Colossus.Healing)
+
+                    input("There is a shattered suit in the center of the village.")
+                    input("You could use the scrap from it to repair your chaingun")
+                    Wait.wait(1)
+                    if Weapons.chaingun_used == True:
+                        choice_loop = True
+                        while choice_loop == True:
+                            choice = input("Do you want to use the scrap to repair your chaingun?").lower()
+                            if "y" in choice:
+                                Weapons.chaingun_used = False
+                                choice_loop = False
+                                print_slow("CHAINGUN RESTORED")
+                                input("You can hear shuffling around you...")
+                                input("Suddenly...")
+
+                            
+                            elif "n" in choice:
+                                input("You decide against using the scrap to repair your chaingun")
+
+                    else:
+                        input("However, your chaingun does not need to be repaired.")
+
+
                 else:
                     print("INVALID OPTION")
                     Wait.wait(2)

@@ -26,11 +26,11 @@ Stray = Enemy("Stray",
               20,
               30,
               "Husk",
-              "A soul that was strong enough in "
-              "life to form a full ,albeit weak, body in hell. "
-              "It is capible of basic thought and throws projectiles "
-              "towards its enemies while running away, making the shotgun "
-              "useless against it.")
+              """A soul that was strong enough in 
+life to form a full ,albeit weak, body in hell. 
+It is capible of basic thought and throws projectiles 
+towards its enemies while running away, making the shotgun 
+useless against it.""")
 
 Schism = Enemy("Schism",
                50,
@@ -38,12 +38,25 @@ Schism = Enemy("Schism",
                15,
                50,
                "Husk",
-               "A rare occourance where two "
-               "Strays attempt to form in the same place, "
-               "causing this husk to form. It fires a barrage "
-               "of projectiles but not more than one are able to "
-               "hit a small target, like yourself. it does not "
-               "run as far as a Stray can as isn't very agile.")
+               """A rare occourance where two 
+Strays attempt to form in the same place,
+causing this husk to form. It fires a barrage
+of projectiles but not more than one are able to 
+hit a small target, like yourself. it does not 
+run as far as a Stray can as isn't very agile.""")
+
+Crawler = Enemy("Crawler",
+                30,
+                30,
+                5,
+                40,
+                "Demon",
+                """A small, spider-like demon that was not
+given enough hell mass for their shell, meaning that it has to get close
+to its enemies to cause any major damage as it is not strong enough to
+channel hell energy for ranged attacks.""")
+
+#Bosses
 
 Colossus = Enemy("Colossus",
                  200,
