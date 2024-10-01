@@ -15,10 +15,10 @@ Filth = Enemy("Filth",
               1,
               15,
               "Husk",
-              "A weak soul that was not powerful "
-              "enough in life to even form a full body in hell. "
-              "It does not think and only sprints towards what it "
-              "percieves as food and attacks it.")
+              """A weak soul that was not powerful 
+enough in life to even form a full body in hell. 
+It does not think and only sprints towards what it 
+percieves as food and attacks it.""")
 
 Stray = Enemy("Stray",
               25,
@@ -64,12 +64,28 @@ Colossus = Enemy("Colossus",
                  1,
                  150,
                  "Husk",
-                 "An incredibly powerful "
-                 "husk that is formed when someone with a very strong soul "
-                 "forms in hell. This enemy has a full awareness of their "
-                 "surroundings and attacks quickly and violently close to "
-                 "their opponents. They fight to ensure that hell does not "
-                 "become bored with them")
+                 """An incredibly powerful 
+husk that is formed when someone with a very strong soul 
+forms in hell. This enemy has a full awareness of their 
+surroundings and attacks quickly and violently close to 
+their opponents. They fight to ensure that hell does not 
+become bored with them""")
+
+Hijacked = Enemy("Hijacked",
+                 1000,
+                 75,
+                 50,
+                 1000,
+                 "Machine/Demon",
+                 """A damaged suit that was reanimated using hell mass.
+                 The old pilot is still inside being puppeted by hell energy
+                 and is forced by hell to pilot the reanimated suit.
+
+                 This opponent is incredibly powerful and can kill its foes
+                 in a matter of seconds if appropriate caution is not taken.
+                 
+                 DO NOT APPROACH WITHOUT A MAJOR POWER BOOST.
+                 THE DEFAULT SUIT IS NOT ENOUGH TO DEFEAT IT.""")
 
 SomethingWicked = Enemy("Something Wicked",
                         99999999,

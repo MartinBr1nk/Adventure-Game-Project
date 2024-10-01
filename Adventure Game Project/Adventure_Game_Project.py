@@ -916,8 +916,11 @@ if endless_mode == False:
                                 print_slow("CHAINGUN RESTORED")
                                 input("You can hear shuffling around you...")
                                 input("Suddenly...")
-
-                            
+                                combat(Enemies.Crawler.Name, \
+Enemies.Crawler.Health, Enemies.Crawler.Damage, \
+Enemies.Crawler.Range, Enemies.Crawler.Healing)
+                                
+                                
                             elif "n" in choice:
                                 input("You decide against using the scrap to repair your chaingun")
 
@@ -938,7 +941,7 @@ elif endless_mode == True:
     name = input("NAME: ")
     Wait.wait(1)
     while endless_mode == True:
-        random_enemy = random.randint(1, 4)
+        random_enemy = random.randint(1, 5)
         if random_enemy == 1:
             combat(Enemies.Filth.Name, Enemies.Filth.Health, \
                 Enemies.Filth.Damage, \
@@ -961,6 +964,11 @@ elif endless_mode == True:
             combat(Enemies.Colossus.Name, Enemies.Colossus.Health, \
                 Enemies.Colossus.Damage, \
                Enemies.Colossus.Range, Enemies.Colossus.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+        elif random_enemy == 5:
+            combat(Enemies.Crawler.Name, Enemies.Crawler.Health, \
+                Enemies.Crawler.Damage, \
+               Enemies.Crawler.Range, Enemies.Crawler.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
         #Picks a random enemy from all avalible enemy types
 
