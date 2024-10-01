@@ -919,14 +919,40 @@ if endless_mode == False:
                                 combat(Enemies.Crawler.Name, \
 Enemies.Crawler.Health, Enemies.Crawler.Damage, \
 Enemies.Crawler.Range, Enemies.Crawler.Healing)
-                                
-                                
+                                input("The destroyed suit appears to have "
+                                      "been destroyed by similar weaponry "
+                                      "to what the suits come with")
+                                input("It's filled with bullet holes.")
                             elif "n" in choice:
                                 input("You decide against using the scrap to repair your chaingun")
+                                choice_loop = False
+                            else:
+                                print("INVALID CHOICE.")
+                                Wait.wait(2)
 
                     else:
                         input("However, your chaingun does not need to be repaired.")
-
+                    input("You continue on through the village.")
+                    input("You can hear several creatures scurrying around you")
+                    input("Do you want to engage in combat or run?: ")
+                    input("Before you can make a decision several demons "
+                          "surround you on all sides.")
+                    print_slow("THREAT DETECTED")
+                    print("CRAWLER APPRO-")
+                    Wait.wait(1)
+                    input("A mangled, deformed suit slams onto the ground "
+                          "and destroys all the enemies around you")
+                    input("It then leaps away and seems to be heading "
+                          "towards the castle.")
+                    input("An unidentified broadcast is being forced "
+                    "to transmit over your comms.")
+                    print_slow("THE ONLY WAY FORWARD IS THROUGH THE CASTLE.")
+                    print_slow("I'LL SEE YOU THERE.")
+                    print_slow("SYSTEM MESSAGE: ENEMY IS FAR BEYOND YOUR "
+                    "COMBAT CAPIBILITIES.")
+                    input("You'll have to upgrade your equipment.")
+                    input("You can either go towards the castle "
+                          "or explore limbo in hopes of finding an upgrade")
 
                 else:
                     print("INVALID OPTION")
