@@ -101,10 +101,10 @@ def combat(target_name, target_health, target_damage, range, healing):
            3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info} """)
             weapon_choice = str(input("Choice: ")).lower()
             alt_fire = input("Use the alternate firing option? "
-                             "(Yes/No)").lower()
+                             "(Yes/No): ").lower()
 
             if "y" in alt_fire:
-                if weapon_choice == "1" or "revo" in weapon_choice:
+                if "1" in weapon_choice:
                     target_health = target_health - \
                         int(Weapons.Revolver.Damage) * 2
                     Player.current_health = Player.current_health - 10
@@ -113,17 +113,16 @@ def combat(target_name, target_health, target_damage, range, healing):
                     #you attack
                     weapon_loop = False
 
-                elif weapon_choice == "2" or "shot" in weapon_choice:
+                elif "2" in weapon_choice:
                     target_health = target_health - \
-                        int(Weapons.Shotgun.Damage)
+                        int(Weapons.Shotgun.Damage) * 1.5
                     Player.current_health = Player.current_health - 50
                     #If the weapon selected is equal to 2 you shoot an infinite range
                     #shotgun projectile and take 50 damage
                     weapon_loop = False
 
             elif "n" in alt_fire:
-                if "1" in weapon_choice or "revo" in weapon_choice \
-                and range <= Weapons.Revolver.Range:
+                if "1" in weapon_choice and range <= Weapons.Revolver.Range:
                     target_health = target_health - \
                         int(Weapons.Revolver.Damage)
                     #If the weapon selected is equal to 1 AND the range is
@@ -131,8 +130,7 @@ def combat(target_name, target_health, target_damage, range, healing):
                     #you attack
                     weapon_loop = False
 
-                elif "2" in weapon_choice or "shot" in weapon_choice \
-                   and range <= Weapons.Shotgun.Range:
+                elif "2" in weapon_choice and range <= Weapons.Shotgun.Range:
                     target_health = target_health - \
                         int(Weapons.Shotgun.Damage)
                     #If the weapon selected is equal to 2 AND the range
@@ -140,9 +138,7 @@ def combat(target_name, target_health, target_damage, range, healing):
                     #you attack
                     weapon_loop = False
 
-                elif "3" in weapon_choice or "chain" in weapon_choice and \
-                    range <= Weapons.Chaingun.Range and Weapons.chaingun_used\
-                    == False:
+                elif "3" in weapon_choice and range <= Weapons.Chaingun.Range and Weapons.chaingun_used == False:
                     target_health = target_health - int(Weapons.Chaingun.Damage)
                     #If the weapon selected is equal to 3 AND the range is
                     #greater than or equal to the enemies range value AND the
@@ -152,7 +148,7 @@ def combat(target_name, target_health, target_damage, range, healing):
                     Weapons.chaingun_used = True
                     weapon_loop = False
 
-                elif "3" in weapon_choice or "chain" in weapon_choice and Weapons.chaingun_used == True:
+                elif "3" in weapon_choice and Weapons.chaingun_used == True:
                     print("THE CHAINGUN HAS ALREADY BEEN USED. "
                           "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
                     #prevents the chaingun from being used if it has already
@@ -215,7 +211,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             exit()
             #debug message
 
-
+             
 
 def menu():
     global skip
@@ -910,7 +906,6 @@ if endless_mode == False:
 elif endless_mode == True:
     name = input("NAME: ")
     Wait.wait(1)
-
     while endless_mode == True:
         random_enemy = random.randint(1, 4)
         if random_enemy == 1:
