@@ -924,16 +924,19 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                                       "to what the suits come with")
                                 input("It's filled with bullet holes.")
                             elif "n" in choice:
-                                input("You decide against using the scrap to repair your chaingun")
+                                input("You decide against using the scrap to "
+                                      "repair your chaingun")
                                 choice_loop = False
                             else:
                                 print("INVALID CHOICE.")
                                 Wait.wait(2)
 
                     else:
-                        input("However, your chaingun does not need to be repaired.")
+                        input("However, your chaingun does not need to be "
+                              "repaired.")
                     input("You continue on through the village.")
-                    input("You can hear several creatures scurrying around you")
+                    input("You can hear several creatures scurrying "
+                          "around you")
                     input("Do you want to engage in combat or run?: ")
                     input("Before you can make a decision several demons "
                           "surround you on all sides.")

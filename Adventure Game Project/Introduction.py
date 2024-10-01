@@ -1,5 +1,6 @@
 import time
 import random
+from ASCII import Mykola
 from Wait import wait
 def cool_typing(str):
     for letter in str:
@@ -70,6 +71,8 @@ def IntroSequence():
         cool_typing("VERY VERY INTRESTING.")
         player_name = "W.D Gaster"
         #Easter egg that references another game
+    elif "mykola" in player_name.lower():
+        player_name = Mykola
 
     elif "farming" in player_name.lower() or "martin" in player_name.lower():
         cool_typing("FARMING MODE INITIATED.")
