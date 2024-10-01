@@ -1,16 +1,16 @@
 import time
 import random
-
+from Wait import wait
 def cool_typing(str):
     for letter in str:
         print(letter, end = ""),
-        time.sleep(random.uniform(0.1, 0.05))
+        wait(random.uniform(0.1, 0.05))
     print("\n")
 
 def cool_typing_fast(str):
     for letter in str:
         print(letter, end = ""),
-        time.sleep(random.uniform(0.0005, 0.0001))
+        wait(random.uniform(0.0005, 0.0001))
     print("\n")
 
 def death_screen():
@@ -33,7 +33,7 @@ def IntroSequence():
     cool_typing("BOOT UP SEQUENCE READY")
     cool_typing("CHECKING FIRMWARE VERISON")
     print("LATEST VERSION (15.09.2163)")
-    time.sleep(1)
+    wait(1)
 
     print("PEFORMING SYSTEM DIAGNOSTICS")
     cool_typing("AUDIO             OK")
@@ -41,13 +41,13 @@ def IntroSequence():
     cool_typing("MECHANICS         OK")
     print("DUE TO VIDEO FEED MALFUNCTION, PLEASE NOTE YOUR ENVIROMENT "
           "AS YOU PROCEED")
-    time.sleep(3)
+    wait(3)
 
     print("DIAGNOSTIC COMPLETE")
-    time.sleep(3)
+    wait(3)
 
     print("PLEASE ENTER A NAME SO YOUR CADEVER CAN BE IDENTIFIED")
-    time.sleep(2)
+    wait(2)
     player_name = input("PILOT NAME: ")
     if "skibidi" in player_name.lower() or "gyatt" in player_name.lower() \
        or "rizz" in player_name.lower() or "sigma" in player_name.lower() \
@@ -60,10 +60,10 @@ def IntroSequence():
         #if these terms are within your name,
         #the game just kills you before you can start.
         cool_typing("RELEASING TOXIC GAS...")
-        time.sleep(3)
+        wait(3)
         cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL"
                    "EXPEDITION PROJECT.")
-        time.sleep(1)
+        wait(1)
         death_screen()
 
     elif "gaster" in player_name.lower():
@@ -73,26 +73,26 @@ def IntroSequence():
 
     elif "farming" in player_name.lower() or "martin" in player_name.lower():
         cool_typing("FARMING MODE INITIATED.")
-        time.sleep(1)
+        wait(1)
         cool_typing("LOADING.................")
-        time.sleep(5)
+        wait(5)
         print("just kidding :)")
         #Easter egg
-        time.sleep(3)
+        wait(3)
 
     elif player_name == "":
-        time.sleep(1)
+        wait(1)
         player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE "
                             "CHOSEN FOR YOU: ")
         if player_name == "":
             player_name = "PILOT"
-            time.sleep(1)
+            wait(1)
             print(f"SET NAME - {player_name}.")
-            time.sleep(1)
+            wait(1)
             #Picks a default name if the user does not enter anything.
         else:
             print(f"SET NAME - {player_name}.")
-            time.sleep(1)
+            wait(1)
     else:
         print(f"SET NAME - {player_name}.")
 

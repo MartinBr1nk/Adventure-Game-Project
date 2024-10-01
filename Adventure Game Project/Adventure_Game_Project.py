@@ -5,7 +5,7 @@ import Introduction
 import Player
 import Enemies
 import Weapons
-
+import Wait
 
 #Variables
 name = "Placeholder"
@@ -19,7 +19,6 @@ endless_chaingun_cooldown = 0
 loss = 0
 alt_fire = "h"
 global circle
-
 
 
 #functions
@@ -41,7 +40,7 @@ def save(ValueName, Value):
 def print_slow(str):
     for letter in str:
         print(letter, end = ""),
-        time.sleep(random.uniform(0.1, 0.05))
+        Wait.wait(random.uniform(0.1, 0.05))
     print("\n")
     #prints text letter-by-letter slowly
 
@@ -50,7 +49,7 @@ def print_slow(str):
 def print_fast(str):
     for letter in str:
         print(letter, end = ""),
-        time.sleep(random.uniform(0.0005, 0.0001))
+        Wait.wait(random.uniform(0.0005, 0.0001))
     print("\n")
     #prints text letter-by-letter quickly
 
@@ -59,7 +58,7 @@ def print_fast(str):
 def print_REALLY_fast(str):
     for letter in str:
         print(letter, end = ""),
-        time.sleep(random.uniform(0.000005, 0.000001))
+        Wait.wait(random.uniform(0.000005, 0.000001))
     print("\n")
     #prints text letter-by-letter REALLY quickly
 
@@ -85,14 +84,14 @@ def combat(target_name, target_health, target_damage, range, healing):
     print_slow("THREAT DETECTED")
     print(f"{target_name} APPROACHES")
     print(f"{name} ATTACKS FIRST")
-    time.sleep(1)
+    Wait.wait(1)
     combat_loop = True
     weapon_loop = True
 
     while combat_loop == True:
         #Puts you into a loop until you either lose or win
         print(f"{target_name} HAS {target_health} HP")
-        time.sleep(1)
+        Wait.wait(1)
 
         while weapon_loop == True:
             #puts you in a loop until you pick a valid weapon
@@ -167,48 +166,48 @@ def combat(target_name, target_health, target_damage, range, healing):
 
             else:
                 print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
-                time.sleep(1)
+                Wait.wait(1)
 
         weapon_loop = True
         #sets weapon loop back to true so the next turn will work
         if Player.current_health <= 0:
             combat_loop = False
             print(f"{name} HAS RAN OUT OF FUEL.")
-            time.sleep(2)
+            Wait.wait(2)
             death_screen()
-            time.sleep(1)
+            Wait.wait(1)
             #Death :(
 
         elif target_health > 0:
             print(f"{target_name} HAS {target_health} HP")
-            time.sleep(1)
+            Wait.wait(1)
             #Tells the player how much health the enemy has
             print(f"{target_name} ATTACKS!")
-            time.sleep(1)
+            Wait.wait(1)
             print(f"{target_name} HITS AND CAUSES {name} TO LOSE "
                   "{target_damage} FUEL.")
-            time.sleep(1)
+            Wait.wait(1)
             Player.current_health = Player.current_health - target_damage
             print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
-            time.sleep(1)
+            Wait.wait(1)
             if Player.current_health <= 0:
                 combat_loop = False
                 print(f"{name} HAS RAN OUT OF FUEL.")
-                time.sleep(2)
+                Wait.wait(2)
                 death_screen()
-                time.sleep(1)
+                Wait.wait(1)
                 #Death :(
 
         elif target_health <= 0:
             print(f"{target_name} HAS DIED")
-            time.sleep(2)
+            Wait.wait(2)
             Player.current_health = Player.current_health + healing
             Player.HealthCheck()
             print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
-            time.sleep(2)
+            Wait.wait(2)
             combat_loop = False
             print(f"{name} WINS.")
-            time.sleep(1)
+            Wait.wait(1)
             #Victory!!! combat ends and the player heals,
             #determined by the enemies healing factor.
 
@@ -241,101 +240,109 @@ def menu():
 5 - EXIT GAME
 
         """)
-        try:
-            menu_choice = str(input("WHERE DO YOU WANT TO NAVIGATE TO?: ")).lower()
-            if "1" in menu_choice or "start" in menu_choice \
-                or "play" in menu_choice:
+        menu_choice = str(input("WHERE DO YOU WANT TO NAVIGATE TO?: ")).lower()
+        if "1" in menu_choice or "start" in menu_choice \
+            or "play" in menu_choice:
 
-                print("""WHAT CIRCLE WILL YOU START IN?:
-                0 - THE MOUTH OF HELL
-                1 - LIMBO
-                """)
-                menu_choice = str(input(":"))
-                if "0" in menu_choice or "mouth" in menu_choice:
-                    menu_loop = False
-                    circle = 0
-                    time.sleep(3)
-                    clear_screen()
-                    #Starts the game
-                elif "1" in menu_choice or "limbo" in menu_choice:
-                    menu_loop = False
-                    through_menu = True
-                    circle = 1
-                    time.sleep(3)
-                    clear_screen()
-                    #Starts the game
-                else:
-                    print("INVALID OPTION")
-                    time.sleep(1)
-
-            elif "2" in menu_choice or "endless" in menu_choice:
-                endless_mode = True
+            print("""WHAT CIRCLE WILL YOU START IN?:
+            0 - THE MOUTH OF HELL
+            1 - LIMBO
+""")
+            menu_choice = str(input(":"))
+            if "0" in menu_choice or "mouth" in menu_choice:
                 menu_loop = False
-                skip = True
-                print("STARTING ENDLESS MODE")
-                time.sleep(1)
+                through_menu = False
+                circle = 0
+                Wait.wait(3)
                 clear_screen()
-                #Starts endless mode
+                #Starts the game
+            elif "1" in menu_choice or "limbo" in menu_choice:
+                menu_loop = False
+                through_menu = True
+                circle = 1
+                Wait.wait(3)
+                clear_screen()
+                #Starts the game
+            else:
+                print("INVALID OPTION")
+                Wait.wait(1)
 
-            elif "3" in menu_choice or "tutorial" in menu_choice or \
-                "how" in menu_choice:
-                clear_screen()
-                print("UPPERCASE text passes automatically, "
-                      "it is spoken by machines")
-                time.sleep(1)
-                print("lowercase text must have you enter any key to "
-                      "continue. Try this now")
-                input()
-                print("Combat is turn based, firstly you take a turn and then"
-                    " the enemy takes their turn, as long as they are not dead.")
-                input()
-                print("The way you restore your fuel (Health) is by "
-                      "sucessfully killing enemies.")
-                input()
-                print("THIS IS THE ONLY WAY TO RESTORE FUEL.")
-                time.sleep(1)
-                print("Stronger enemies restore more fuel, while weaker "
-                      "enemies will restore less fuel")
-                input()
-                print("Every path in the game will eventually lead to an exit."
-                    " Every way forward will lead to progress.")
-                input()
-                print("This doesnt mean that some paths will be easy, "
-                      "each path will have their own challenges and secrets "
-                      "that you can discover and overcome.")
-                input()
-                print("Press any key when you are ready to return to the "
-                      "menu")
-                input()
-                clear_screen()
-                #Prints tutorial.
+        elif "2" in menu_choice or "endless" in menu_choice:
+            endless_mode = True
+            menu_loop = False
+            skip = True
+            print("STARTING ENDLESS MODE")
+            Wait.wait(1)
+            clear_screen()
+            #Starts endless mode
 
-            elif "4" in menu_choice or "settings" in menu_choice:
-                print("settings not finished")
-                time.sleep(3)
+        elif "3" in menu_choice or "tutorial" in menu_choice or \
+            "how" in menu_choice:
+            clear_screen()
+
+            print("UPPERCASE text passes automatically, "
+"it is spoken by machines")
+            Wait.wait(1)
+            print("lowercase text must have you enter any key to "
+"continue. Try this now")
+            input()
+            print("Combat is turn based, firstly you take a turn and then"
+" the enemy takes their turn, as long as they are not dead.")
+            input()
+            print("The way you restore your fuel (Health) is by "
+"sucessfully killing enemies.")
+            input()
+            print("THIS IS THE ONLY WAY TO RESTORE FUEL.")
+            Wait.wait(1)
+            print("Stronger enemies restore more fuel, while weaker "
+"enemies will restore less fuel")
+            input()
+            print("Every path in the game will eventually lead to an exit."
+" Every way forward will lead to progress.")
+            input()
+            print("This doesnt mean that some paths will be easy, "
+"each path will have their own challenges and secrets that you can discover and overcome.")
+            input()
+            print("Press any key when you are ready to return to the "
+"menu")
+            input()
+            clear_screen()
+            #Prints tutorial.
+
+        elif "4" in menu_choice or "settings" in menu_choice:
+            print("""Settings:
+1 - Skip waiting
+""")
+            setting_choice = input("Pick a setting to modify: ").lower()
+            if "1" in setting_choice or "skip" in setting_choice:
+                if Wait.time_skip == False:
+                    Wait.time_skip = True
+                elif Wait.time_skip == True:
+                    Wait.time_skip = False
+                Wait.wait(1)
+
+            else:
+                print("NO SETTING SELECTED.")
+                Wait.wait(1)
+                Wait.wait(3)
                 clear_screen()
                 #Opens the settings menu.
 
-            elif "5" in menu_choice or "exit" in menu_choice:
-                print("CLOSING GAME...")
-                exit()
-                #Closes the game
+        elif "5" in menu_choice or "exit" in menu_choice:
+            print("CLOSING GAME...")
+            exit()
+            #Closes the game
 
-            elif "9" in menu_choice or "skip" in menu_choice:
-                print("skipping introduction!")
-                skip = True
-                time.sleep(1)
-                clear_screen()
-                #skips the menu and intro sequence.
+        elif "9" in menu_choice or "skip" in menu_choice:
+            print("skipping introduction!")
+            skip = True
+            Wait.wait(1)
+            clear_screen()
+            #skips the menu and intro sequence.
 
-            else:
-                print("ENTER A VALID OPTION.")
-                time.sleep(1)
-        except:
-            print("CHOSEN OPTION MUST BE A SINGLE NUMBER.")
         else:
-            pass
-
+            print("ENTER A VALID OPTION.")
+            Wait.wait(1)
 
 
 random_value = random.randint(0, 500)
@@ -381,26 +388,26 @@ if endless_mode == False:
             print_slow(f"{name} IS APPROACHING... THE MOUTH OF HELL")
             print_slow("IMPACT IMMINENT...")
             print("3...")
-            time.sleep(1)
+            Wait.wait(1)
             print("2...")
-            time.sleep(1)
+            Wait.wait(1)
             print("1...")
-            time.sleep(1)
+            Wait.wait(1)
             print_fast("IMPACT SUCCESSFUL")
-            time.sleep(1)
+            Wait.wait(1)
             input("As the dust clears, you can see a way forward through a "
                  "tunnel, obscured by smoke.")
             input("There are no other paths you can see. You decide to walk "
                  "through the obscured tunnel")
             input("You reach a dark, open room with three locked doors to your "
             "left, right and directly in front of you.")
-            time.sleep(1)
+            Wait.wait(1)
 
             combat(Enemies.Filth.Name, Enemies.Filth.Health, \
                 Enemies.Filth.Damage,\
                    Enemies.Filth.Range, Enemies.Filth.Healing)
             #Gets the Name, Heath, Damage, Range and player healing for combat
-            time.sleep(1)
+            Wait.wait(1)
             choice_loop = True
             while choice_loop == True:
                 direction = input("The doors have unlocked, allowing you to "
@@ -414,7 +421,7 @@ if endless_mode == False:
                     input("The walls have been heated to an extreme temperature.")
                     input("Suddenly...")
                     print_slow("TRANSMISSION INCOMING...")
-                    time.sleep(1)
+                    Wait.wait(1)
 
                     input("A voice comes from the speakers in your suits "
                           "cockpit:")
@@ -443,14 +450,14 @@ if endless_mode == False:
                         if "y" in choice:
                             input("You decide to inspect the room.")
                             print("!!! EXTREME HEAT DETECTED !!!")
-                            time.sleep(2)
+                            Wait.wait(2)
                             print("!!! ENGAGING COOLING MECHANISM !!!")
                             Player.current_health = Player.current_health - 100
-                            time.sleep(2)
+                            Wait.wait(2)
                             print(f"YOU HAVE LOST 100 OUT OF {Player.max_health} "
                                   "FUEL.")
                             print(f"YOU HAVE {Player.current_health} FUEL LEFT")
-                            time.sleep(1)
+                            Wait.wait(1)
                             input("You decide to continue along the corridor, "
                                   "as there does not appear to be anything else "
                                   "in this room")
@@ -464,7 +471,7 @@ if endless_mode == False:
 
                         else:
                             print("INVALID OPTION.")
-                            time.sleep(1)
+                            Wait.wait(1)
 
                     input("Just as you left to the next room...")
                     combat(Enemies.Schism.Name, Enemies.Schism.Health, \
@@ -497,7 +504,7 @@ if endless_mode == False:
                                 print(f"{loss} FUEL LOST IN THE PROCESS. "
                                       "YOU HAVE {Player.current_health} "
                                       "FUEL LEFT")
-                                time.sleep(1)
+                                Wait.wait(1)
                             input("Behind the door is a large chasm in the "
                                   "ground, there appears to be a path to your "
                                   "left that may be connected to the path that "
@@ -560,7 +567,7 @@ if endless_mode == False:
                             #to progress to the next area
                         else:
                             print("INVALID OPTION")
-                            time.sleep(1)
+                            Wait.wait(1)
 
                 elif direction == "right":
                     choice_loop = False
@@ -569,7 +576,7 @@ if endless_mode == False:
                           "to the left and right.")
                     input("Suddenly...")
                     print_slow("TRANSMISSION INCOMING...")
-                    time.sleep(1)
+                    Wait.wait(1)
 
                     input("A voice comes from the speakers in "
                           "your suits cockpit:")
@@ -647,7 +654,7 @@ if endless_mode == False:
                                     We're all so scared and nobody is coming for us.
                                     Have they just abandoned us?
                                     """)
-                                    time.sleep(1)
+                                    Wait.wait(1)
                                     input("Suddenly...")
                                     print_slow("Something wicked this way comes")
                                     combat(Enemies.SomethingWicked.Name, \
@@ -671,7 +678,7 @@ if endless_mode == False:
                           "falling would result in instant death")
                     input("Suddenly...")
                     print_slow("TRANSMISSION INCOMING...")
-                    time.sleep(1)
+                    Wait.wait(1)
                     input("A voice comes from the speakers in your suits "
                           "cockpit:")
                     input(f"'Hello {name}, this is a transmission from "
@@ -692,7 +699,7 @@ if endless_mode == False:
                             Weapons.chaingun_used = True
                             print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL "
                                   "REPAIRED")
-                            time.sleep(1)
+                            Wait.wait(1)
                             input("The staircase ahead crumbles infront of you, "
                                   "leaving a massive gap that you need to cross.")
                             input("However, all the enemies that you would have "
@@ -719,14 +726,33 @@ if endless_mode == False:
                                     #they play it safe
                                     print(f"{Player.current_health} FUEL "
                                           "REMAINING.")
-                                    time.sleep(1)
+                                    Wait.wait(1)
+
+                                    input("You have successfuly jumped the gap.")
+                                    input("The door at the end slams open and you "
+                                    "can see a chasm that drops down for "
+                                    "a indeterminate distance.")
+                                    input("Suddenly...")
+                                    print_slow("PATH AHEAD DETECTED")
+                                    input("Your suit suddenly begins walking towards "
+                                    "the chasm and prepares to jump in")
+                                    input("The suit controls have been taken over by "
+                                    "the suits AI, you cannot "
+                                    "prevent its decent.")
+                                    print_slow("BEGINNING DECENT...")
+
+                                    circle = 1
+                                    choice_loop = False
+                                    #Gets the player out of the first area,
+                                    #allowing them to progress to the next area
+
                                 elif "n" in choice:
                                     choice_loop = False
                                     input("You brace yourself to jump.")
-                                    jump_risk = random.randint(1, 5)
+                                    jump_risk = random.randint(1, 2)
                                     if jump_risk == 1:
                                         print_slow("JUMP FAILED")
-                                        time.sleep(1)
+                                        Wait.wait(1)
                                         print_slow("EMERGENCY EJ-")
                                         death_screen()
                                         #if they fail the jump, they die
@@ -735,30 +761,31 @@ if endless_mode == False:
                                         Player.current_health - 50
                                         print(f"{Player.current_health} "
                                               "FUEL REMAINING.")
-                                        time.sleep(1)
+                                        Wait.wait(1)
                                         #if they successfully jump they only
                                         #lose 50 fuel
+
+                                        input("You have successfuly jumped the gap.")
+                                        input("The door at the end slams open and you "
+                                        "can see a chasm that drops down for "
+                                        "a indeterminate distance.")
+                                        input("Suddenly...")
+                                        print_slow("PATH AHEAD DETECTED")
+                                        input("Your suit suddenly begins walking towards "
+                                        "the chasm and prepares to jump in")
+                                        input("The suit controls have been taken over by "
+                                        "the suits AI, you cannot "
+                                        "prevent its decent.")
+                                        print_slow("BEGINNING DECENT...")
+
+                                        circle = 1
+                                        choice_loop = False
+                                        #Gets the player out of the first area,
+                                        #allowing them to progress to the next area
                                 else:
                                     print("INVALID OPTION.")
-                                    time.sleep(1)
+                                    Wait.wait(1)
 
-                                input("You have successfuly jumped the gap.")
-                                input("The door at the end slams open and you "
-                                      "can see a chasm that drops down for "
-                                      "a indeterminate distance.")
-                                input("Suddenly...")
-                                print_slow("PATH AHEAD DETECTED")
-                                input("Your suit suddenly begins walking towards "
-                                      "the chasm and prepares to jump in")
-                                input("The suit controls have been taken over by "
-                                      "the suits AI, you cannot "
-                                      "prevent its decent.")
-                                print_slow("BEGINNING DECENT...")
-
-                                circle = 1
-                                choice_loop = False
-                                #Gets the player out of the first area,
-                                #allowing them to progress to the next area
                         elif "n" in choice:
                             choice_loop = False
                             input("You decide against using the chaingun.")
@@ -799,16 +826,16 @@ if endless_mode == False:
                         else:
                             print("INVALID OPTION.")
                             print("\n")
-                            time.sleep(1)
+                            Wait.wait(1)
 
                 else:
                     print("PICK A VALID DIRECTION.")
-                    time.sleep(1)
+                    Wait.wait(1)
     
                 
                 
         elif circle == 1:
-            time.sleep(3)
+            Wait.wait(3)
             clear_screen()
             print_fast(r"""
          _____ _   _  _____   _   _  _____ _      _                   
@@ -841,13 +868,13 @@ if endless_mode == False:
             print_slow(f"{name} IS APPROACHING... CIRCLE 1 - LIMBO")
             print_slow("IMPACT IMMINENT...")
             print("3...")
-            time.sleep(1)
+            Wait.wait(1)
             print("2...")
-            time.sleep(1)
+            Wait.wait(1)
             print("1...")
-            time.sleep(1)
+            Wait.wait(1)
             print_fast("IMPACT SUCCESSFUL")
-            time.sleep(1)
+            Wait.wait(1)
 
             input("Ahead of you lies a vast, endless field "
             "filled with small villages and castles.")
@@ -860,6 +887,19 @@ if endless_mode == False:
                   "fact that it appears to stretch on forever")
             input("Calming music and sounds of birds play from small poorly"
                   "hidden speakers throughout the field")
+            input("Ahead of you lies a fork in the road.")
+            input("To the left there is a large castle you could attempt to enter.")
+            input("To the right there is a small village.")
+            choice_loop = True
+            while choice_loop:
+                choice = input("Do you go left or right?: ").lower()
+                if "l" in choice:
+                    input("left wow")
+                elif "r" in choice:
+                    input("no way you went right thats crazy")
+                else:
+                    print("INVALID OPTION")
+                    Wait.wait(2)
         else:
             print("ERROR")
 
@@ -868,7 +908,7 @@ if endless_mode == False:
 
 elif endless_mode == True:
     name = input("NAME: ")
-    time.sleep(1)
+    Wait.wait(1)
 
     while endless_mode == True:
         random_enemy = random.randint(1, 4)
@@ -898,7 +938,7 @@ elif endless_mode == True:
         #Picks a random enemy from all avalible enemy types
 
         print(f"{endless_enemies_killed} ENEMIES KILLED!")
-        time.sleep(1)
+        Wait.wait(1)
 
         if Weapons.chaingun_used == True:
             endless_chaingun_cooldown = endless_chaingun_cooldown + 1
@@ -908,7 +948,7 @@ elif endless_mode == True:
             else:
                 print(f"{5 - endless_chaingun_cooldown} KILLS UNTIL THE "
                       "CHAINGUN IS RESTORED")
-                time.sleep(2)
+                Wait.wait(2)
             #If the chaingun has been used, after 5 kills it will be restored
 
 #end
