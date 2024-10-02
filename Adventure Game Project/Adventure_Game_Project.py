@@ -1004,9 +1004,14 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     print("INVALID OPTION")
                     Wait.wait(2)
 
-                input("You decide to explore limbo.")
+                print("\n")
+                input("You begin to look around limbo for an upgrade")
+                input("You make it up to a vantage point where you can see "
+                      "the landscape around you.")
+                input("You can see")
                 #no matter what you do, you are always railroaded to
                 #explore limbo.
+
 
         else:
             print("ERROR")
