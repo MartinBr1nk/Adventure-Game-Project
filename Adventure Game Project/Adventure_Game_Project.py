@@ -954,12 +954,30 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     print_slow("SYSTEM MESSAGE: ENEMY IS FAR BEYOND YOUR "
                     "COMBAT CAPIBILITIES.")
                     input("You'll have to upgrade your equipment.")
-                    input("You can either go towards the castle "
+                    input("You can try to go towards the castle "
                           "or explore limbo in hopes of finding an upgrade")
-
+                    choice_loop = True
+                    while choice_loop == True:
+                        choice = input("Explore or attempt to go the "
+                        "castle: ").lower()
+                        if "castle" in choice:
+                            print("ERROR, NOT STRONG ENOUGH TO ATTEMPT ENTRY")
+                            Wait.wait(2)
+                        elif "explore" in choice:
+                            choice_loop = False
+                            input("You decide to explore limbo in hopes "
+                                  "of finding an upgrade.")
+                        else:
+                            print("INVALID OPTION")
+                            Wait.wait(2)
                 else:
                     print("INVALID OPTION")
                     Wait.wait(2)
+
+                input("You decide to explore limbo")
+                #no matter what you do, you are always railroaded to
+                #explore limbo.
+
         else:
             print("ERROR")
 
