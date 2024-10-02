@@ -1004,15 +1004,56 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     print("INVALID OPTION")
                     Wait.wait(2)
 
-                print("\n")
-                input("You begin to look around limbo for an upgrade")
-                input("You make it up to a vantage point where you can see "
+            print("\n")
+            input("You begin to look around limbo for an upgrade")
+            input("You make it up to a vantage point where you can see "
                       "the landscape around you.")
-                input("You can see")
+            input("You can see Ruins, a burning village and a church")
                 #no matter what you do, you are always railroaded to
                 #explore limbo.
+            choice_loop = True
+            while choice_loop == True:
+                choice = input("Where do you go?: ").lower()
+                if "ruins" in choice:
+                    choice_loop = False
+                    pass
 
+                elif "village" in choice:
+                    choice_loop = False
+                    pass
 
+                elif "church" in choice:
+                    choice_loop = False
+                    pass
+
+                else:
+                    print("INVALID OPTION")
+                    Wait.wait(2)
+
+        elif circle == 2:
+            print("Circle 2 - Lust, is not finished.")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 3:
+            print("Circle 3 - Gluttony, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 4:
+            print("Circle 4 - Greed, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 5:
+            print("Circle 5 - Wrath, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 6:
+            print("Circle 6 - Heresy, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 7:
+            print("Circle 7 - Violence, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 8:
+            print("Circle 8 - Fraud, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
+        elif circle == 9:
+            print("Circle 9 - Treachery, is not finished")
+            #Placeholder for a future level that would be implimented in the full game
         else:
             print("ERROR")
 
