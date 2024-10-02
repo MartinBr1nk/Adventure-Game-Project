@@ -1004,7 +1004,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     print("INVALID OPTION")
                     Wait.wait(2)
 
-                input("You decide to explore limbo")
+                input("You decide to explore limbo.")
                 #no matter what you do, you are always railroaded to
                 #explore limbo.
 
