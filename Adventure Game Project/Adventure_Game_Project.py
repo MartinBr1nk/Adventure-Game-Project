@@ -892,7 +892,36 @@ if endless_mode == False:
                 choice = input("Do you go left or right?: ").lower()
                 if "l" in choice:
                     choice_loop = False
-                    input("left wow")
+                    input("You walk along the path to the castle.")
+                    input("As you walk, you notice marks of war along the "
+                          "landscape.")
+                    input("They appear to be marks from a battle using "
+                          "similar weaponry that was used in the war.")
+                    combat(Enemies.Crawler.Name, \
+Enemies.Crawler.Health, Enemies.Crawler.Damage, \
+Enemies.Crawler.Range, Enemies.Crawler.Healing)
+
+
+                    input("You approach the castle gates.")
+                    input("Suddenly...")
+                    print_slow("THREAT DETECTED")
+                    print("CRAWLER APPRO-")
+                    Wait.wait(1)
+                    #fake-out combat encounter
+                    input("A mangled, deformed suit slams onto the ground "
+                          "from inside the castle"
+                          "and destroys all the enemies around you")
+                    input("It then leaps away and seems to be heading "
+                          "towards the castle.")
+                    input("An unidentified broadcast is being forced "
+                    "to transmit over your comms.")
+                    print_slow("THE ONLY WAY FORWARD IS THROUGH THE CASTLE.")
+                    print_slow("I'LL SEE YOU INSIDE.")
+                    print_slow("SYSTEM MESSAGE: ENEMY IS FAR BEYOND YOUR "
+                    "COMBAT CAPIBILITIES.")
+                    input("You'll have to upgrade your equipment.")
+                    input("You can try to explore limbo to try and find "
+                          "an upgrade.")
 
                 elif "r" in choice:
                     choice_loop = False
@@ -943,6 +972,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     print_slow("THREAT DETECTED")
                     print("CRAWLER APPRO-")
                     Wait.wait(1)
+                    #fake-out combat encounter
                     input("A mangled, deformed suit slams onto the ground "
                           "and destroys all the enemies around you")
                     input("It then leaps away and seems to be heading "

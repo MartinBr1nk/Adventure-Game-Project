@@ -9,6 +9,8 @@ class Enemy:
         Self.Healing = Healing
         Self.Terminal = Terminal
 
+#Standard Enemies
+
 Filth = Enemy("Filth",
               10,
               20,
@@ -71,7 +73,7 @@ surroundings and attacks quickly and violently close to
 their opponents. They fight to ensure that hell does not 
 become bored with them""")
 
-Hijacked = Enemy("Hijacked",
+Hijacked_1 = Enemy("Hijacked",
                  1000,
                  75,
                  50,
