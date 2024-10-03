@@ -1034,15 +1034,36 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     ruins_explored = True
                     #The ruins have been explored, so the player cannot return
                     #as there is nothing they need here.
+                    input("On a pillar in the ruins, a glowing 'I' forms")
+                    input("You go back to the vantage point.")
+                    input("\n")
 
-                elif "village" in choice:
-                    pass
+                elif "village" in choice and village_explored == False:
+                    input("You approach the burning village.")
+                    input("As you approach the fire, you can notice that "
+                          "it seems fake, it flickers between different "
+                          "frames as if it is animated.")
+                    input("The houses seem untouched by the blaze that "
+                          "englufs them.")
+                    input("It doesnt seem like you're meant to be here")
+                    input("The floor and walls around you begin to form "
+                    "something...")
+                    combat(Enemies.Shade.Name, Enemies.Shade.Health, \
+                           Enemies.Shade.Damage, Enemies.Shade.Range, \
+                           Enemies.Shade.Healing)
                     village_explored = True
-                elif "church" in choice:
+                    input("In a tower in the center of the village, a "
+                    "glowing 'II' forms, the fire also suddenly stops in a "
+                    "flash of light.")
+                    input("You go back to the vantage point.")
+                    input("\n")
+
+                elif "church" in choice and church_explored == False:
                     pass
                     church_explored = True
+
                 else:
-                    print("INVALID OPTION")
+                    print("INVALID OPTION / AREA ALREADY EXPLORED")
                     Wait.wait(2)
 
         elif circle == 2:

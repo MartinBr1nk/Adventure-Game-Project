@@ -71,6 +71,18 @@ Guardian = Enemy("Guardian",
                  attacking from afar, as it cannot move its limbs
                  fast enough to throw any projectiles.""")
 
+Shade = Enemy("Shade",
+              100,
+              35,
+              5,
+              30,
+              "Puppet",
+              """A small, humanoid creature comprised from the materials that 
+              are present in its enviroment. It is directly controlled by hell
+              and manifests in areas deemed as a 'background' by hell, they 
+              are used to ward off any unwanted visitors to these areas that 
+              are not meant to be interacted with.""")
+
 #Bosses
 
 Colossus = Enemy("Colossus",
