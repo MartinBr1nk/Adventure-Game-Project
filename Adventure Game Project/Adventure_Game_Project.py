@@ -23,7 +23,6 @@ global circle
 
 ruins_explored = False
 village_explored = False
-church_explored = False
 
 #functions
 def clear_screen():
@@ -59,7 +58,7 @@ def print_fast(str):
 
 
 
-def print_REALLY_fast(str):
+def print_very_fast(str):
     for letter in str:
         print(letter, end = ""),
         Wait.wait(random.uniform(0.000005, 0.000001))
@@ -358,7 +357,7 @@ if endless_mode == False:
     while game_loop == True:
         if circle == 0:
             clear_screen()
-            print_fast(r"""
+            print_very_fast(r"""
          _____ _   _  _____   _   _  _____ _      _                   
         |_   _| | | ||  ___| | | | ||  ___| |    | |                  
           | | | |_| || |__   | |_| || |__ | |    | |                  
@@ -836,7 +835,7 @@ if endless_mode == False:
         elif circle == 1:
             Wait.wait(3)
             clear_screen()
-            print_fast(r"""
+            print_very_fast(r"""
          _____ _   _  _____   _   _  _____ _      _                   
         |_   _| | | ||  ___| | | | ||  ___| |    | |                  
           | | | |_| || |__   | |_| || |__ | |    | |                  
@@ -1036,7 +1035,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     #as there is nothing they need here.
                     input("On a pillar in the ruins, a glowing 'I' forms")
                     input("You go back to the vantage point.")
-                    input("\n")
+                    print("\n")
 
                 elif "village" in choice and village_explored == False:
                     input("You approach the burning village.")
@@ -1056,15 +1055,67 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     "glowing 'II' forms, the fire also suddenly stops in a "
                     "flash of light.")
                     input("You go back to the vantage point.")
-                    input("\n")
+                    print("\n")
 
-                elif "church" in choice and church_explored == False:
-                    pass
-                    church_explored = True
-
+                elif "church" in choice:
+                    input("The church doors are sealed shut by two metal "
+                          "bars.")
+                    input("To the side of each bar, there is an engraving")
+                    input("The top bar has 'I' engraved next to it and the "
+                          "bottom bar has 'II' engraved next to it.")
+                    if ruins_explored == True and village_explored == False:
+                        input("The 'I' engraving is glowing, but the door "
+                              "is still sealed")
+                        input("You return to the vantage point as there is "
+                              "nothing you can do here at the moment.")
+                    elif ruins_explored == False and village_explored == True:
+                        input("The 'II' engraving is glowing but the door "
+                              "is still sealed")
+                        input("You return to the vantage point as there is "
+                              "nothing you can do here at the moment.")
+                    elif ruins_explored != True and village_explored != True:
+                        input("You return to the vantage point as there is "
+                              "nothing you can do here at the moment.")
+                    #Various outcomes for if you have not explored enough
+                    elif ruins_explored == True and village_explored == True:
+                        input("Both engravings begin to glow and the door "
+                              "slams open.")
+                        input("The inside of the church is dimly lit, "
+                              "a large stained window portraying an angel "
+                              "overlooks the interior")
+                        input("Rows of pews fill the building.")
+                        input("You can see a lone skeleton sitting to the "
+                              "left, in the front pews.")
+                        input("It is praying.")
+                        Wait.wait(3)
+                        input("A small box sits below the stained window.")
+                        print_slow("UPGRADE DETECTED.")
+                        input("You walk towards the box.")
+                        input("You open the box, inside is a small computer "
+                              "chip, held together by a red substance.")
+                        input("It appears to be pulsating.")
+                        print_slow("INSTALLING UPGRADE...")
+                        print_fast("""UPGRADE UNLOCKED!
+You can now channel hell energy during boss fights.
+This will give a massive strength boost and will let
+you stand a chance against tough enemies.""")
+                        Wait.wait(3)
+                        input("You can now go towards the castle.")
+                        input("You leave the church and close the door "
+                              "behind you, leaving the skeleton in peace.")
+                        search_loop = False
+                        print("\n")
+                        print("\n")
+                
                 else:
                     print("INVALID OPTION / AREA ALREADY EXPLORED")
                     Wait.wait(2)
+
+            input("You begin to make your way back to the castle.")
+            input("The sky flickers and shuts off.")
+            input("It then flickers back to life, but instead of being day, "
+                  "the sky is now dark and starry, a fake moon overlooks "
+                  "the landscape.")
 
         elif circle == 2:
             print("Circle 2 - Lust, is not finished.")
