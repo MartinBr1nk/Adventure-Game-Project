@@ -12,6 +12,7 @@ name = "Placeholder"
 direction = "placeholder"
 prim_alt_choice = ""
 choice_loop = False
+search_loop = False
 skip = False
 endless_mode = False
 endless_enemies_killed = 0
@@ -1011,19 +1012,20 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
             input("You can see Ruins, a burning village and a church")
                 #no matter what you do, you are always railroaded to
                 #explore limbo.
-            choice_loop = True
-            while choice_loop == True:
+            search_loop = True
+            while search_loop == True:
                 choice = input("Where do you go?: ").lower()
                 if "ruins" in choice:
-                    choice_loop = False
-                    pass
+                    input("You approach the ruins.")
+                    input("They are just solid stone.")
+                    input("No engravings or signs of wear")
+                    input("They appear to be more like props than actual "
+                          "ruins.")
 
                 elif "village" in choice:
-                    choice_loop = False
                     pass
 
                 elif "church" in choice:
-                    choice_loop = False
                     pass
 
                 else:
