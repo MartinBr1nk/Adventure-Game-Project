@@ -21,6 +21,9 @@ loss = 0
 alt_fire = "h"
 global circle
 
+ruins_explored = False
+village_explored = False
+church_explored = False
 
 #functions
 def clear_screen():
@@ -1015,19 +1018,29 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
             search_loop = True
             while search_loop == True:
                 choice = input("Where do you go?: ").lower()
-                if "ruins" in choice:
+                if "ruins" in choice and ruins_explored == False:
                     input("You approach the ruins.")
                     input("They are just solid stone.")
                     input("No engravings or signs of wear")
-                    input("They appear to be more like props than actual "
-                          "ruins.")
+                    input("They appear to be more like props rather than "
+                    "actual ruins, lacking any wear or signs of use.")
+                    input("There doesnt appear to be anything of "
+                          "use here.")
+                    input("Before you can leave a part of the ruins begins "
+                    "to move...")
+                    combat(Enemies.Guardian.Name, Enemies.Guardian.Health, \
+                           Enemies.Guardian.Damage, Enemies.Guardian.Range, \
+                           Enemies.Guardian.Healing)
+                    ruins_explored = True
+                    #The ruins have been explored, so the player cannot return
+                    #as there is nothing they need here.
 
                 elif "village" in choice:
                     pass
-
+                    village_explored = True
                 elif "church" in choice:
                     pass
-
+                    church_explored = True
                 else:
                     print("INVALID OPTION")
                     Wait.wait(2)

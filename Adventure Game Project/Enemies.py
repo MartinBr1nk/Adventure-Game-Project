@@ -58,6 +58,19 @@ given enough hell mass for their shell, meaning that it has to get close
 to its enemies to cause any major damage as it is not strong enough to
 channel hell energy for ranged attacks.""")
 
+Guardian = Enemy("Guardian",
+                 75,
+                 30,
+                 5,
+                 50,
+                 "Demon",
+                 """A large, stone statue animated by hell mass that
+                 managed to breach the outside of the statue and 
+                 force it to move.
+                 It's movement is sluggish so it is incapible of
+                 attacking from afar, as it cannot move its limbs
+                 fast enough to throw any projectiles.""")
+
 #Bosses
 
 Colossus = Enemy("Colossus",
