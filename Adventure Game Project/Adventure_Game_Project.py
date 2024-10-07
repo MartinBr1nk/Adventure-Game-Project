@@ -183,7 +183,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             print(f"{target_name} ATTACKS!")
             Wait.wait(1)
             print(f"{target_name} HITS AND CAUSES {name} TO LOSE "
-                  "{target_damage} FUEL.")
+                  f"{target_damage} FUEL.")
             Wait.wait(1)
             Player.current_health = Player.current_health - target_damage
             print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
@@ -401,8 +401,8 @@ if endless_mode == False:
             "left, right and directly in front of you.")
             Wait.wait(1)
 
-            combat(Enemies.Filth.Name, Enemies.Filth.Health, \
-                Enemies.Filth.Damage,\
+            combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+                Enemies.Filth.Damage,
                    Enemies.Filth.Range, Enemies.Filth.Healing)
             #Gets the Name, Heath, Damage, Range and player healing for combat
             Wait.wait(1)
@@ -430,8 +430,8 @@ if endless_mode == False:
                     input("'We advise caution when attempting to -KZZZZZKT-'")
                     print_slow("TRANSMISSION OVER.")
 
-                    combat(Enemies.Stray.Name, Enemies.Stray.Health, \
-                        Enemies.Stray.Damage, \
+                    combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                        Enemies.Stray.Damage, 
                           Enemies.Stray.Range, Enemies.Stray.Healing)
 
             
@@ -472,7 +472,7 @@ if endless_mode == False:
                             Wait.wait(1)
 
                     input("Just as you left to the next room...")
-                    combat(Enemies.Schism.Name, Enemies.Schism.Health, \
+                    combat(Enemies.Schism.Name, Enemies.Schism.Health, 
                         Enemies.Schism.Damage,
                           Enemies.Schism.Range, Enemies.Schism.Healing)
                     input("Ahead of you lies a crossroad, Door A appears to "
@@ -528,23 +528,23 @@ if endless_mode == False:
                                   "turn that would lead you to where Door B "
                                   "is connected to.")
 
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health, \
-                                Enemies.Stray.Damage, \
+                            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                                Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
 
-                            combat(Enemies.Filth.Name, Enemies.Filth.Health, \
-                                Enemies.Filth.Damage, \
+                            combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+                                Enemies.Filth.Damage, 
                                 Enemies.Filth.Range, Enemies.Filth.Healing)
 
-                            combat(Enemies.Schism.Name, Enemies.Schism.Health, \
-                                Enemies.Schism.Damage, \
+                            combat(Enemies.Schism.Name, Enemies.Schism.Health, 
+                                Enemies.Schism.Damage, 
                                 Enemies.Schism.Range, Enemies.Schism.Healing)
 
                             print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
-                            combat(Enemies.Colossus.Name, \
-                                   Enemies.Colossus.Health, \
-                                   Enemies.Colossus.Damage, \
-                                   Enemies.Colossus.Range, \
+                            combat(Enemies.Colossus.Name, 
+                                   Enemies.Colossus.Health, 
+                                   Enemies.Colossus.Damage, 
+                                   Enemies.Colossus.Range, 
                                    Enemies.Colossus.Healing)
 
                             input("Behind the turning is a large chasm in the "
@@ -584,8 +584,8 @@ if endless_mode == False:
                           "an unknown force,'")
                     input("'We advise caution when attempting to -KZZZZZKT-'")
                     print_slow("TRANSMISSION OVER.")
-                    combat(Enemies.Filth.Name, Enemies.Filth.Health, \
-                        Enemies.Filth.Damage,\
+                    combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+                        Enemies.Filth.Damage,
                            Enemies.Filth.Range, Enemies.Filth.Healing)
 
                     choice_loop = True
@@ -598,9 +598,9 @@ if endless_mode == False:
                                   "enemy blocking the path forward.")
                             input("You can see a potential exit ahead")
                             input("Suddenly...")
-                            combat(Enemies.Colossus.Filth.Name, \
-                                Enemies.Colossus.Health, \
-                                Enemies.Colossus.Damage,\
+                            combat(Enemies.Colossus.Filth.Name, 
+                                Enemies.Colossus.Health, 
+                                Enemies.Colossus.Damage,
                                 Enemies.Colossus.Range, Enemies.Colossus.Healing)
                             input("You continue ahead through the corridoor "
                                   "and reach a chasm in the ground")
@@ -655,10 +655,10 @@ if endless_mode == False:
                                     Wait.wait(1)
                                     input("Suddenly...")
                                     print_slow("Something wicked this way comes")
-                                    combat(Enemies.SomethingWicked.Name, \
-                                        Enemies.SomethingWicked.Health, \
-                                        Enemies.SomethingWicked.Damage, \
-                                           Enemies.SomethingWicked.Range, \
+                                    combat(Enemies.SomethingWicked.Name, 
+                                        Enemies.SomethingWicked.Health, 
+                                        Enemies.SomethingWicked.Damage, 
+                                           Enemies.SomethingWicked.Range, 
                                            Enemies.SomethingWicked.Healing)
                                     #starts a easter egg fight that is
                                     #impossible to win
@@ -789,18 +789,18 @@ if endless_mode == False:
                             input("You decide against using the chaingun.")
                             input("You'll have to fight through several tough "
                                   "enemies to get through now.")
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health, \
-                                Enemies.Stray.Damage, \
+                            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                                Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health, \
-                                Enemies.Stray.Damage, \
+                            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                                Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
-                            combat(Enemies.Schism.Name, Enemies.Schism.Health, \
-                                Enemies.Schism.Damage, \
+                            combat(Enemies.Schism.Name, Enemies.Schism.Health, 
+                                Enemies.Schism.Damage, 
                                 Enemies.Schism.Range, Enemies.Schism.Healing)
                             print_slow("GIANT ENEMY AHEAD.")
-                            combat(Enemies.Colossus.Name, \
-                                Enemies.Colossus.Health, Enemies.Colossus.Damage,\
+                            combat(Enemies.Colossus.Name, 
+                                Enemies.Colossus.Health, Enemies.Colossus.Damage,
                                 Enemies.Colossus.Range, Enemies.Colossus.Healing)
                             input("You can now continue further.")
                             #Enemy gauntlet
@@ -900,8 +900,8 @@ if endless_mode == False:
                           "landscape.")
                     input("They appear to be marks from a battle using "
                           "similar weaponry that was used in the war.")
-                    combat(Enemies.Crawler.Name, \
-Enemies.Crawler.Health, Enemies.Crawler.Damage, \
+                    combat(Enemies.Crawler.Name,
+Enemies.Crawler.Health, Enemies.Crawler.Damage,
 Enemies.Crawler.Range, Enemies.Crawler.Healing)
 
 
@@ -931,8 +931,8 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     input("You approach the small village.")
                     input("It appears to be completely devoid of life.")
                     input("Suddenly...")
-                    combat(Enemies.Colossus.Name, \
-                          Enemies.Colossus.Health, Enemies.Colossus.Damage,\
+                    combat(Enemies.Colossus.Name,
+                          Enemies.Colossus.Health, Enemies.Colossus.Damage,
                           Enemies.Colossus.Range, Enemies.Colossus.Healing)
 
                     input("There is a shattered suit in the center of the village.")
@@ -948,8 +948,8 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                                 print_slow("CHAINGUN RESTORED")
                                 input("You can hear shuffling around you...")
                                 input("Suddenly...")
-                                combat(Enemies.Crawler.Name, \
-Enemies.Crawler.Health, Enemies.Crawler.Damage, \
+                                combat(Enemies.Crawler.Name,
+Enemies.Crawler.Health, Enemies.Crawler.Damage,
 Enemies.Crawler.Range, Enemies.Crawler.Healing)
                                 input("The destroyed suit appears to have "
                                       "been destroyed by similar weaponry "
@@ -1027,8 +1027,8 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                           "use here.")
                     input("Before you can leave a part of the ruins begins "
                     "to move...")
-                    combat(Enemies.Guardian.Name, Enemies.Guardian.Health, \
-                           Enemies.Guardian.Damage, Enemies.Guardian.Range, \
+                    combat(Enemies.Guardian.Name, Enemies.Guardian.Health,
+                           Enemies.Guardian.Damage, Enemies.Guardian.Range,
                            Enemies.Guardian.Healing)
                     ruins_explored = True
                     #The ruins have been explored, so the player cannot return
@@ -1047,8 +1047,8 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     input("It doesnt seem like you're meant to be here")
                     input("The floor and walls around you begin to form "
                     "something...")
-                    combat(Enemies.Shade.Name, Enemies.Shade.Health, \
-                           Enemies.Shade.Damage, Enemies.Shade.Range, \
+                    combat(Enemies.Shade.Name, Enemies.Shade.Health,
+                           Enemies.Shade.Damage, Enemies.Shade.Range,
                            Enemies.Shade.Healing)
                     village_explored = True
                     input("In a tower in the center of the village, a "
@@ -1116,6 +1116,10 @@ you stand a chance against tough enemies.""")
             input("It then flickers back to life, but instead of being day, "
                   "the sky is now dark and starry, a fake moon overlooks "
                   "the landscape.")
+            Wait.wait(2)
+
+            input("You managed to return back to the castle.")
+
 
         elif circle == 2:
             print("Circle 2 - Lust, is not finished.")

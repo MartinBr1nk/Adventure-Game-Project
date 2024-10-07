@@ -2,6 +2,7 @@ import time
 import random
 from ASCII import Mykola, silly_cat
 from Wait import wait
+from Wait import time_skip
 def cool_typing(str):
     for letter in str:
         print(letter, end = ""),
@@ -74,9 +75,15 @@ def IntroSequence():
 
     elif "mykola" in player_name.lower():
         player_name = Mykola
+        time_skip = True
         #stupid inside joke
+
     elif "silly" in player_name.lower():
         player_name = silly_cat
+        time_skip = True
+        #stupid easter egg
+
+        time_skip
     elif "farming" in player_name.lower() or "martin" in player_name.lower():
         cool_typing("FARMING MODE INITIATED.")
         wait(1)

@@ -15,7 +15,8 @@ Revolver = Weapon("Revolver",
                   "Perfect Accuracy -"
                   "Alt fire causes the revolver to deal 2x damage "
                   "but causes a small shock to be administered to the user, "
-                  "take 10 damage.", "A revolver that uses electromagnets "
+                  "take 10 damage.",
+                  "A revolver that uses electromagnets "
                   "to fire its bullets at incredible speeds.",)
 
 Shotgun = Weapon("Shotgun",

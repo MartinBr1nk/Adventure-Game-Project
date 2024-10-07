@@ -65,11 +65,11 @@ Guardian = Enemy("Guardian",
                  50,
                  "Demon",
                  """A large, stone statue animated by hell mass that
-                 managed to breach the outside of the statue and 
-                 force it to move.
-                 It's movement is sluggish so it is incapible of
-                 attacking from afar, as it cannot move its limbs
-                 fast enough to throw any projectiles.""")
+managed to breach the outside of the statue and 
+force it to move.
+It's movement is sluggish so it is incapible of
+attacking from afar, as it cannot move its limbs
+fast enough to throw any projectiles.""")
 
 Shade = Enemy("Shade",
               100,
@@ -78,10 +78,10 @@ Shade = Enemy("Shade",
               30,
               "Puppet",
               """A small, humanoid creature comprised from the materials that 
-              are present in its enviroment. It is directly controlled by hell
-              and manifests in areas deemed as a 'background' by hell, they 
-              are used to ward off any unwanted visitors to these areas that 
-              are not meant to be interacted with.""")
+are present in its enviroment. It is directly controlled by hell
+and manifests in areas deemed as a 'background' by hell, they 
+are used to ward off any unwanted visitors to these areas that 
+are not meant to be interacted with.""")
 
 #Bosses
 
@@ -105,14 +105,14 @@ Hijacked_1 = Enemy("Hijacked",
                  1000,
                  "Machine/Demon",
                  """A damaged suit that was reanimated using hell mass.
-                 The old pilot is still inside being puppeted by hell energy
-                 and is forced by hell to pilot the reanimated suit.
+The old pilot is still inside being puppeted by hell energy
+and is forced by hell to pilot the reanimated suit.
 
-                 This opponent is incredibly powerful and can kill its foes
-                 in a matter of seconds if appropriate caution is not taken.
+This opponent is incredibly powerful and can kill its foes
+in a matter of seconds if appropriate caution is not taken.
                  
-                 DO NOT APPROACH WITHOUT A MAJOR POWER BOOST.
-                 THE DEFAULT SUIT IS NOT ENOUGH TO DEFEAT IT.""")
+DO NOT APPROACH WITHOUT A MAJOR POWER BOOST.
+THE DEFAULT SUIT IS NOT ENOUGH TO DEFEAT IT.""")
 
 SomethingWicked = Enemy("Something Wicked",
                         99999999,
