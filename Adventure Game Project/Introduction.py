@@ -1,18 +1,17 @@
 import time
 import random
 import ASCII
-from Wait import wait
-from Wait import time_skip
+import Wait
 def cool_typing(str):
     for letter in str:
         print(letter, end = ""),
-        wait(random.uniform(0.1, 0.05))
+        Wait.wait(random.uniform(0.1, 0.05))
     print("\n")
 
 def cool_typing_fast(str):
     for letter in str:
         print(letter, end = ""),
-        wait(random.uniform(0.0005, 0.0001))
+        Wait.wait(random.uniform(0.0005, 0.0001))
     print("\n")
 
 def death_screen():
@@ -26,7 +25,7 @@ def IntroSequence():
     cool_typing("BOOT UP SEQUENCE READY")
     cool_typing("CHECKING FIRMWARE VERISON")
     print("LATEST VERSION (15.09.2163)")
-    wait(1)
+    Wait.wait(1)
 
     print("PEFORMING SYSTEM DIAGNOSTICS")
     cool_typing("AUDIO             OK")
@@ -34,13 +33,13 @@ def IntroSequence():
     cool_typing("MECHANICS         OK")
     print("DUE TO VIDEO FEED MALFUNCTION, PLEASE NOTE YOUR ENVIROMENT "
           "AS YOU PROCEED")
-    wait(3)
+    Wait.wait(3)
 
     print("DIAGNOSTIC COMPLETE")
-    wait(3)
+    Wait.wait(3)
 
     print("PLEASE ENTER A NAME SO YOUR CADEVER CAN BE IDENTIFIED")
-    wait(2)
+    Wait.wait(2)
     player_name = input("PILOT NAME: ")
     if "skibidi" in player_name.lower() or "gyatt" in player_name.lower() \
        or "rizz" in player_name.lower() or "sigma" in player_name.lower() \
@@ -53,10 +52,10 @@ def IntroSequence():
         #if these terms are within your name,
         #the game just kills you before you can start.
         cool_typing("RELEASING TOXIC GAS...")
-        wait(3)
-        cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL"
+        Wait.wait(3)
+        cool_typing("BRAINROT IS NOT PERMITTED IN THE HELL "
                    "EXPEDITION PROJECT.")
-        wait(1)
+        Wait.wait(1)
         death_screen()
 
     elif "gaster" in player_name.lower():
@@ -66,37 +65,36 @@ def IntroSequence():
 
     elif "mykola" in player_name.lower():
         player_name = ASCII.Mykola
-        time_skip = True
+        Wait.time_skip = True
         #stupid inside joke
 
     elif "silly" in player_name.lower():
         player_name = ASCII.silly_cat
-        time_skip = True
+        Wait.time_skip = True
         #stupid easter egg
 
-        time_skip
     elif "farming" in player_name.lower() or "martin" in player_name.lower():
         cool_typing("FARMING MODE INITIATED.")
-        wait(1)
+        Wait.wait(1)
         cool_typing("LOADING.................")
-        wait(5)
+        Wait.wait(5)
         print("just kidding :) it broke.")
         #Easter egg (farming didnt actually break, I never programmed it)
-        wait(3)
+        Wait.wait(3)
 
     elif player_name == "":
-        wait(1)
+        Wait.wait(1)
         player_name = input("PLEASE ENTER A NAME, OR ONE WILL BE "
                             "CHOSEN FOR YOU: ")
         if player_name == "":
             player_name = "PILOT"
-            wait(1)
+            Wait.wait(1)
             print(f"SET NAME - {player_name}.")
-            wait(1)
+            Wait.wait(1)
             #Picks a default name if the user does not enter anything.
         else:
             print(f"SET NAME - {player_name}.")
-            wait(1)
+            Wait.wait(1)
     else:
         print(f"SET NAME - {player_name}.")
 

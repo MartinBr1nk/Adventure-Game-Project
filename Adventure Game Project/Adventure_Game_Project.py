@@ -7,11 +7,15 @@ import Enemies
 import Weapons
 import Wait
 import ASCII
+import os
+
 
 #Variables
-name = "Placeholder"
+random_value = random.randint(0, 500)
+#Random Value generated at the start of every run that can
+#cause special events to happen
+name = "placeholder"
 direction = "placeholder"
-prim_alt_choice = ""
 choice_loop = False
 search_loop = False
 skip = False
@@ -32,22 +36,12 @@ def clear_screen():
         #"Clears" the screen by pushing everything else away
 
 
-
-def save(ValueName, Value):
-    f = open("SaveData.py", "a")
-    f.write(str(ValueName) + " = " + str(Value) + "\n")
-    f.close()
-    #useless saving system, it doesnt really work for what I want but I'm leaving it in in case I need it later
-
-
-
 def print_slow(str):
     for letter in str:
         print(letter, end = ""),
         Wait.wait(random.uniform(0.1, 0.05))
     print("\n")
     #prints text letter-by-letter slowly
-
 
 
 def print_fast(str):
@@ -58,7 +52,6 @@ def print_fast(str):
     #prints text letter-by-letter quickly
 
 
-
 def print_very_fast(str):
     for letter in str:
         print(letter, end = ""),
@@ -67,12 +60,10 @@ def print_very_fast(str):
     #prints text letter-by-letter REALLY quickly
 
 
-
 def death_screen():
     print_fast(ASCII.death_screen)
     exit()
     #Death screen
-
 
 
 def combat(target_name, target_health, target_damage, range, healing):
@@ -205,8 +196,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             print("ERROR")
             exit()
             #debug message
-
-             
+   
 
 def menu():
     global skip
@@ -215,13 +205,7 @@ def menu():
     global through_menu
     menu_loop = True
     while menu_loop == True:
-        print(r"""
- __  __ ______ _   _ _    _ 
-|  \/  |  ____| \ | | |  | |
-| \  / | |__  |  \| | |  | |
-| |\/| |  __| | . ` | |  | |
-| |  | | |____| |\  | |__| |
-|_|  |_|______|_| \_|\____/ 
+        print(ASCII.menu_title, r"""
 
 1 - START CAMPAIGN
 2 - ENDLESS FIGHTING MODE
@@ -334,10 +318,10 @@ def menu():
             print("ENTER A VALID OPTION.")
             Wait.wait(1)
 
+#START OF THE GAME :O
 
-random_value = random.randint(0, 500)
-#Random Value generated at the start of every run that can
-#cause special events to happen
+os.system('mode con: cols=170 lines=50')
+#Resizes the window to fit ASCII art without the user having to change the size of the terminak
 
 menu()
 
