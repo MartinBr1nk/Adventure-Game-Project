@@ -370,8 +370,8 @@ if endless_mode == False:
                  "tunnel, obscured by smoke.")
             input("There are no other paths you can see. You decide to walk "
                  "through the obscured tunnel")
-            input("You reach a dark, open room with three locked doors to your "
-            "left, right and directly in front of you.")
+            input("You reach a dark, open room with three locked doors to "
+            "your left, right and directly in front of you.")
             Wait.wait(1)
 
             combat(Enemies.Filth.Name, Enemies.Filth.Health, 
@@ -386,10 +386,12 @@ if endless_mode == False:
                                  "or forward. :").lower()
                 if direction == "left":
                     choice_loop = False
-                    input("The door to your left slams open and allows you to "
-                         "pass through.")
-                    input("Ahead of you lies a long, cylindrical metal corridor.")
-                    input("The walls have been heated to an extreme temperature.")
+                    input("The door to your left slams open and allows you "
+                    "to pass through.")
+                    input("Ahead of you lies a long, cylindrical metal "
+                          "corridor.")
+                    input("The walls have been heated to an extreme "
+                          "temperature.")
                     input("Suddenly...")
                     print_slow("TRANSMISSION INCOMING...")
                     Wait.wait(1)
@@ -412,32 +414,38 @@ if endless_mode == False:
                     input("The only way forward is to continue along the "
                           "corridor, it doesnt appear that there "
                           "are any more doors.")
-                    input("However, you could attempt to look around this room.")
-                    input("This may be dangerous as the walls of the room have "
-                          "been heated to an extreme temperature.")
+                    input("However, you could attempt to look around this "
+                          "room.")
+                    input("This may be dangerous as the walls of the room "
+                          "have been heated to an extreme temperature.")
                     while choice_loop == True:
-                        #keeps the player in a loop until they make a valid choice
+                        #keeps the player in a loop until they make a valid
+                        #choice
                         choice = input("Inspect the Room? Yes/No: ").lower()
                         if "y" in choice:
                             input("You decide to inspect the room.")
                             print("!!! EXTREME HEAT DETECTED !!!")
                             Wait.wait(2)
                             print("!!! ENGAGING COOLING MECHANISM !!!")
-                            Player.current_health = Player.current_health - 100
+                            Player.current_health = Player.current_health - \
+                            100
                             Wait.wait(2)
-                            print(f"YOU HAVE LOST 100 OUT OF {Player.max_health} "
-                                  "FUEL.")
-                            print(f"YOU HAVE {Player.current_health} FUEL LEFT")
+                            print("YOU HAVE LOST 100 OUT OF "
+                            f"{Player.max_health} FUEL.")
+                            print(f"YOU HAVE {Player.current_health} FUEL "
+                                  "LEFT")
                             Wait.wait(1)
-                            input("You decide to continue along the corridor, "
-                                  "as there does not appear to be anything else "
-                                  "in this room")
+                            input("You decide to continue along the "
+                                  "corridor, as there does not appear to be "
+                                  "anything else in this room")
                             choice_loop = False
 
                         elif "n" in choice:
-                            input("You decide against inspecting the corridor.")
-                            input("You continue along the corridor, as there does"
-                                 " not appear to be anything else in this room")
+                            input("You decide against inspecting the "
+                                  "corridor.")
+                            input("You continue along the corridor, as there "
+                                  "does not appear to be anything else in "
+                                  "this room")
                             choice_loop = False
 
                         else:
@@ -454,8 +462,8 @@ if endless_mode == False:
                     input("Door B has an 'EXIT' sign above it, it seems to "
                           "be damaged and would require a lot of force to "
                           "break through.")
-                    input("If you want to get through door B you will have to "
-                          "spend 25 - 100 fuel to smash through it.")
+                    input("If you want to get through door B you will have "
+                          "to spend 25 - 100 fuel to smash through it.")
                     choice_loop = True
                     if choice_loop == True:
                         choice = input("Smash through the door?").lower()
@@ -463,7 +471,8 @@ if endless_mode == False:
                         if "y" in choice:
                             print_slow("PREPARING TO DESTROY DOOR")
                             loss = random.randint(25, 100)
-                            Player.current_health = Player.current_health - loss
+                            Player.current_health = Player.current_health - \
+                                loss
 
                             if Player.current_health <= 0:
                                 print_slow("FUEL AT CRITICAL LEVELS")
@@ -477,16 +486,18 @@ if endless_mode == False:
                                       "FUEL LEFT")
                                 Wait.wait(1)
                             input("Behind the door is a large chasm in the "
-                                  "ground, there appears to be a path to your "
-                                  "left that may be connected to the path that "
-                                  "Door A would take you to. You can see the "
-                                  "shadow of a massive husk from this path.")
+                                  "ground, there appears to be a path to "
+                                  "your left that may be connected to the "
+                                  "path that Door A would take you to. You "
+                                  "can see the shadow of a massive husk from "
+                                  "this path.")
                             input("Suddenly...")
                             print_slow("PATH AHEAD DETECTED")
                             input("Your suit suddenly begins walking towards "
                                   "the chasm and prepares to jump in ")
-                            input("The suit controls have been taken over by the "
-                                  "suits AI, you cannot prevent its decent.")
+                            input("The suit controls have been taken over by "
+                                  "the suits AI, you cannot prevent its "
+                                  "decent.")
                             print_slow("BEGINNING DECENT...")
 
                             circle = 1
@@ -495,21 +506,22 @@ if endless_mode == False:
                             #to prograss to the next area
 
                         elif "n" in choice:
-                            input("You decide to take the standard door around")
+                            input("You decide to take the standard door "
+                                  "around")
                             input("Ahead of you lies a corridor filled with "
-                                  "enemies, and at the end you can see a right "
-                                  "turn that would lead you to where Door B "
-                                  "is connected to.")
+                                  "enemies, and at the end you can see a "
+                                  "right turn that would lead you to where "
+                                  "Door B is connected to.")
 
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                            combat(Enemies.Stray.Name, Enemies.Stray.Health,
                                 Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
 
-                            combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+                            combat(Enemies.Filth.Name, Enemies.Filth.Health,
                                 Enemies.Filth.Damage, 
                                 Enemies.Filth.Range, Enemies.Filth.Healing)
 
-                            combat(Enemies.Schism.Name, Enemies.Schism.Health, 
+                            combat(Enemies.Schism.Name, Enemies.Schism.Health,
                                 Enemies.Schism.Damage, 
                                 Enemies.Schism.Range, Enemies.Schism.Healing)
 
@@ -520,8 +532,9 @@ if endless_mode == False:
                                    Enemies.Colossus.Range, 
                                    Enemies.Colossus.Healing)
 
-                            input("Behind the turning is a large chasm in the "
-                            "ground, there appears to be a door to your right "
+                            input("Behind the turning is a large chasm in "
+                                  "the ground, there appears to be a door "
+                                  "to your right "
                             "that is connected to the path that Door B would "
                             "take you to.")
                             input("Suddenly...")
@@ -529,13 +542,14 @@ if endless_mode == False:
                             input("Your suit suddenly begins walking towards "
                                   "the chasm and prepares to jump in")
                             input("The suit controls have been taken over by "
-                                  "the suits AI, you cannot prevent its decent.")
+                                  "the suits AI, you cannot prevent its "
+                                  "decent.")
                             print_slow("BEGINNING DECENT...")
 
                             circle = 1
                             choice_loop = False
-                            #Gets the player out of the first area, allowing them
-                            #to progress to the next area
+                            #Gets the player out of the first area, 
+                            #allowing them to progress to the next area
                         else:
                             print("INVALID OPTION")
                             Wait.wait(1)
@@ -553,8 +567,8 @@ if endless_mode == False:
                           "your suits cockpit:")
                     input(f"'Hello {name}, this is a transmission from "
                           "Headquarters.'")
-                    input("'It appears the Mouth of Hell has been overtaken by "
-                          "an unknown force,'")
+                    input("'It appears the Mouth of Hell has been overtaken "
+                          "by an unknown force,'")
                     input("'We advise caution when attempting to -KZZZZZKT-'")
                     print_slow("TRANSMISSION OVER.")
                     combat(Enemies.Filth.Name, Enemies.Filth.Health, 
@@ -562,7 +576,8 @@ if endless_mode == False:
                            Enemies.Filth.Range, Enemies.Filth.Healing)
 
                     choice_loop = True
-                    input("There is a door to your left and a door to your right")
+                    input("There is a door to your left and a door to your "
+                          "right")
                     while choice_loop == True:
                         choice = input("Do you go left or right?: ")
                         if "l" in choice:
@@ -571,10 +586,11 @@ if endless_mode == False:
                                   "enemy blocking the path forward.")
                             input("You can see a potential exit ahead")
                             input("Suddenly...")
-                            combat(Enemies.Colossus.Filth.Name, 
+                            combat(Enemies.Colossus.Filth.Name,
                                 Enemies.Colossus.Health, 
                                 Enemies.Colossus.Damage,
-                                Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                                Enemies.Colossus.Range,
+                                Enemies.Colossus.Healing)
                             input("You continue ahead through the corridoor "
                                   "and reach a chasm in the ground")
                             print_slow("PATH AHEAD DETECTED")
@@ -582,13 +598,13 @@ if endless_mode == False:
 
                             circle = 1
                             choice_loop = False
-                            #Gets the player out of the first area, allowing them
-                            #to progress to the next area
+                            #Gets the player out of the first area, allowing
+                            #them to progress to the next area
 
                         elif "r" in choice:
                             choice_loop = False
-                            input("You enter a room resembling a cavern with no "
-                                  "way through.")
+                            input("You enter a room resembling a cavern with "
+                                  "no way through.")
                             input("You could explore the room to check "
                                   "if anything")
                             choice_loop = True
@@ -596,8 +612,8 @@ if endless_mode == False:
                                 choice = input("Explore the room?: ").lower()
                                 if "y" in choice:
                                     choice_loop = False
-                                    input("You find a small lever hidden amongst "
-                                          "the rocks in the room.")
+                                    input("You find a small lever hidden "
+                                          "amongst the rocks in the room.")
                                     input("You decide to pull the lever.")
                                     input("The ground beneath you suddenly "
                                           "begins to open into a chasm")
@@ -607,31 +623,35 @@ if endless_mode == False:
                                     circle = 1
                                     choice_loop = False
                                     #Gets the player out of the first area, 
-                                    #allowing them to progress to the next area
+                                    #allowing them to progress to the next 
+                                    #area
                                 elif "n" in choice:
                                     choice_loop = False
                                     input("You notice a small tablet on "
                                           "the ground.")
                                     input("You pick it up and it reads:")
-                                    input("""
-                                    Log #14
-                                    The Mouth of Hell research station has been 
-                                    twisted into an industrial hellscape, 
-                                    we just woke up and the smell of 
-                                    smoke and fumes has flooded the entire station
-                                    and rooms have been twisted into a confusing
-                                    labyrinth of industrial equipment and hellish 
-                                    creations that no sane person would make.
-                                    We're all so scared and nobody is coming for us.
-                                    Have they just abandoned us?
-                                    """)
+                                    print("Log #14")
+                                    input("The Mouth of Hell research "
+                                          "station has been twisted into an "
+                                          "industrial hellscape, we just "
+                                          "woke up and the smell of smoke "
+                                          "and fumes has flooded the entire "
+                                          "station and rooms have been "
+                                          "twisted into a confusing "
+                                          "labyrinth of industrial "
+                                          "equipment and hellish creations "
+                                          "that no sane person would make. "
+                                          "We're all so scared and nobody is "
+                                          "coming for us. Have we just been "
+                                          "abandoned?")
                                     Wait.wait(1)
                                     input("Suddenly...")
-                                    print_slow("Something wicked this way comes")
-                                    combat(Enemies.SomethingWicked.Name, 
-                                        Enemies.SomethingWicked.Health, 
-                                        Enemies.SomethingWicked.Damage, 
-                                           Enemies.SomethingWicked.Range, 
+                                    print_slow("Something wicked this way "
+                                               "comes")
+                                    combat(Enemies.SomethingWicked.Name,
+                                        Enemies.SomethingWicked.Health,
+                                        Enemies.SomethingWicked.Damage,
+                                           Enemies.SomethingWicked.Range,
                                            Enemies.SomethingWicked.Healing)
                                     #starts a easter egg fight that is
                                     #impossible to win
@@ -660,34 +680,38 @@ if endless_mode == False:
                     print_slow("TRANSMISSION OVER.")
 
                     input("You can see many enemies lying on the staircase")
-                    input("if you use a charge of your chaingun you may be able "
-                          "to destroy the floor beneath some of the enemies.")
+                    input("if you use a charge of your chaingun you may be "
+                          "able to destroy the floor beneath some of the "
+                          "enemies.")
                     choice_loop = True
                     while choice_loop == True:
                         choice = input("Do you use your chaingun?: ").lower()
                         if "y" in choice:
                             choice_loop = False
                             Weapons.chaingun_used = True
-                            print("CHAINGUN USED, IT CANNOT BE USED AGAIN UNTIL "
-                                  "REPAIRED")
+                            print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
+                                  "UNTIL REPAIRED")
                             Wait.wait(1)
-                            input("The staircase ahead crumbles infront of you, "
-                                  "leaving a massive gap that you need to cross.")
-                            input("However, all the enemies that you would have "
-                                  "had to fought have fell and been shredded by "
-                                  "the fan beneath.")
-                            input("There is a huge gap between you and the next "
-                                  "door.")
+                            input("The staircase ahead crumbles infront of "
+                                  "you, leaving a massive gap that you need "
+                                  "to cross.")
+                            input("However, all the enemies that you would "
+                                  "have had to fought have fell and been "
+                                  "shredded by the fan beneath.")
+                            input("There is a huge gap between you and the "
+                                  "next door.")
                             input("You'll have to jump the gap.")
-                            input("To successfully jump the gap you will have "
-                                  "to use HALF of your fuel to make the jump.")
-                            input("You could risk it and lose 50 fuel to jump "
-                                  "the gap but there is a chance you may fall "
-                                  "and be shredded.")
+                            input("To successfully jump the gap you will "
+                                  "have to use HALF of your fuel to make the "
+                                  "jump.")
+                            input("You could risk it and lose 50 fuel to "
+                                  "jump the gap but there is a chance you "
+                                  "may fall and be shredded.")
                             choice_loop = True
                             while choice_loop == True:
-                                choice = input("Play it safe and use half your "
-                                               "fuel to jump the gap?: ").lower()
+                                choice = input("Play it safe and use half "
+                                               "your fuel to jump the "
+                                               "gap?: ").lower()
                                 if "y" in choice:
                                     choice_loop = False
                                     Player.current_health = \
@@ -699,23 +723,27 @@ if endless_mode == False:
                                           "REMAINING.")
                                     Wait.wait(1)
 
-                                    input("You have successfuly jumped the gap.")
-                                    input("The door at the end slams open and you "
-                                    "can see a chasm that drops down for "
-                                    "a indeterminate distance.")
+                                    input("You have successfuly jumped the "
+                                          "gap.")
+                                    input("The door at the end slams open and "
+                                          "you can see a chasm that drops "
+                                          "down for an indeterminate "
+                                          "distance.")
                                     input("Suddenly...")
                                     print_slow("PATH AHEAD DETECTED")
-                                    input("Your suit suddenly begins walking towards "
-                                    "the chasm and prepares to jump in")
-                                    input("The suit controls have been taken over by "
-                                    "the suits AI, you cannot "
-                                    "prevent its decent.")
+                                    input("Your suit suddenly begins walking "
+                                          "towards the chasm and prepares to "
+                                          "jump in")
+                                    input("The suit controls have been taken "
+                                          "over by the suits AI, you cannot "
+                                          "prevent its decent.")
                                     print_slow("BEGINNING DECENT...")
 
                                     circle = 1
                                     choice_loop = False
                                     #Gets the player out of the first area,
-                                    #allowing them to progress to the next area
+                                    #allowing them to progress to the next 
+                                    #area
 
                                 elif "n" in choice:
                                     choice_loop = False
@@ -736,23 +764,27 @@ if endless_mode == False:
                                         #if they successfully jump they only
                                         #lose 50 fuel
 
-                                        input("You have successfuly jumped the gap.")
-                                        input("The door at the end slams open and you "
-                                        "can see a chasm that drops down for "
-                                        "a indeterminate distance.")
+                                        input("You have successfuly jumped "
+                                              "the gap.")
+                                        input("The door at the end slams open "
+                                              "and you can see a chasm that "
+                                              "drops down for an indeterminate distance.")
                                         input("Suddenly...")
                                         print_slow("PATH AHEAD DETECTED")
-                                        input("Your suit suddenly begins walking towards "
-                                        "the chasm and prepares to jump in")
-                                        input("The suit controls have been taken over by "
-                                        "the suits AI, you cannot "
-                                        "prevent its decent.")
+                                        input("Your suit suddenly begins "
+                                              "walking towards the chasm and "
+                                              "prepares to jump in")
+                                        input("The suit controls have been "
+                                              "taken over by the suits AI, "
+                                              "you cannot prevent its "
+                                              "decent.")
                                         print_slow("BEGINNING DECENT...")
 
                                         circle = 1
                                         choice_loop = False
-                                        #Gets the player out of the first area,
-                                        #allowing them to progress to the next area
+                                        #Gets the player out of the first 
+                                        #area, allowing them to progress to 
+                                        #the next area
                                 else:
                                     print("INVALID OPTION.")
                                     Wait.wait(1)
@@ -760,33 +792,36 @@ if endless_mode == False:
                         elif "n" in choice:
                             choice_loop = False
                             input("You decide against using the chaingun.")
-                            input("You'll have to fight through several tough "
-                                  "enemies to get through now.")
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                            input("You'll have to fight through several "
+                                  "tough enemies to get through now.")
+                            combat(Enemies.Stray.Name, Enemies.Stray.Health,
+                                Enemies.Stray.Damage,
+                                Enemies.Stray.Range, Enemies.Stray.Healing)
+                            combat(Enemies.Stray.Name, Enemies.Stray.Health,
                                 Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
-                                Enemies.Stray.Damage, 
-                                Enemies.Stray.Range, Enemies.Stray.Healing)
-                            combat(Enemies.Schism.Name, Enemies.Schism.Health, 
-                                Enemies.Schism.Damage, 
+                            combat(Enemies.Schism.Name, Enemies.Schism.Health,
+                                Enemies.Schism.Damage,
                                 Enemies.Schism.Range, Enemies.Schism.Healing)
                             print_slow("GIANT ENEMY AHEAD.")
                             combat(Enemies.Colossus.Name, 
-                                Enemies.Colossus.Health, Enemies.Colossus.Damage,
-                                Enemies.Colossus.Range, Enemies.Colossus.Healing)
+                                Enemies.Colossus.Health,
+                                Enemies.Colossus.Damage,
+                                Enemies.Colossus.Range,
+                                Enemies.Colossus.Healing)
                             input("You can now continue further.")
                             #Enemy gauntlet
 
-                            input("The door at the end slams open and you can "
-                                  "see a chasm that drops down for a "
+                            input("The door at the end slams open and you "
+                                  "can see a chasm that drops down for a "
                                   "indeterminate distance.")
                             input("Suddenly...")
                             print_slow("PATH AHEAD DETECTED")
                             input("Your suit suddenly begins walking towards "
                                   "the chasm and prepares to jump in")
-                            input("The suit controls have been taken over by the "
-                                  "suits AI, you cannot prevent its decent.")
+                            input("The suit controls have been taken over by "
+                                  "the suits AI, you cannot prevent its "
+                                  "decent.")
                             print_slow("BEGINNING DECENT...")
 
                             circle = 1
@@ -841,7 +876,8 @@ if endless_mode == False:
             input("Calming music and sounds of birds play from small poorly"
                   "hidden speakers throughout the field")
             input("Ahead of you lies a fork in the road.")
-            input("To the left there is a large castle you could attempt to enter.")
+            input("To the left there is a large castle you could attempt "
+                  "to enter.")
             input("To the right there is a small village.")
 
 
@@ -890,13 +926,16 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                           Enemies.Colossus.Health, Enemies.Colossus.Damage,
                           Enemies.Colossus.Range, Enemies.Colossus.Healing)
 
-                    input("There is a shattered suit in the center of the village.")
-                    input("You could use the scrap from it to repair your chaingun")
+                    input("There is a shattered suit in the center of the "
+                          "village.")
+                    input("You could use the scrap from it to repair your "
+                          "chaingun")
                     Wait.wait(1)
                     if Weapons.chaingun_used == True:
                         choice_loop = True
                         while choice_loop == True:
-                            choice = input("Do you want to use the scrap to repair your chaingun?").lower()
+                            choice = input("Do you want to use the scrap to "
+                                           "repair your chaingun?").lower()
                             if "y" in choice:
                                 Weapons.chaingun_used = False
                                 choice_loop = False
@@ -1097,11 +1136,11 @@ you stand a chance against tough enemies.""")
                 choice = input("What path do you take?: ")
                 if "left" in choice:
                     choice_loop = False
-                    print("wow left path thats actually crazy")
+                    
 
                 elif "right" in choice:
                     choice_loop = False
-                    print("omg right path!!1")
+                    
 
                 elif "forward" in choice:
                     choice_loop = False
@@ -1165,36 +1204,49 @@ elif endless_mode == True:
     name = input("NAME: ")
     Wait.wait(1)
     while endless_mode == True:
-        random_enemy = random.randint(1, 5)
+        random_enemy = random.randint(1, 7)
         if random_enemy == 1:
-            combat(Enemies.Filth.Name, Enemies.Filth.Health, \
-                Enemies.Filth.Damage, \
+            combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+                Enemies.Filth.Damage, 
                Enemies.Filth.Range, Enemies.Filth.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 2:
-            combat(Enemies.Stray.Name, Enemies.Stray.Health, \
-                Enemies.Stray.Damage, \
+            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                Enemies.Stray.Damage, 
                Enemies.Stray.Range, Enemies.Stray.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 3:
-            combat(Enemies.Schism.Name, Enemies.Schism.Health, \
-                Enemies.Schism.Damage, \
+            combat(Enemies.Schism.Name, Enemies.Schism.Health, 
+                Enemies.Schism.Damage, 
                Enemies.Schism.Range, Enemies.Schism.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 4:
-            combat(Enemies.Colossus.Name, Enemies.Colossus.Health, \
-                Enemies.Colossus.Damage, \
+            combat(Enemies.Colossus.Name, Enemies.Colossus.Health, 
+                Enemies.Colossus.Damage, 
                Enemies.Colossus.Range, Enemies.Colossus.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
         elif random_enemy == 5:
-            combat(Enemies.Crawler.Name, Enemies.Crawler.Health, \
-                Enemies.Crawler.Damage, \
+            combat(Enemies.Crawler.Name, Enemies.Crawler.Health, 
+                Enemies.Crawler.Damage, 
                Enemies.Crawler.Range, Enemies.Crawler.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
-        #Picks a random enemy from all avalible enemy types
+
+        elif random_enemy == 6:
+            combat(Enemies.Guardian.Name, Enemies.Guardian.Health, 
+                Enemies.Guardian.Damage, 
+               Enemies.Guardian.Range, Enemies.Guardian.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+
+        elif random_enemy == 7:
+            combat(Enemies.Shade.Name, Enemies.Shade.Health, 
+                Enemies.Shade.Damage, 
+               Enemies.Shade.Range, Enemies.Shade.Healing)
+            endless_enemies_killed = endless_enemies_killed + 1
+        #Picks a random enemy from all avalible enemy types and adds to the
+        #kill counter every time you win an ancounter
 
         print(f"{endless_enemies_killed} ENEMIES KILLED!")
         Wait.wait(1)
@@ -1212,3 +1264,4 @@ elif endless_mode == True:
             #If the chaingun has been used, after 5 kills it will be restored
 
 #end
+

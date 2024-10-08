@@ -47,8 +47,8 @@ def IntroSequence():
        or "ohio" in player_name.lower() or "hawk" in player_name.lower() \
        or "tuah" in player_name.lower() or "aura" in player_name.lower() \
        or "fanum" in player_name.lower() or "alpha" in player_name.lower() \
-       or "mew" in player_name.lower() or "mog" in player_name.lower()\
-       or "gronk" in player_name.lower() or "glazing" in player_name.lower()\
+       or "mew" in player_name.lower() or "mog" in player_name.lower() \
+       or "gronk" in player_name.lower() or "glazing" in player_name.lower() \
        or "cenat" in player_name.lower():
         #if these terms are within your name,
         #the game just kills you before you can start.
