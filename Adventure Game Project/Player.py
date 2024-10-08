@@ -1,5 +1,5 @@
 #Playerdata
-current_health = 1
+current_health = 500
 max_health = 500
 #HP for normal combat
 

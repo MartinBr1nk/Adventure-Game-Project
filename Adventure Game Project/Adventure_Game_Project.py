@@ -82,9 +82,9 @@ def combat(target_name, target_health, target_damage, range, healing):
         while weapon_loop == True:
             #puts you in a loop until you pick a valid weapon
             print(f"""WEAPON CHOICES:
-           1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
-           2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
-           3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info} """)
+1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
+2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
+3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info}""")
             weapon_choice = str(input("Choice: ")).lower()
             alt_fire = input("Use the alternate firing option? "
                              "(Yes/No): ").lower()
@@ -131,22 +131,26 @@ def combat(target_name, target_health, target_damage, range, healing):
                     #chaingun is functional, you attack
                     print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
                           "UNTIL REPAIRED")
+                    print("\n")
                     Weapons.chaingun_used = True
                     weapon_loop = False
 
                 elif "3" in weapon_choice and Weapons.chaingun_used == True:
                     print("THE CHAINGUN HAS ALREADY BEEN USED. "
                           "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
+                    print("\n")
                     #prevents the chaingun from being used if it has already
                     #been used previously
 
                 else:
                     print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
                          " PICK THE NUMBER RELATED TO THE WEAPON.")
+                    print("\n")
                     #In case the user enters a weapon that doesnt exist
 
             else:
                 print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
+                print("\n")
                 Wait.wait(1)
 
         weapon_loop = True
@@ -154,6 +158,7 @@ def combat(target_name, target_health, target_damage, range, healing):
         if Player.current_health <= 0:
             combat_loop = False
             print(f"{name} HAS RAN OUT OF FUEL.")
+            print("\n")
             Wait.wait(2)
             death_screen()
             Wait.wait(1)
@@ -164,6 +169,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             Wait.wait(1)
             #Tells the player how much health the enemy has
             print(f"{target_name} ATTACKS!")
+            print("\n")
             Wait.wait(1)
             print(f"{target_name} HITS AND CAUSES {name} TO LOSE "
                   f"{target_damage} FUEL.")
@@ -174,6 +180,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             if Player.current_health <= 0:
                 combat_loop = False
                 print(f"{name} HAS RAN OUT OF FUEL.")
+                print("\n")
                 Wait.wait(2)
                 death_screen()
                 Wait.wait(1)
@@ -181,6 +188,7 @@ def combat(target_name, target_health, target_damage, range, healing):
 
         elif target_health <= 0:
             print(f"{target_name} HAS DIED")
+            print("\n")
             Wait.wait(2)
             Player.current_health = Player.current_health + healing
             Player.HealthCheck()
@@ -188,6 +196,7 @@ def combat(target_name, target_health, target_damage, range, healing):
             Wait.wait(2)
             combat_loop = False
             print(f"{name} WINS.")
+            print("\n")
             Wait.wait(1)
             #Victory!!! combat ends and the player heals,
             #determined by the enemies healing factor.
@@ -209,7 +218,7 @@ def menu():
 
 1 - START CAMPAIGN
 2 - ENDLESS FIGHTING MODE
-3 - HOW TO PLAY (CHOOSE THIS ON A FIRST PLAYTHROUGH.)
+3 - HOW TO PLAY
 4 - SETTINGS
 5 - EXIT GAME
 
@@ -346,6 +355,9 @@ if endless_mode == False:
             Wait.wait(1)
             print_fast("IMPACT SUCCESSFUL")
             Wait.wait(1)
+            for x in range(3):
+                print("\n")
+
             input("As the dust clears, you can see a way forward through a "
                  "tunnel, obscured by smoke.")
             input("There are no other paths you can see. You decide to walk "
@@ -366,6 +378,7 @@ if endless_mode == False:
                                  "or forward. :").lower()
                 if direction == "left":
                     choice_loop = False
+                    print("\n")
                     input("The door to your left slams open and allows you "
                     "to pass through.")
                     input("Ahead of you lies a long, cylindrical metal "
@@ -536,6 +549,7 @@ if endless_mode == False:
 
                 elif direction == "right":
                     choice_loop = False
+                    print("\n")
                     input("The door to your right slams closed behind you, "
                           "ahead of you lies a fork in the road with doors "
                           "to the left and right.")
@@ -642,6 +656,7 @@ if endless_mode == False:
 
                 elif direction == "forward":
                     choice_loop = False
+                    print("\n")
                     input("The door ahead of you slams open allowing you to "
                          "continue forward.")
                     input("The room behind the door is a large, winding "
@@ -816,6 +831,7 @@ if endless_mode == False:
 
                 else:
                     print("PICK A VALID DIRECTION.")
+                    print("\n")
                     Wait.wait(1)
     
                 
@@ -843,6 +859,8 @@ if endless_mode == False:
             Wait.wait(1)
             print_fast("IMPACT SUCCESSFUL")
             Wait.wait(1)
+            for x in range(3):
+                print("\n")
 
             input("Ahead of you lies a vast, endless field "
             "filled with small villages and castles.")
@@ -1043,14 +1061,17 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                               "is still sealed")
                         input("You return to the vantage point as there is "
                               "nothing you can do here at the moment.")
+                        print("\n")
                     elif ruins_explored == False and village_explored == True:
                         input("The 'II' engraving is glowing but the door "
                               "is still sealed")
                         input("You return to the vantage point as there is "
                               "nothing you can do here at the moment.")
+                        print("\n")
                     elif ruins_explored != True and village_explored != True:
                         input("You return to the vantage point as there is "
                               "nothing you can do here at the moment.")
+                        print("\n")
                     #Various outcomes for if you have not explored enough
                     elif ruins_explored == True and village_explored == True:
                         input("Both engravings begin to glow and the door "
@@ -1079,11 +1100,12 @@ you stand a chance against tough enemies.""")
                         input("You leave the church and close the door "
                               "behind you, leaving the skeleton in peace.")
                         search_loop = False
-                        print("\n")
-                        print("\n")
+                        for x in range(3):
+                            print("\n")
                 
                 else:
                     print("INVALID OPTION / AREA ALREADY EXPLORED")
+                    print("\n")
                     Wait.wait(2)
 
             input("You begin to make your way back to the castle.")
@@ -1116,14 +1138,17 @@ you stand a chance against tough enemies.""")
                 choice = input("What path do you take?: ")
                 if "left" in choice:
                     choice_loop = False
-                    
+                    print("\n")
+
 
                 elif "right" in choice:
                     choice_loop = False
-                    
+                    print("\n")
+
 
                 elif "forward" in choice:
                     choice_loop = False
+                    print("\n")
                     input("You walk into the path directly ahead of you.")
                     if random_value == 486:
                         input("By sheer luck, the path manages to hold "
