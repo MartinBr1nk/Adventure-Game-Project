@@ -1,6 +1,6 @@
 import time
 import random
-from ASCII import Mykola, silly_cat
+import ASCII
 from Wait import wait
 from Wait import time_skip
 def cool_typing(str):
@@ -16,16 +16,7 @@ def cool_typing_fast(str):
     print("\n")
 
 def death_screen():
-    cool_typing_fast("""
-    
-__   _______ _   _  ______ _____ ___________ 
-\ \ / /  _  | | | | |  _  \_   _|  ___|  _  |
- \ V /| | | | | | | | | | | | | | |__ | | | |
-  \ / | | | | | | | | | | | | | |  __|| | | |
-  | | \ \_/ / |_| | | |/ / _| |_| |___| |/ / 
-  \_/  \___/ \___/  |___/  \___/\____/|___/  
-    
-    """)
+    cool_typing_fast(ASCII.death_screen)
     exit()
     #different death screen because I cant circular import:(
 
@@ -74,12 +65,12 @@ def IntroSequence():
         #Easter egg that references another game
 
     elif "mykola" in player_name.lower():
-        player_name = Mykola
+        player_name = ASCII.Mykola
         time_skip = True
         #stupid inside joke
 
     elif "silly" in player_name.lower():
-        player_name = silly_cat
+        player_name = ASCII.silly_cat
         time_skip = True
         #stupid easter egg
 

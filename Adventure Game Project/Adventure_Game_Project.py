@@ -6,6 +6,7 @@ import Player
 import Enemies
 import Weapons
 import Wait
+import ASCII
 
 #Variables
 name = "Placeholder"
@@ -68,16 +69,7 @@ def print_very_fast(str):
 
 
 def death_screen():
-    print_fast("""
-    
-__   _______ _   _  ______ _____ ___________ 
-\ \ / /  _  | | | | |  _  \_   _|  ___|  _  |
- \ V /| | | | | | | | | | | | | | |__ | | | |
-  \ / | | | | | | | | | | | | | |  __|| | | |
-  | | \ \_/ / |_| | | |/ / _| |_| |___| |/ / 
-  \_/  \___/ \___/  |___/  \___/\____/|___/  
-    
-    """)
+    print_fast(ASCII.death_screen)
     exit()
     #Death screen
 
@@ -357,26 +349,7 @@ if endless_mode == False:
     while game_loop == True:
         if circle == 0:
             clear_screen()
-            print_very_fast(r"""
-         _____ _   _  _____   _   _  _____ _      _                   
-        |_   _| | | ||  ___| | | | ||  ___| |    | |                  
-          | | | |_| || |__   | |_| || |__ | |    | |                  
-          | | |  _  ||  __|  |  _  ||  __|| |    | |                  
-          | | | | | || |___  | | | || |___| |____| |____              
-          \_/ \_| |_/\____/  \_| |_/\____/\_____/\_____/              
-         _______   ________ ___________ _____ _____ _____ _____ _   _ 
-        |  ___\ \ / /| ___ \  ___|  _  \_   _|_   _|_   _|  _  | \ | |
-        | |__  \ V / | |_/ / |__ | | | | | |   | |   | | | | | |  \| |
-        |  __| /   \ |  __/|  __|| | | | | |   | |   | | | | | | . ` |
-        | |___/ /^\ \| |   | |___| |/ / _| |_  | |  _| |_\ \_/ / |\  |
-        \____/\/   \/\_|   \____/|___/  \___/  \_/  \___/ \___/\_| \_/
-        ____________ _____   ___ _____ _____ _____                    
-        | ___ \ ___ \  _  | |_  |  ___/  __ \_   _|                   
-        | |_/ / |_/ / | | |   | | |__ | /  \/ | |                     
-        |  __/|    /| | | |   | |  __|| |     | |                     
-        | |   | |\ \\ \_/ /\__/ / |___| \__/\ | |                     
-        \_|   \_| \_|\___/\____/\____/ \____/ \_/                    
-            """)
+            print_very_fast(ASCII.title)
 
             if skip == False:
                 Introduction.IntroSequence()
@@ -835,26 +808,8 @@ if endless_mode == False:
         elif circle == 1:
             Wait.wait(3)
             clear_screen()
-            print_very_fast(r"""
-         _____ _   _  _____   _   _  _____ _      _                   
-        |_   _| | | ||  ___| | | | ||  ___| |    | |                  
-          | | | |_| || |__   | |_| || |__ | |    | |                  
-          | | |  _  ||  __|  |  _  ||  __|| |    | |                  
-          | | | | | || |___  | | | || |___| |____| |____              
-          \_/ \_| |_/\____/  \_| |_/\____/\_____/\_____/              
-         _______   ________ ___________ _____ _____ _____ _____ _   _ 
-        |  ___\ \ / /| ___ \  ___|  _  \_   _|_   _|_   _|  _  | \ | |
-        | |__  \ V / | |_/ / |__ | | | | | |   | |   | | | | | |  \| |
-        |  __| /   \ |  __/|  __|| | | | | |   | |   | | | | | | . ` |
-        | |___/ /^\ \| |   | |___| |/ / _| |_  | |  _| |_\ \_/ / |\  |
-        \____/\/   \/\_|   \____/|___/  \___/  \_/  \___/ \___/\_| \_/        
-        ____________ _____   ___ _____ _____ _____                    
-        | ___ \ ___ \  _  | |_  |  ___/  __ \_   _|                   
-        | |_/ / |_/ / | | |   | | |__ | /  \/ | |                     
-        |  __/|    /| | | |   | |  __|| |     | |                     
-        | |   | |\ \\ \_/ /\__/ / |___| \__/\ | |                     
-        \_|   \_| \_|\___/\____/\____/ \____/ \_/                    
-            """)
+            print_very_fast(ASCII.title)
+
             if through_menu == True:
                 #if the player got to limbo through the menu,
                 #they are forced to go through the intro or choose a name.
@@ -1036,7 +991,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     input("On a pillar in the ruins, a glowing 'I' forms")
                     input("You go back to the vantage point.")
                     print("\n")
-
+                    #Forces the player to explore this area
                 elif "village" in choice and village_explored == False:
                     input("You approach the burning village.")
                     input("As you approach the fire, you can notice that "
@@ -1056,6 +1011,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     "flash of light.")
                     input("You go back to the vantage point.")
                     print("\n")
+                    #Forces the player to explore this area
 
                 elif "church" in choice:
                     input("The church doors are sealed shut by two metal "
@@ -1119,7 +1075,61 @@ you stand a chance against tough enemies.""")
             Wait.wait(2)
 
             input("You managed to return back to the castle.")
+            input("The gates of the castle slam open...")
 
+            input("The castle has stained glass windows lining a majority of "
+                  "the walls, despite the fact that they wouldnt lead outside"
+                  "light still floods through them.")
+            input("Red carpet lines the floor.")
+            input("You need to enter the central chamber of the castle to "
+                  "continue to the next circle.")
+            input("Ahead of you lies three paths, the left and right path "
+                  "go to places you cannot see while the forward path goes "
+                  "directly to the central chamber.")
+            input("However, the forward path seems to be crumbling into the "
+                  "ground, the extra weight of you walking through this path "
+                  "might cause the ground to fall beneath you.")
+            input("The forward path crumbling is VERY LIKELY if you "
+                  "take it.")
+
+            choice_loop = True
+            while choice_loop == True:
+                choice = input("What path do you take?: ")
+                if "left" in choice:
+                    choice_loop = False
+                    print("wow left path thats actually crazy")
+
+                elif "right" in choice:
+                    choice_loop = False
+                    print("omg right path!!1")
+
+                elif "forward" in choice:
+                    choice_loop = False
+                    input("You walk into the path directly ahead of you.")
+                    if random_value == 486:
+                        input("By sheer luck, the path manages to hold "
+                              "up and you make it across.")
+                        input("It crumbles behind you...")
+                        #if you get the number 486 from the random
+                        #number generator at the start of the game
+                        #you get VERY lucky and get to skip the entire
+                        #castle segment. 
+                    else:
+                        print_slow("WARNING - PATH UNSTABLE")
+                        input("The path begins to fall underneath you.")
+                        input("You begin to fall further")
+                        for x in range(5):
+                            print("and further...")
+                            Wait.wait(1)
+                        death_screen()
+                        #You will ususally just die though.
+                else:
+                    print("INVALID OPTION")
+                    Wait.wait(2)
+
+
+            input("buildup to boss fight placeholder")
+            #and then implement the boss fight
 
         elif circle == 2:
             print("Circle 2 - Lust, is not finished.")
