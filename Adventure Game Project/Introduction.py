@@ -64,7 +64,7 @@ def IntroSequence():
         #Easter egg that references another game
 
     elif "mykola" in player_name.lower():
-        player_name = ASCII.Mykola
+        player_name = ASCII.Mykolasaurus
         Wait.time_skip = True
         #stupid inside joke
 

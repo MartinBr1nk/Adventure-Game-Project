@@ -218,9 +218,9 @@ def menu():
         if "1" in menu_choice or "start" in menu_choice \
             or "play" in menu_choice:
 
-            print("""WHAT CIRCLE WILL YOU START IN?:
-            0 - THE MOUTH OF HELL
-            1 - LIMBO
+            print(r"""WHAT CIRCLE WILL YOU START IN?:
+0 - THE MOUTH OF HELL
+1 - LIMBO
 """)
             menu_choice = str(input(":"))
             if "0" in menu_choice or "mouth" in menu_choice:
@@ -255,30 +255,27 @@ def menu():
             clear_screen()
 
             print("UPPERCASE text passes automatically, "
-"it is spoken by machines")
+                  "it is spoken by machines")
             Wait.wait(1)
             print("lowercase text must have you enter any key to "
-"continue. Try this now")
+                  "continue. Try this now")
             input()
-            print("Combat is turn based, firstly you take a turn and then"
-" the enemy takes their turn, as long as they are not dead.")
+            print("Combat is turn based, firstly you take a turn and then "
+                  "the enemy takes their turn, as long as they are not dead.")
             input()
             print("The way you restore your fuel (Health) is by "
-"sucessfully killing enemies.")
+                  "sucessfully killing enemies.")
             input()
             print("THIS IS THE ONLY WAY TO RESTORE FUEL.")
             Wait.wait(1)
             print("Stronger enemies restore more fuel, while weaker "
-"enemies will restore less fuel")
+                 "enemies will restore less fuel")
             input()
-            print("Every path in the game will eventually lead to an exit."
-" Every way forward will lead to progress.")
-            input()
-            print("This doesnt mean that some paths will be easy, "
-"each path will have their own challenges and secrets that you can discover and overcome.")
+            print("Every path in the game will eventually lead to an exit. "
+                  "Every way forward will lead to progress.")
             input()
             print("Press any key when you are ready to return to the "
-"menu")
+                  "menu")
             input()
             clear_screen()
             #Prints tutorial.
@@ -294,13 +291,13 @@ def menu():
                 elif Wait.time_skip == True:
                     Wait.time_skip = False
                 Wait.wait(1)
-
             else:
                 print("NO SETTING SELECTED.")
                 Wait.wait(1)
                 Wait.wait(3)
                 clear_screen()
                 #Opens the settings menu.
+            clear_screen()
 
         elif "5" in menu_choice or "exit" in menu_choice:
             print("CLOSING GAME...")
@@ -316,16 +313,15 @@ def menu():
 
         else:
             print("ENTER A VALID OPTION.")
-            Wait.wait(1)
+            Wait.wait(2)
+            clear_screen()
 
 #START OF THE GAME :O
 
 os.system('mode con: cols=170 lines=50')
-#Resizes the window to fit ASCII art without the user having to change the size of the terminak
+#Resizes the window to fit ASCII art
 
 menu()
-
-
 
 
 game_loop = True
