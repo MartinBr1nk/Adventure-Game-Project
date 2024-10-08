@@ -8,13 +8,14 @@ import Weapons
 import Wait
 import ASCII
 import os
+import Combat
 
 
 #Variables
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can
 #cause special events to happen
-name = "placeholder"
+Player.name = "placeholder"
 direction = "placeholder"
 choice_loop = False
 search_loop = False
@@ -66,147 +67,6 @@ def death_screen():
     exit()
     #Death screen
 
-
-def combat(target_name, target_health, target_damage, range, healing):
-    print_slow("THREAT DETECTED")
-    print(f"{target_name} APPROACHES")
-    print(f"{name} ATTACKS FIRST")
-    Wait.wait(1)
-    combat_loop = True
-    weapon_loop = True
-
-    while combat_loop == True:
-        #Puts you into a loop until you either lose or win
-        print(f"{target_name} HAS {target_health} HP")
-        Wait.wait(1)
-
-        while weapon_loop == True:
-            #puts you in a loop until you pick a valid weapon
-            print(f"""WEAPON CHOICES:
-1 - {Weapons.Revolver.Name} - {Weapons.Revolver.Info}
-2 - {Weapons.Shotgun.Name} - {Weapons.Shotgun.Info}
-3 - {Weapons.Chaingun.Name} - {Weapons.Chaingun.Info}""")
-            weapon_choice = str(input("Choice: ")).lower()
-            alt_fire = input("Use the alternate firing option? "
-                             "(Yes/No): ").lower()
-
-            if "y" in alt_fire:
-                if "1" in weapon_choice:
-                    target_health = target_health - \
-                        int(Weapons.Revolver.Damage) * 2
-                    Player.current_health = Player.current_health - 10
-                    #If the weapon selected is equal to 1 AND the range
-                    #is greater than or equal to the enemies range value,
-                    #you attack
-                    weapon_loop = False
-
-                elif "2" in weapon_choice:
-                    target_health = target_health - \
-                        int(Weapons.Shotgun.Damage) * 1.5
-                    Player.current_health = Player.current_health - 50
-                    #If the weapon selected is equal to 2 you shoot an infinite range
-                    #shotgun projectile and take 50 damage
-                    weapon_loop = False
-
-            elif "n" in alt_fire:
-                if "1" in weapon_choice and range <= Weapons.Revolver.Range:
-                    target_health = target_health - \
-                        int(Weapons.Revolver.Damage)
-                    #If the weapon selected is equal to 1 AND the range is
-                    #greater than or equal to the enemies range value,
-                    #you attack
-                    weapon_loop = False
-
-                elif "2" in weapon_choice and range <= Weapons.Shotgun.Range:
-                    target_health = target_health - \
-                        int(Weapons.Shotgun.Damage)
-                    #If the weapon selected is equal to 2 AND the range
-                    #is greater than or equal to the enemies range value,
-                    #you attack
-                    weapon_loop = False
-
-                elif "3" in weapon_choice and range <= Weapons.Chaingun.Range and Weapons.chaingun_used == False:
-                    target_health = target_health - int(Weapons.Chaingun.Damage)
-                    #If the weapon selected is equal to 3 AND the range is
-                    #greater than or equal to the enemies range value AND the
-                    #chaingun is functional, you attack
-                    print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
-                          "UNTIL REPAIRED")
-                    print("\n")
-                    Weapons.chaingun_used = True
-                    weapon_loop = False
-
-                elif "3" in weapon_choice and Weapons.chaingun_used == True:
-                    print("THE CHAINGUN HAS ALREADY BEEN USED. "
-                          "YOU CANNOT USE IT AGAIN UNTIL YOU REPAIR IT.")
-                    print("\n")
-                    #prevents the chaingun from being used if it has already
-                    #been used previously
-
-                else:
-                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
-                         " PICK THE NUMBER RELATED TO THE WEAPON.")
-                    print("\n")
-                    #In case the user enters a weapon that doesnt exist
-
-            else:
-                print("WEAPON HAS NO ALT FIRE/INVALID WEAPON")
-                print("\n")
-                Wait.wait(1)
-
-        weapon_loop = True
-        #sets weapon loop back to true so the next turn will work
-        if Player.current_health <= 0:
-            combat_loop = False
-            print(f"{name} HAS RAN OUT OF FUEL.")
-            print("\n")
-            Wait.wait(2)
-            death_screen()
-            Wait.wait(1)
-            #Death :(
-
-        elif target_health > 0:
-            print(f"{target_name} HAS {target_health} HP")
-            Wait.wait(1)
-            #Tells the player how much health the enemy has
-            print(f"{target_name} ATTACKS!")
-            print("\n")
-            Wait.wait(1)
-            print(f"{target_name} HITS AND CAUSES {name} TO LOSE "
-                  f"{target_damage} FUEL.")
-            Wait.wait(1)
-            Player.current_health = Player.current_health - target_damage
-            print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
-            Wait.wait(1)
-            if Player.current_health <= 0:
-                combat_loop = False
-                print(f"{name} HAS RAN OUT OF FUEL.")
-                print("\n")
-                Wait.wait(2)
-                death_screen()
-                Wait.wait(1)
-                #Death :(
-
-        elif target_health <= 0:
-            print(f"{target_name} HAS DIED")
-            print("\n")
-            Wait.wait(2)
-            Player.current_health = Player.current_health + healing
-            Player.HealthCheck()
-            print(f"{name} HAS {Player.current_health} FUEL REMAINING.")
-            Wait.wait(2)
-            combat_loop = False
-            print(f"{name} WINS.")
-            print("\n")
-            Wait.wait(1)
-            #Victory!!! combat ends and the player heals,
-            #determined by the enemies healing factor.
-
-        else:
-            print("ERROR")
-            exit()
-            #debug message
-   
 
 def menu():
     global skip
@@ -343,10 +203,9 @@ if endless_mode == False:
 
             if skip == False:
                 Introduction.IntroSequence()
-                name = Introduction.player_name
             else:
-                name = input("Name - ")
-            print_slow(f"{name} IS APPROACHING... THE MOUTH OF HELL")
+                Player.name = input("Name - ")
+            print_slow(f"{Player.name} IS APPROACHING... THE MOUTH OF HELL")
             print_slow("IMPACT IMMINENT...")
             print("3...")
             Wait.wait(1)
@@ -367,7 +226,7 @@ if endless_mode == False:
             "your left, right and directly in front of you.")
             Wait.wait(1)
 
-            combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+            Combat.standard_combat(Enemies.Filth.Name, Enemies.Filth.Health, 
                 Enemies.Filth.Damage,
                    Enemies.Filth.Range, Enemies.Filth.Healing)
             #Gets the Name, Heath, Damage, Range and player healing for combat
@@ -392,14 +251,14 @@ if endless_mode == False:
 
                     input("A voice comes from the speakers in your suits "
                           "cockpit:")
-                    input(f"'Hello {name}, this is a transmission from "
+                    input(f"'Hello {Player.name}, this is a transmission from "
                           "Headquarters.'")
                     input("'It appears the Mouth of Hell has been overtaken "
                           "by an unknown force,'")
                     input("'We advise caution when attempting to -KZZZZZKT-'")
                     print_slow("TRANSMISSION OVER.")
 
-                    combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+                    Combat.standard_combat(Enemies.Stray.Name, Enemies.Stray.Health, 
                         Enemies.Stray.Damage, 
                           Enemies.Stray.Range, Enemies.Stray.Healing)
 
@@ -447,7 +306,7 @@ if endless_mode == False:
                             Wait.wait(1)
 
                     input("Just as you left to the next room...")
-                    combat(Enemies.Schism.Name, Enemies.Schism.Health, 
+                    Combat.standard_combat(Enemies.Schism.Name, Enemies.Schism.Health, 
                         Enemies.Schism.Damage,
                           Enemies.Schism.Range, Enemies.Schism.Healing)
                     input("Ahead of you lies a crossroad, Door A appears to "
@@ -507,20 +366,20 @@ if endless_mode == False:
                                   "right turn that would lead you to where "
                                   "Door B is connected to.")
 
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health,
+                            Combat.standard_combat(Enemies.Stray.Name, Enemies.Stray.Health,
                                 Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
 
-                            combat(Enemies.Filth.Name, Enemies.Filth.Health,
+                            Combat.standard_combat(Enemies.Filth.Name, Enemies.Filth.Health,
                                 Enemies.Filth.Damage, 
                                 Enemies.Filth.Range, Enemies.Filth.Healing)
 
-                            combat(Enemies.Schism.Name, Enemies.Schism.Health,
+                            Combat.standard_combat(Enemies.Schism.Name, Enemies.Schism.Health,
                                 Enemies.Schism.Damage, 
                                 Enemies.Schism.Range, Enemies.Schism.Healing)
 
                             print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
-                            combat(Enemies.Colossus.Name, 
+                            Combat.standard_combat(Enemies.Colossus.Name, 
                                    Enemies.Colossus.Health, 
                                    Enemies.Colossus.Damage, 
                                    Enemies.Colossus.Range, 
@@ -560,13 +419,13 @@ if endless_mode == False:
 
                     input("A voice comes from the speakers in "
                           "your suits cockpit:")
-                    input(f"'Hello {name}, this is a transmission from "
+                    input(f"'Hello {Player.name}, this is a transmission from "
                           "Headquarters.'")
                     input("'It appears the Mouth of Hell has been overtaken "
                           "by an unknown force,'")
                     input("'We advise caution when attempting to -KZZZZZKT-'")
                     print_slow("TRANSMISSION OVER.")
-                    combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+                    Combat.standard_combat(Enemies.Filth.Name, Enemies.Filth.Health, 
                         Enemies.Filth.Damage,
                            Enemies.Filth.Range, Enemies.Filth.Healing)
 
@@ -581,7 +440,7 @@ if endless_mode == False:
                                   "enemy blocking the path forward.")
                             input("You can see a potential exit ahead")
                             input("Suddenly...")
-                            combat(Enemies.Colossus.Filth.Name,
+                            Combat.standard_combat(Enemies.Colossus.Filth.Name,
                                 Enemies.Colossus.Health, 
                                 Enemies.Colossus.Damage,
                                 Enemies.Colossus.Range,
@@ -643,7 +502,7 @@ if endless_mode == False:
                                     input("Suddenly...")
                                     print_slow("Something wicked this way "
                                                "comes")
-                                    combat(Enemies.SomethingWicked.Name,
+                                    Combat.standard_combat(Enemies.SomethingWicked.Name,
                                         Enemies.SomethingWicked.Health,
                                         Enemies.SomethingWicked.Damage,
                                            Enemies.SomethingWicked.Range,
@@ -668,7 +527,7 @@ if endless_mode == False:
                     Wait.wait(1)
                     input("A voice comes from the speakers in your suits "
                           "cockpit:")
-                    input(f"'Hello {name}, this is a transmission from "
+                    input(f"'Hello {Player.name}, this is a transmission from "
                           "Headquarters.'")
                     input("'It appears the Mouth of Hell has been overtaken "
                           "by an unknown force,'")
@@ -790,17 +649,17 @@ if endless_mode == False:
                             input("You decide against using the chaingun.")
                             input("You'll have to fight through several "
                                   "tough enemies to get through now.")
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health,
+                            Combat.standard_combat(Enemies.Stray.Name, Enemies.Stray.Health,
                                 Enemies.Stray.Damage,
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
-                            combat(Enemies.Stray.Name, Enemies.Stray.Health,
+                            Combat.standard_combat(Enemies.Stray.Name, Enemies.Stray.Health,
                                 Enemies.Stray.Damage, 
                                 Enemies.Stray.Range, Enemies.Stray.Healing)
-                            combat(Enemies.Schism.Name, Enemies.Schism.Health,
+                            Combat.standard_combat(Enemies.Schism.Name, Enemies.Schism.Health,
                                 Enemies.Schism.Damage,
                                 Enemies.Schism.Range, Enemies.Schism.Healing)
                             print_slow("GIANT ENEMY AHEAD.")
-                            combat(Enemies.Colossus.Name, 
+                            Combat.standard_combat(Enemies.Colossus.Name, 
                                 Enemies.Colossus.Health,
                                 Enemies.Colossus.Damage,
                                 Enemies.Colossus.Range,
@@ -847,10 +706,10 @@ if endless_mode == False:
                 #they are forced to go through the intro or choose a name.
                 if skip == False:
                     Introduction.IntroSequence()
-                    name = Introduction.player_name
+                    Player.name = Introduction.player_name
                 else:
-                    name = input("Name - ")
-            print_slow(f"{name} IS APPROACHING... CIRCLE 1 - LIMBO")
+                    Player.name = input("Name - ")
+            print_slow(f"{Player.name} IS APPROACHING... CIRCLE 1 - LIMBO")
             print_slow("IMPACT IMMINENT...")
             print("3...")
             Wait.wait(1)
@@ -890,7 +749,7 @@ if endless_mode == False:
                           "landscape.")
                     input("They appear to be marks from a battle using "
                           "similar weaponry that was used in the war.")
-                    combat(Enemies.Crawler.Name,
+                    Combat.standard_combat(Enemies.Crawler.Name,
 Enemies.Crawler.Health, Enemies.Crawler.Damage,
 Enemies.Crawler.Range, Enemies.Crawler.Healing)
 
@@ -921,7 +780,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     input("You approach the small village.")
                     input("It appears to be completely devoid of life.")
                     input("Suddenly...")
-                    combat(Enemies.Colossus.Name,
+                    Combat.standard_combat(Enemies.Colossus.Name,
                           Enemies.Colossus.Health, Enemies.Colossus.Damage,
                           Enemies.Colossus.Range, Enemies.Colossus.Healing)
 
@@ -941,7 +800,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                                 print_slow("CHAINGUN RESTORED")
                                 input("You can hear shuffling around you...")
                                 input("Suddenly...")
-                                combat(Enemies.Crawler.Name,
+                                Combat.standard_combat(Enemies.Crawler.Name,
 Enemies.Crawler.Health, Enemies.Crawler.Damage,
 Enemies.Crawler.Range, Enemies.Crawler.Healing)
                                 input("The destroyed suit appears to have "
@@ -1020,7 +879,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                           "use here.")
                     input("Before you can leave a part of the ruins begins "
                     "to move...")
-                    combat(Enemies.Guardian.Name, Enemies.Guardian.Health,
+                    Combat.standard_combat(Enemies.Guardian.Name, Enemies.Guardian.Health,
                            Enemies.Guardian.Damage, Enemies.Guardian.Range,
                            Enemies.Guardian.Healing)
                     ruins_explored = True
@@ -1040,7 +899,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     input("It doesnt seem like you're meant to be here")
                     input("The floor and walls around you begin to form "
                     "something...")
-                    combat(Enemies.Shade.Name, Enemies.Shade.Health,
+                    Combat.standard_combat(Enemies.Shade.Name, Enemies.Shade.Health,
                            Enemies.Shade.Damage, Enemies.Shade.Range,
                            Enemies.Shade.Healing)
                     village_explored = True
@@ -1140,7 +999,7 @@ you stand a chance against tough enemies.""")
                 if "left" in choice:
                     choice_loop = False
                     print("\n")
-
+                    input("")
 
                 elif "right" in choice:
                     choice_loop = False
@@ -1171,7 +1030,16 @@ you stand a chance against tough enemies.""")
                 else:
                     print("INVALID OPTION")
                     Wait.wait(2)
-
+                    input("Ahead of you lies three paths, the left and "
+                          "right path go to places you cannot see while the "
+                          "forward path goes directly to the central "
+                          "chamber.")
+                    input("However, the forward path seems to be crumbling "
+                          "into the ground, the extra weight of you walking "
+                          "through this path might cause the ground to fall "
+                          "beneath you.")
+                    input("The forward path crumbling is VERY LIKELY if you "
+                          "take it.")
 
             input("buildup to boss fight placeholder")
             #and then implement the boss fight
@@ -1207,48 +1075,48 @@ you stand a chance against tough enemies.""")
 
 
 elif endless_mode == True:
-    name = input("NAME: ")
+    Player.name = input("NAME: ")
     Wait.wait(1)
     while endless_mode == True:
         successful_encounter = True
         random_enemy = random.randint(1, 7)
         if random_enemy == 1:
-            combat(Enemies.Filth.Name, Enemies.Filth.Health, 
+            Combat.standard_combat(Enemies.Filth.Name, Enemies.Filth.Health, 
                 Enemies.Filth.Damage, 
                Enemies.Filth.Range, Enemies.Filth.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 2:
-            combat(Enemies.Stray.Name, Enemies.Stray.Health, 
+            Combat.standard_combat(Enemies.Stray.Name, Enemies.Stray.Health, 
                 Enemies.Stray.Damage, 
                Enemies.Stray.Range, Enemies.Stray.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 3:
-            combat(Enemies.Schism.Name, Enemies.Schism.Health, 
+            Combat.standard_combat(Enemies.Schism.Name, Enemies.Schism.Health, 
                 Enemies.Schism.Damage, 
                Enemies.Schism.Range, Enemies.Schism.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 4:
-            combat(Enemies.Colossus.Name, Enemies.Colossus.Health, 
+            Combat.standard_combat(Enemies.Colossus.Name, Enemies.Colossus.Health, 
                 Enemies.Colossus.Damage, 
                Enemies.Colossus.Range, Enemies.Colossus.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
         elif random_enemy == 5:
-            combat(Enemies.Crawler.Name, Enemies.Crawler.Health, 
+            Combat.standard_combat(Enemies.Crawler.Name, Enemies.Crawler.Health, 
                 Enemies.Crawler.Damage, 
                Enemies.Crawler.Range, Enemies.Crawler.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 6:
-            combat(Enemies.Guardian.Name, Enemies.Guardian.Health, 
+            Combat.standard_combat(Enemies.Guardian.Name, Enemies.Guardian.Health, 
                 Enemies.Guardian.Damage, 
                Enemies.Guardian.Range, Enemies.Guardian.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
 
         elif random_enemy == 7:
-            combat(Enemies.Shade.Name, Enemies.Shade.Health, 
+            Combat.standard_combat(Enemies.Shade.Name, Enemies.Shade.Health, 
                 Enemies.Shade.Damage, 
                Enemies.Shade.Range, Enemies.Shade.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
@@ -1256,7 +1124,7 @@ elif endless_mode == True:
         elif random_enemy == 8:
             goose_chance = random.randint(1, 1000)
             if goose_chance == 852:
-                combat(Enemies.Goose.Name, Enemies.Goose.Health, 
+                Combat.standard_combat(Enemies.Goose.Name, Enemies.Goose.Health, 
                 Enemies.Goose.Damage, 
                 Enemies.Goose.Range, Enemies.Goose.Healing)
                 endless_enemies_killed = endless_enemies_killed + 1
