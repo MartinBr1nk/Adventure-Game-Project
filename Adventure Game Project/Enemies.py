@@ -16,7 +16,7 @@ Filth = Enemy("Filth",
               20,
               1,
               15,
-              "Husk",
+              "Lesser Husk",
               """A weak soul that was not powerful 
 enough in life to even form a full body in hell. 
 It does not think and only sprints towards what it 
@@ -52,7 +52,7 @@ Crawler = Enemy("Crawler",
                 30,
                 5,
                 40,
-                "Demon",
+                "Lesser Demon",
                 """A small, spider-like demon that was not
 given enough hell mass for their shell, meaning that it has to get close
 to its enemies to cause any major damage as it is not strong enough to
@@ -90,7 +90,7 @@ Colossus = Enemy("Colossus",
                  50,
                  1,
                  150,
-                 "Husk",
+                 "Greater Husk",
                  """An incredibly powerful 
 husk that is formed when someone with a very strong soul 
 forms in hell. This enemy has a full awareness of their 
@@ -103,7 +103,7 @@ Hijacked_1 = Enemy("Hijacked",
                  75,
                  50,
                  1000,
-                 "Machine/Demon",
+                 "Supreme Machine/Demon",
                  """A damaged suit that was reanimated using hell mass.
 The old pilot is still inside being puppeted by hell energy
 and is forced by hell to pilot the reanimated suit.
@@ -114,6 +114,8 @@ in a matter of seconds if appropriate caution is not taken.
 DO NOT APPROACH WITHOUT A MAJOR POWER BOOST.
 THE DEFAULT SUIT IS NOT ENOUGH TO DEFEAT IT.""")
 
+#misc
+
 SomethingWicked = Enemy("Something Wicked",
                         99999999,
                         99999999,
@@ -121,5 +123,19 @@ SomethingWicked = Enemy("Something Wicked",
                         1,
                         "????",
                         "????")
+Goose = Enemy("Goose",
+              10000,
+              15,
+              1,
+              1000,
+              "Supreme Demon",
+              """An unholy creature comprised of pure hatred and compressed
+hell energy and hell mass. Nobody has managed to survive an encounter with it.
+
+It takes pride in hunting its foes and will slowly chip away at its foes as it
+enjoys the hunt.
+
+Do not fight at all costs.
+""")
 
 #All the enemies in the game

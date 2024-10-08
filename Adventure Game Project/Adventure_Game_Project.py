@@ -22,6 +22,7 @@ skip = False
 endless_mode = False
 endless_enemies_killed = 0
 endless_chaingun_cooldown = 0
+successful_encounter = True
 loss = 0
 alt_fire = "h"
 global circle
@@ -1209,6 +1210,7 @@ elif endless_mode == True:
     name = input("NAME: ")
     Wait.wait(1)
     while endless_mode == True:
+        successful_encounter = True
         random_enemy = random.randint(1, 7)
         if random_enemy == 1:
             combat(Enemies.Filth.Name, Enemies.Filth.Health, 
@@ -1250,23 +1252,39 @@ elif endless_mode == True:
                 Enemies.Shade.Damage, 
                Enemies.Shade.Range, Enemies.Shade.Healing)
             endless_enemies_killed = endless_enemies_killed + 1
+
+        elif random_enemy == 8:
+            goose_chance = random.randint(1, 1000)
+            if goose_chance == 852:
+                combat(Enemies.Goose.Name, Enemies.Goose.Health, 
+                Enemies.Goose.Damage, 
+                Enemies.Goose.Range, Enemies.Goose.Healing)
+                endless_enemies_killed = endless_enemies_killed + 1
+                successful_encounter = False
+            else:
+                pass
+                successful_encounter = False
+            #Easter egg encounter with a goose
+            
         #Picks a random enemy from all avalible enemy types and adds to the
         #kill counter every time you win an ancounter
 
-        print(f"{endless_enemies_killed} ENEMIES KILLED!")
-        Wait.wait(1)
+        if successful_encounter == True:
+            #the post-fight parts only happen if the encounter wasnt an easter egg encounter
+            print(f"{endless_enemies_killed} ENEMIES KILLED!")
+            Wait.wait(1)
 
-        if Weapons.chaingun_used == True:
-            endless_chaingun_cooldown = endless_chaingun_cooldown + 1
-            if endless_chaingun_cooldown == 5:
-                print_slow("CHAINGUN RESTORED!")
-                Weapons.chaingun_used = False
-                endless_chaingun_cooldown = 0
-            else:
-                print(f"{5 - endless_chaingun_cooldown} KILLS UNTIL THE "
-                      "CHAINGUN IS RESTORED")
-                Wait.wait(2)
-            #If the chaingun has been used, after 5 kills it will be restored
+            if Weapons.chaingun_used == True:
+                endless_chaingun_cooldown = endless_chaingun_cooldown + 1
+                if endless_chaingun_cooldown == 5:
+                    print_slow("CHAINGUN RESTORED!")
+                    Weapons.chaingun_used = False
+                    endless_chaingun_cooldown = 0
+                else:
+                    print(f"{5 - endless_chaingun_cooldown} KILLS UNTIL THE "
+                          "CHAINGUN IS RESTORED")
+                    Wait.wait(2)
+                #If the chaingun has been used, after 5 kills it will be restored
 
 #end
 
