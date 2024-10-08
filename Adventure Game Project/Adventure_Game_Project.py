@@ -1,4 +1,4 @@
-﻿#Imports
+﻿#----------Imports----------
 import time
 import random
 import Introduction
@@ -11,7 +11,7 @@ import os
 import Combat
 
 
-#Variables
+#----------Variables----------
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can
 #cause special events to happen
@@ -31,7 +31,8 @@ global circle
 ruins_explored = False
 village_explored = False
 
-#functions
+
+#----------Functions----------
 def clear_screen():
     for clear_x in range(50):
         print("\n")
@@ -186,7 +187,7 @@ def menu():
             Wait.wait(2)
             clear_screen()
 
-#START OF THE GAME :O
+#----------GAME----------
 
 os.system('mode con: cols=170 lines=50')
 #Resizes the window to fit ASCII art
@@ -706,7 +707,6 @@ if endless_mode == False:
                 #they are forced to go through the intro or choose a name.
                 if skip == False:
                     Introduction.IntroSequence()
-                    Player.name = Introduction.player_name
                 else:
                     Player.name = input("Name - ")
             print_slow(f"{Player.name} IS APPROACHING... CIRCLE 1 - LIMBO")
@@ -761,7 +761,7 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
                     Wait.wait(1)
                     #fake-out combat encounter
                     input("A mangled, deformed suit slams onto the ground "
-                          "from inside the castle"
+                          "from inside the castle "
                           "and destroys all the enemies around you")
                     input("It then leaps away and seems to be heading "
                           "towards the castle.")
@@ -999,7 +999,43 @@ you stand a chance against tough enemies.""")
                 if "left" in choice:
                     choice_loop = False
                     print("\n")
-                    input("")
+                    input("You go left.")
+                    input("The corridor ahead warps and transforms in front "
+                          "of you.")
+                    input("It appears to stretch on forever")
+                    input("However, you can see a mirror of yourself also "
+                          "appearing over and over.")
+                    input("It seems like this corridor is just mirroring "
+                          "itself.")
+                    input("Looking behind you, you can see that the corridor "
+                          "is mirroring behind you as well.")
+                    input("You can either try to walk through the corridor "
+                          "or attempt to shoot down the corridor and see if "
+                          "you can escape")
+
+                    choice_loop = True
+                    while choice_loop == True:
+                        choice = input("Do you walk through the corridor or "
+                        "shoot down the corridor? ")
+                        if "walk" in choice:
+                            choice_loop = False
+                            input("walking placeholder")
+                        elif "shoot" in choice:
+                            while choice_loop == True:
+                                choice = input("Do you shoot at a wall "
+                                               "ahead of you or directly at "
+                                               "yourself? ")
+                                if "wall" in choice:
+                                    input("The bullet mirrored itself, "
+                                          "appearing behind you.")
+                                    input("Nothing appeared to change.")
+                                    break
+                                elif "self" in choice:
+                                    input("You shoot at yourself.")
+                                    death_screen()
+                        else:
+                            print("INVALID OPTION")
+                            Wait.wait(2)
 
                 elif "right" in choice:
                     choice_loop = False
