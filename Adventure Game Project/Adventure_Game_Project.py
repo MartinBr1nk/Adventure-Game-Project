@@ -197,14 +197,15 @@ def goose_check():
                      "And thy punishment... IS HONK",
                      "The gaggle will not take kindly to your actions.",
                      "HONKITY HONK HONK (with evil intent)",
-                     "YOU HONKED.", "HONK HONK HONK HONK HONK"]
+                     "YOU HONKED.", "HONK HONK HONK HONK HONK",
+                     "RELEASE THE GEESE", "BRING THEM BACK!!!"]
     path = './Goose.png'
     gcheck = os.path.isfile(path)
     if gcheck == False:
         while True:
-            print(goose_message[random.randint(0, 16)])
+            print(goose_message[random.randint(0, 18)])
             print(ASCII.the_goose)
-            time.sleep(1)
+            
             print("\n")
     elif gcheck == True:
         print("GOOSE DETECTED!!!! :D")
