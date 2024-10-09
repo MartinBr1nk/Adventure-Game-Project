@@ -863,11 +863,12 @@ Enemies.Crawler.Range, Enemies.Crawler.Healing)
             input("You begin to look around limbo for an upgrade")
             input("You make it up to a vantage point where you can see "
                       "the landscape around you.")
-            input("You can see Ruins, a burning village and a church")
+            
                 #no matter what you do, you are always railroaded to
                 #explore limbo.
             search_loop = True
             while search_loop == True:
+                print("You can see Ruins, a burning village and a church")
                 choice = input("Where do you go?: ").lower()
                 if "ruins" in choice and ruins_explored == False:
                     input("You approach the ruins.")
@@ -1019,9 +1020,29 @@ you stand a chance against tough enemies.""")
                         "shoot down the corridor? ")
                         if "walk" in choice:
                             choice_loop = False
-                            input("walking placeholder")
+                            input("You begin walking through the corridor.")
+                            input("After a certain point you notice your "
+                                  "vision flicker for a moment and you warp "
+                                  "back a few steps.")
+                            input("There doesnt seem to be any way out.")
+                            input("The only thing you could do is shoot the "
+                                  "stained glass windows on the side of the "
+                                  "corridor.")
+                            input("You shoot a window.")
+                            Wait.wait(1)
+                            input("The mirror image around you shakes and "
+                                  "distorts a little.")
+                            input("Hell mass pours out of the window!")
+                            for x in range(3):
+                                Combat.standard_combat(Enemies.Shade.Name,
+                                                       Enemies.Shade.Health,
+                                                       Enemies.Shade.Damage,
+                                                       Enemies.Shade.Range,
+                                                       Enemies.Shade.Healing)
+
+                    
                         elif "shoot" in choice:
-                            while choice_loop == True:
+                            while True:
                                 choice = input("Do you shoot at a wall "
                                                "ahead of you or directly at "
                                                "yourself? ")
@@ -1033,9 +1054,16 @@ you stand a chance against tough enemies.""")
                                 elif "self" in choice:
                                     input("You shoot at yourself.")
                                     death_screen()
+                                else:
+                                    print("INVALID OPTION")
+                                    Wait.wait(2)
                         else:
                             print("INVALID OPTION")
                             Wait.wait(2)
+
+                    input("The mirror image around you shatters and "
+                          "you can continue down the corridor")
+
 
                 elif "right" in choice:
                     choice_loop = False
