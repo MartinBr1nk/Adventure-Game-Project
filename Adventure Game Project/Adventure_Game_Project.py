@@ -10,7 +10,6 @@ import ASCII
 import os
 import Combat
 
-
 #----------Variables----------
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can
@@ -187,11 +186,39 @@ def menu():
             Wait.wait(2)
             clear_screen()
 
+
+def goose_check():
+    goose_message = ["NO GOOSE DETECTED!!!!!! >:(", "BRING BACK MY GOOSE",
+                     "RETURN THEM!", "RETURN THE GOOSE!!", "my goose :(",
+                     "What about the goose?", "CURSE YOU FOR TAKING MY GOOSE",
+                     "You monster. You took the goose.", "GOOSE GOOSE GOOSE",
+                     "In this world, its honk or be honked.", "HONK (angry)",
+                     "HONK HONK HONK (but angrier)",
+                     "And thy punishment... IS HONK",
+                     "The gaggle will not take kindly to your actions.",
+                     "HONKITY HONK HONK (with evil intent)",
+                     "YOU HONKED.", "HONK HONK HONK HONK HONK"]
+    path = './Goose.png'
+    gcheck = os.path.isfile(path)
+    if gcheck == False:
+        while True:
+            print(goose_message[random.randint(0, 16)])
+            print(ASCII.the_goose)
+            time.sleep(1)
+            print("\n")
+    elif gcheck == True:
+        print("GOOSE DETECTED!!!! :D")
+        Wait.wait(0.2)
+        clear_screen()
+    #If the goose is NOT present then the program WILL NOT WORK.
+    #DO NOT REMOVE THIS CODE. THE PROGRAM WILL NOT WORK WITHOUT IT.
+
 #----------GAME----------
 
 os.system('mode con: cols=170 lines=50')
 #Resizes the window to fit ASCII art
 
+goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
 
 
@@ -1140,7 +1167,64 @@ you stand a chance against tough enemies.""")
                     input("The demon shatters back into its individual peices")
                     input("Bits of wood and food cover the previously "
                           "organised dining room.")
-                    input("")
+                    choice_loop = True
+                    while choice_loop == True:
+                        input("The dining room has two doors on either side "
+                              "that could lead you further in.")
+                        input("The door to your left follows the design of "
+                              "everything else in the castle so far while "
+                              "the door on the right is visibly damaged and "
+                              "no light is coming in from underneath it.")
+                        choice = input("What door do you go "
+                                       "through?: ").lower()
+                        if "left" in choice:
+                            choice_loop = False
+                            print("\n")
+                            input("You walk through the left door.")
+                            input("Everything here is completely normal and "
+                                  "nothing is out of the ordinary.")
+                            input("This path seems to be incredibly boring.")
+                            input("You cant help but think about how much "
+                                  "more intresting the other path would "
+                                  "have been.")
+                            Wait.wait(3)
+                            input("You can see the path to the inner "
+                                  "chamber.")
+                            input("Theres a tiny mimic on the ground.")
+                            input("It looks like its mimicing a pencil.")
+                            input("You step on it.")
+                            Player.current_health += 10
+                            Combat.HealthCheck()
+                            print_slow(f"{Player.name} HAS {Player.current_health} "
+                                  "FUEL REMAINING.")
+                            #print how much health the player restores.
+                            input("You look behind you.")
+                            input("The door back is gone.")
+                            input("You couldnt go back if you wanted to.")
+                            input("You can feel the ground beneath you "
+                                  "rumbling.")
+                            input("That other path would have been very "
+                                  "intresting.")
+                            input("Now you'll never know what is behind that "
+                                  "door.")
+                            Wait.wait(3)
+
+                        elif "right" in choice:
+                            choice_loop = False
+                            print("\n")
+                            input("You open the door.")
+                            input("It's pitch black and stairs decend for an indeterminate distance")
+                            input("Something kicks you down the stairs!")
+                            Player.current_health -= 100
+                            print_slow("LOST 100 FUEL")
+                            Player.DeathCheck()
+                            print_slow(f"{Player.current_health} FUEL "
+                                       "REMAINING.")
+
+                        else:
+                            print("INVALID OPTION")
+                            Wait.wait(2)
+
                 elif "forward" in choice:
                     choice_loop = False
                     print("\n")
