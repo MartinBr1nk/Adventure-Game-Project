@@ -60,7 +60,7 @@ death_screen = r"""
          ███████         ████  █████       ████   ███                      █████████████          ███████      ████████████████  █████████████        
                            ██████            █████                                                                                                    
 """
-#Death title
+#Death title (Dark souls reference)
 
 Mykolasaurus = r"""
                      ████                                                                                                            ███████████      

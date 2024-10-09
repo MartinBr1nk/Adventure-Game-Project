@@ -161,7 +161,7 @@ def standard_combat(target_name, target_health, target_damage,
             Wait.wait(2)
             Player.current_health = Player.current_health + enemy_healing_on_defeat
             Player.HealthCheck()
-            print(f"{Player.name} HAS {Player.current_health}"
+            print(f"{Player.name} HAS {Player.current_health} "
                   "FUEL REMAINING.")
             Wait.wait(2)
             combat_loop = False

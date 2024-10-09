@@ -1096,8 +1096,51 @@ you stand a chance against tough enemies.""")
                 elif "right" in choice:
                     choice_loop = False
                     print("\n")
-
-
+                    for x in range (3):
+                        Combat.standard_combat(Enemies.Crawler.Name,
+                                               Enemies.Crawler.Health,
+                                               Enemies.Crawler.Damage,
+                                               Enemies.Crawler.Range,
+                                               Enemies.Crawler.Healing)
+                    input("You walk down the right corridor.")
+                    input("You enter a grand dining hall filled with food, "
+                          "tables, chairs and candles.")
+                    input("Upon closer inspection, the food seems to have "
+                          "the same texture as the flesh that demons have.")
+                    input("The furniture also seems to have this fleshy "
+                          "texture.")
+                    input("Suddenly some of the furniture begins to move!")
+                    Combat.standard_combat("Chair " + Enemies.Mimic.Name,
+                                           20,
+                                           50,
+                                           1,
+                                           25)
+                    Combat.standard_combat("Table " + Enemies.Mimic.Name,
+                                           50,
+                                           50,
+                                           1,
+                                           50)
+                    Combat.standard_combat("Food " + Enemies.Mimic.Name,
+                                           5,
+                                           5,
+                                           1,
+                                           10)
+                    #Mimics have custom stats, as it depends on what object
+                    #they are mimicing.
+                    input("The other peices of furniture around you begin to "
+                          "shake and emit a horrific screech.")
+                    input("They begin to clump together.")
+                    input("Bricks, Chairs, Tables and bits of food form a "
+                          "colossal demon...")
+                    Combat.standard_combat("Greater Castle " + Enemies.Mimic.Name,
+                                           300,
+                                           50,
+                                           1,
+                                           500)
+                    input("The demon shatters back into its individual peices")
+                    input("Bits of wood and food cover the previously "
+                          "organised dining room.")
+                    input("")
                 elif "forward" in choice:
                     choice_loop = False
                     print("\n")
