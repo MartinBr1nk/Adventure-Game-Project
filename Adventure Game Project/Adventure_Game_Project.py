@@ -1,13 +1,13 @@
 ﻿#----------Imports----------
 import time
 import random
+import os
 import Introduction
 import Player
 import Enemies
 import Weapons
 import Wait
 import ASCII
-import os
 import Combat
 
 #----------Variables----------
@@ -205,7 +205,7 @@ def goose_check():
         while True:
             print(goose_message[random.randint(0, 18)])
             print(ASCII.the_goose)
-            
+            Wait.wait(1)
             print("\n")
     elif gcheck == True:
         print("GOOSE DETECTED!!!! :D")
