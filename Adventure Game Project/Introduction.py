@@ -3,6 +3,7 @@ import random
 import ASCII
 import Wait
 import Player
+import os
 
 def cool_typing(str):
     for letter in str:
@@ -22,7 +23,7 @@ def death_screen():
     #different death screen because I cant circular import:(
 
 
-def IntroSequence():
+def intro_sequence():
     cool_typing("BOOT UP SEQUENCE READY")
     cool_typing("CHECKING FIRMWARE VERISON")
     print("LATEST VERSION (15.09.2163)")
@@ -73,6 +74,9 @@ def IntroSequence():
         Player.name = ASCII.silly_cat
         Wait.time_skip = True
         #stupid easter egg
+
+    elif "goose" in Player.name.lower():
+        os.startfile("Goose.png")
 
     elif "farming" in Player.name.lower() or "martin" in Player.name.lower():
         cool_typing("FARMING MODE INITIATED.")

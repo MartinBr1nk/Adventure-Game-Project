@@ -2,7 +2,7 @@
 import time
 import random
 import os
-import Introduction
+from Introduction import intro_sequence
 import Player
 import Enemies
 import Weapons
@@ -231,7 +231,7 @@ if endless_mode == False:
             print_very_fast(ASCII.title)
 
             if skip == False:
-                Introduction.IntroSequence()
+                intro_sequence()
             else:
                 Player.name = input("Name - ")
             print_slow(f"{Player.name} IS APPROACHING... THE MOUTH OF HELL")
@@ -734,7 +734,7 @@ if endless_mode == False:
                 #if the player got to limbo through the menu,
                 #they are forced to go through the intro or choose a name.
                 if skip == False:
-                    Introduction.IntroSequence()
+                    intro_sequence()
                 else:
                     Player.name = input("Name - ")
             print_slow(f"{Player.name} IS APPROACHING... CIRCLE 1 - LIMBO")
