@@ -214,6 +214,12 @@ def goose_check():
     #If the goose is NOT present then the program WILL NOT WORK.
     #DO NOT REMOVE THIS CODE. THE PROGRAM WILL NOT WORK WITHOUT IT.
 
+def goosed():
+    for x in range(20):
+        os.startfile("Goose.png")
+        print("YOU'VE BEEN GOOSED")
+    os.startfile("goosed.txt")
+
 #----------GAME----------
 
 os.system('mode con: cols=170 lines=50')
