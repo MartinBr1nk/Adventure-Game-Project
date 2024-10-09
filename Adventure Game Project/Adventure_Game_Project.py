@@ -1054,6 +1054,9 @@ you stand a chance against tough enemies.""")
                                 elif "self" in choice:
                                     input("You shoot at yourself.")
                                     death_screen()
+                                    #what would obviously happen if you shot
+                                    #yourself in an endlessly repeating
+                                    #corridor
                                 else:
                                     print("INVALID OPTION")
                                     Wait.wait(2)
@@ -1062,8 +1065,33 @@ you stand a chance against tough enemies.""")
                             Wait.wait(2)
 
                     input("The mirror image around you shatters and "
-                          "you can continue down the corridor")
-
+                          "you can continue down the corridor.")
+                    input("You reach the end of the corridor and you can"
+                          "see a path towards the inner chamber.")
+                    input("Suddenly a swarm of enemies smash through the "
+                          "windows!")
+                    Combat.standard_combat(Enemies.Schism.Name,
+                                           Enemies.Schism.Health,
+                                           Enemies.Schism.Damage,
+                                           Enemies.Schism.Range,
+                                           Enemies.Schism.Healing)
+                    Combat.standard_combat(Enemies.Guardian.Name,
+                                           Enemies.Guardian.Health,
+                                           Enemies.Guardian.Damage,
+                                           Enemies.Guardian.Range,
+                                           Enemies.Guardian.Healing)
+                    for x in range (3):
+                        Combat.standard_combat(Enemies.Crawler.Name,
+                                               Enemies.Crawler.Health,
+                                               Enemies.Crawler.Damage,
+                                               Enemies.Crawler.Range,
+                                               Enemies.Crawler.Healing)
+                    Combat.standard_combat(Enemies.Colossus.Name,
+                                           Enemies.Colossus.Health,
+                                           Enemies.Colossus.Damage,
+                                           Enemies.Colossus.Range,
+                                           Enemies.Colossus.Healing)
+                    #Enemy rush before reaching the inner chamber
 
                 elif "right" in choice:
                     choice_loop = False

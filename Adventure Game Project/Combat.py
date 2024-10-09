@@ -34,7 +34,8 @@ def death_screen():
     #Death screen
 
 
-def standard_combat(target_name, target_health, target_damage, range, healing):
+def standard_combat(target_name, target_health, target_damage,
+                    enemy_range, enemy_healing_on_defeat):
     print_slow("THREAT DETECTED")
     print(f"{target_name} APPROACHES")
     print(f"{Player.name} ATTACKS FIRST")
@@ -76,7 +77,7 @@ def standard_combat(target_name, target_health, target_damage, range, healing):
                     weapon_loop = False
 
             elif "n" in alt_fire:
-                if "1" in weapon_choice and range <= Weapons.Revolver.Range:
+                if "1" in weapon_choice and enemy_range <= Weapons.Revolver.Range:
                     target_health = target_health - \
                         int(Weapons.Revolver.Damage)
                     #If the weapon selected is equal to 1 AND the range is
@@ -84,7 +85,7 @@ def standard_combat(target_name, target_health, target_damage, range, healing):
                     #you attack
                     weapon_loop = False
 
-                elif "2" in weapon_choice and range <= Weapons.Shotgun.Range:
+                elif "2" in weapon_choice and enemy_range <= Weapons.Shotgun.Range:
                     target_health = target_health - \
                         int(Weapons.Shotgun.Damage)
                     #If the weapon selected is equal to 2 AND the range
@@ -92,7 +93,7 @@ def standard_combat(target_name, target_health, target_damage, range, healing):
                     #you attack
                     weapon_loop = False
 
-                elif "3" in weapon_choice and range <= Weapons.Chaingun.Range and Weapons.chaingun_used == False:
+                elif "3" in weapon_choice and enemy_range <= Weapons.Chaingun.Range and Weapons.chaingun_used == False:
                     target_health = target_health - int(Weapons.Chaingun.Damage)
                     #If the weapon selected is equal to 3 AND the range is
                     #greater than or equal to the enemies range value AND the
@@ -158,9 +159,10 @@ def standard_combat(target_name, target_health, target_damage, range, healing):
             print(f"{target_name} HAS DIED")
             print("\n")
             Wait.wait(2)
-            Player.current_health = Player.current_health + healing
+            Player.current_health = Player.current_health + enemy_healing_on_defeat
             Player.HealthCheck()
-            print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
+            print(f"{Player.name} HAS {Player.current_health}"
+                  "FUEL REMAINING.")
             Wait.wait(2)
             combat_loop = False
             print(f"{Player.name} WINS.")
@@ -173,3 +175,6 @@ def standard_combat(target_name, target_health, target_damage, range, healing):
             print("ERROR")
             exit()
             #debug message
+def hijacked_boss_fight(boss_name, boss_health,
+                        boss_damage, boss_range, boss_healing):
+    print("boss fight aaaa1111111!!!111!!1!11!!1")
