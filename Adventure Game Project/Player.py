@@ -25,14 +25,15 @@ def death_screen():
     exit()
     #Death screen
 
-def DeathCheck():
-    if current_health >= 0:
-        death_screen()
-
 def HealthCheck():
+    global current_health
     if current_health > max_health:
         current_health = max_health
         #if the player has above the max hp, it sets itself to the max hp
+
+def DeathCheck():
+    if current_health >= 0:
+        death_screen()
 
 def PlayerBossHPCheck():
     global boss_fight_current_health

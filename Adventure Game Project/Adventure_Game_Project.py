@@ -765,7 +765,7 @@ if endless_mode == False:
             " as if they were just holograms")
             input("The sky appears to look like a CRT screen despite the "
                   "fact that it appears to stretch on forever")
-            input("Calming music and sounds of birds play from small poorly"
+            input("Calming music and sounds of birds play from small poorly "
                   "hidden speakers throughout the field")
             input("Ahead of you lies a fork in the road.")
             input("To the left there is a large castle you could attempt "
@@ -1201,7 +1201,8 @@ you stand a chance against tough enemies.""")
                             input("It looks like its mimicing a pencil.")
                             input("You step on it.")
                             Player.current_health += 10
-                            Combat.HealthCheck()
+                            Player.HealthCheck()
+                            print_slow(f"10 FUEL RESTORED.")
                             print_slow(f"{Player.name} HAS {Player.current_health} "
                                   "FUEL REMAINING.")
                             #print how much health the player restores.
