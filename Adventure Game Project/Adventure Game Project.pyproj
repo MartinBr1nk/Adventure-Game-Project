@@ -22,8 +22,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Adventure_Game_Project.py" />
+    <Compile Include="ASCII.py" />
+    <Compile Include="Combat.py" />
+    <Compile Include="Enemies.py" />
     <Compile Include="Introduction.py" />
     <Compile Include="module1.py" />
+    <Compile Include="Player.py" />
+    <Compile Include="Wait.py" />
+    <Compile Include="Weapons.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Goose.png" />

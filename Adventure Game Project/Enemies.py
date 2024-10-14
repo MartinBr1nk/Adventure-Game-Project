@@ -1,4 +1,5 @@
 #Enemies
+#Standard Enemies
 class Enemy:
     def __init__(Self, Name, Health, Damage, Range, Healing, Class, Terminal):
         #All the values each enemy can have
@@ -7,6 +8,15 @@ class Enemy:
         Self.Damage = Damage
         Self.Range = Range
         Self.Healing = Healing
+        Self.Terminal = Terminal
+
+#Bosses
+class Boss:
+    def __init__(Self, Name, Health, Defence, Class, Terminal):
+        Self.Name = Name
+        Self.Health = Health
+        Self.Defence = Defence
+        Self.Class = Class
         Self.Terminal = Terminal
 
 #Standard Enemies
@@ -113,11 +123,10 @@ become bored with them""")
 
 #Bosses
 
-Hijacked_1 = Enemy("Hijacked",
+Hijacked_1 = Boss("Hijacked",
                  1000,
                  75,
-                 50,
-                 1000,
+                 0.5,
                  "Supreme Machine/Demon",
                  r"""A damaged suit that was reanimated using hell mass.
 The old pilot is still inside being puppeted by hell energy

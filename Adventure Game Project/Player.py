@@ -9,8 +9,8 @@ current_health = 500
 max_health = 500
 #HP for normal combat
 
-boss_fight_max_health = 2000
-boss_fight_current_health = 2000
+b_max_health = 2000
+b_current_health = 2000
 #HP for boss fight combat
 
 def print_fast(str):

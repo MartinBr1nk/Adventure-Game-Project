@@ -3,6 +3,8 @@ import ASCII
 import Player
 import random
 import Weapons
+from threading import Timer
+import time
 
 def print_slow(str):
     for letter in str:
@@ -33,6 +35,24 @@ def death_screen():
     exit()
     #Death screen
 
+def attack_quicktime(timeout, punish):
+    t = Timer(timeout, print, ["You got hit."])
+    t.start()
+    start = time.time()
+    prompt = f"YOU HAVE {timeout} SECONDS TO DODGE. PRESS ENTER. \n"
+    answer = input(prompt)
+    t.cancel()
+    end = time.time()
+    reaction_time = end - start
+    if reaction_time > timeout:
+        print(f"DODGE FAILED, {punish} DAMAGE TAKEN.")
+        Wait.wait(1)
+        Player.current_health -= punish
+        Player.DeathCheck()
+        print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
+    else:
+        print("DODGED.")
+        Wait.wait(1)
 
 def standard_combat(target_name, target_health, target_damage,
                     enemy_range, enemy_healing_on_defeat):
@@ -175,6 +195,19 @@ def standard_combat(target_name, target_health, target_damage,
             print("ERROR")
             exit()
             #debug message
-def hijacked_boss_fight(boss_name, boss_health,
-                        boss_damage, boss_range, boss_healing):
-    print("boss fight aaaa1111111!!!111!!1!11!!1")
+
+def hijacked_boss_fight(boss_name, boss_health, boss_defence):
+    boss_attacks = ["It prepares to use its REVOLVER!", "It prepares to use "
+    "its SHOTGUN!", "It prepares to use its CHAINGUN!", "It prepares to use "
+    "its ALT REVOLVER", "It prepares to use its ALT SHOTGUN"]
+    #Enemy bowing animation
+    combat_loop = True
+    print_slow("PREPARE YOURSELF.")
+    print("BOSS FIGHT MODE ACTIVE...")
+    Wait.wait(1)
+    print(f"{boss_name} APPROACHES")
+    print(f"{Player.name} ATTACKS FIRST")
+    Wait.wait(1)
+    while combat_loop:
+        b_attack = boss_attacks[random.randint(0, 4)]
+        print(b_attack)

@@ -200,8 +200,8 @@ def overworld_quicktime(timeout, punish):
         print(f"DODGE FAILED, {punish} DAMAGE TAKEN.")
         Wait.wait(1)
         Player.current_health -= punish
-        print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
         Player.DeathCheck()
+        print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
     else:
         print("DODGED.")
         Wait.wait(1)
@@ -243,6 +243,8 @@ def goosed():
 
 os.system('mode con: cols=170 lines=50')
 #Resizes the window to fit ASCII art
+
+
 
 goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
@@ -1282,6 +1284,7 @@ you stand a chance against tough enemies.""")
                                   "you...")
                             Wait.wait(1)
                             print("The ceiling beings to fall!!")
+                            Wait.wait(1)
                             print("You need to slide")
                             overworld_quicktime(3, 150)
                             print("You can see the light leading to the "
@@ -1333,8 +1336,14 @@ you stand a chance against tough enemies.""")
                     input("The forward path crumbling is VERY LIKELY if you "
                           "take it.")
 
-            input("buildup to boss fight placeholder")
-            #and then implement the boss fight
+            input("You finally make it to the inner chamber...")
+            input("There is a stained glass window overlooking the chamber.")
+            input("The light that was beaming down becomes blocked by a "
+                  "shadow")
+            input("Suddenly...")
+            input("The window shatters.")
+            input("You stand face to face with the enemy.")
+            
 
         elif circle == 2:
             print("Circle 2 - Lust, is not finished.")
