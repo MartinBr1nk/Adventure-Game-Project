@@ -1327,6 +1327,10 @@ you stand a chance against tough enemies.""")
             input("Suddenly...")
             input("The window shatters.")
             input("You stand face to face with the enemy.")
+            input("Your cameras flicker on for a brief second!")
+            ASCII.hijacked_intro_animation()
+            Wait.wait(3)
+            clear_screen()
             while Combat.win_condition != True:
                 Combat.hijacked_boss_fight(Enemies.Hijacked_1.Name, 
                                Enemies.Hijacked_1.Health)
@@ -1339,6 +1343,7 @@ you stand a chance against tough enemies.""")
                     input("You have been placed just outside the inner "
                           "chamber, with no injuries.")
                     print_slow("AGAIN.")
+                    Player.b_current_health = 2000
                     Wait.wait(1)
 
             input("The enemy falls to the ground, damaged and defeated.")

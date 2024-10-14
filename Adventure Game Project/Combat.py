@@ -199,6 +199,7 @@ def standard_combat(target_name, target_health, target_damage,
             exit()
             #debug message
 
+win_condition = False
 def hijacked_boss_fight(boss_name, boss_health):
     global boss_combat_loop
     global win_condition
@@ -394,7 +395,6 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
                     #If the player dodges, the chaingun does zero damage.
                     Wait.wait(1)
         if Player.b_current_health <= 0:
-            print_fast(ASCII.death_screen)
             loose_condition = True
             break
         else:
