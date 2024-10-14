@@ -9,6 +9,7 @@ import Weapons
 import Wait
 import ASCII
 import Combat
+from threading import Timer
 
 #----------Variables----------
 random_value = random.randint(0, 500)
@@ -186,6 +187,24 @@ def menu():
             Wait.wait(2)
             clear_screen()
 
+def overworld_quicktime(timeout, punish):
+    t = Timer(timeout, print, ["You got hit."])
+    t.start()
+    start = time.time()
+    prompt = f"YOU HAVE {timeout} SECONDS TO DODGE. PRESS ENTER. \n"
+    answer = input(prompt)
+    t.cancel()
+    end = time.time()
+    reaction_time = end - start
+    if reaction_time > timeout:
+        print(f"DODGE FAILED, {punish} DAMAGE TAKEN.")
+        Wait.wait(1)
+        Player.current_health -= punish
+        print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
+        Player.DeathCheck()
+    else:
+        print("DODGED.")
+        Wait.wait(1)
 
 def goose_check():
     goose_message = ["NO GOOSE DETECTED!!!!!! >:(", "BRING BACK MY GOOSE",
@@ -1198,7 +1217,7 @@ you stand a chance against tough enemies.""")
                             input("You can see the path to the inner "
                                   "chamber.")
                             input("Theres a tiny mimic on the ground.")
-                            input("It looks like its mimicing a pencil.")
+                            input("It looks like its mimicing a brick.")
                             input("You step on it.")
                             Player.current_health += 10
                             Player.HealthCheck()
@@ -1221,13 +1240,59 @@ you stand a chance against tough enemies.""")
                             choice_loop = False
                             print("\n")
                             input("You open the door.")
-                            input("It's pitch black and stairs decend for an indeterminate distance")
+                            input("It's pitch black and stairs decend for an "
+                                  "indeterminate distance")
                             input("Something kicks you down the stairs!")
                             Player.current_health -= 100
                             print_slow("LOST 100 FUEL")
                             Player.DeathCheck()
                             print_slow(f"{Player.current_health} FUEL "
                                        "REMAINING.")
+                            print("\n")
+                            input("You cant see anything.")
+                            print_slow("LIGHT ACTIVATING...")
+                            input("You suits light activates")
+                            input("This room appears to be a cellar, its "
+                                  "filled with barrels of food and drink.")
+                            input("You walk further through the cellar.")
+                            input("There seems to be a path through the "
+                                  "cellar into the innter chamber.")
+                            input("The cellar begins to shake...")
+                            input("A colossal demon emerges from the ground "
+                                  "beneath you")
+                            print_slow("ENHANCED FIGHTING CAPTIBILITIES NEED "
+                                       "TO BE SAVED FOR THE FINAL ENCOUNTER.")
+                            print_slow("RUN AS FAST AS YOU CAN.")
+
+                            #Quicktime event
+                            print("QUICKTIME START.")
+                            Wait.wait(1)
+                            print("You begin to run.")
+                            Wait.wait(1)
+                            print("A barrel comes flying towards you!")
+                            overworld_quicktime(5, 50)
+                            print("KEEP RUNNING!!!")
+                            Wait.wait(1)
+                            print("Shelves come crashing down!")
+                            Wait.wait(1)
+                            overworld_quicktime(2, 50)
+                            print("Nearly there!!!")
+                            Wait.wait(1)
+                            print("The cellar begins to crumble around "
+                                  "you...")
+                            Wait.wait(1)
+                            print("The ceiling beings to fall!!")
+                            print("You need to slide")
+                            overworld_quicktime(3, 150)
+                            print("You can see the light leading to the "
+                                  "exit!")
+                            Wait.wait(1)
+                            print("QUICKTIME OVER.")
+                            Wait.wait(1)
+
+                            input("You make it out of the cellar.")
+                            input("The demon that was chasing you has been "
+                                  "crushed by the falling cellar.")
 
                         else:
                             print("INVALID OPTION")
