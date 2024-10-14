@@ -1,3 +1,4 @@
+from platform import win32_edition
 import Wait
 import ASCII
 import Player
@@ -198,18 +199,12 @@ def standard_combat(target_name, target_health, target_damage,
             exit()
             #debug message
 
-def hijacked_boss_health_check(boss_name, boss_health):
+def hijacked_boss_fight(boss_name, boss_health):
     global boss_combat_loop
-    if boss_health <= 0:
-        boss_combat_loop = False
-        print("ENEMY DEFEATED.")
-        Wait.wait(1)
-    else:
-        print(f"{boss_name} HAS {boss_health} HEALTH REMAINING.")
-
-
-def hijacked_boss_fight(boss_name, boss_health, boss_defence):
-    global boss_combat_loop
+    global win_condition
+    global loose_condition
+    win_condition = False
+    loose_condition = False
     defend = False
     dodge = False
 
@@ -264,9 +259,19 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
         elif p_action == "DODGE":
             print("YOU PREPARE TO DODGE!")
             dodge = True
-        hijacked_boss_health_check(boss_name, boss_health)
         if boss_combat_loop == False:
             break
+        
+        if boss_health <= 0:
+            win_condition = True
+            print(f"{boss_name} WAS DEFEATED!")
+            Wait.wait(1)
+            print_very_fast(ASCII.win_screen)
+            Wait.wait(3)
+            break
+        else:
+            pass
+
         print(f"{boss_name} READIES ITS ATTACK...")
 
         #Enemy turn
@@ -281,7 +286,17 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
                     print(f"{Player.name} TAKES 300 DAMAGE!")
                     Wait.wait(1)
                     #Alternate revolver attack
-
+                elif defend == True:
+                    print(f"DEFEND FAILED!")
+                    Wait.wait(1)
+                    Player.b_current_health -= 300
+                    print(f"{Player.name} TAKES 300 DAMAGE!")
+                    Wait.wait(1)
+                    #You cannot defend from the alt revolver.
+                elif dodge == True:
+                    print(f"{Player.name} DODGED ALL INCOMING PROJECTILES!")
+                    Wait.wait(1)
+                    #You can always dodge the alt revolver
             elif "SHOTGUN" in b_attack:
                 print(f"{boss_name}'S SHOTGUN FLOODS WITH HELL ENERGY!")
                 Wait.wait(1)
@@ -290,7 +305,24 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
                     print(f"{Player.name} TAKES 400 DAMAGE!")
                     Wait.wait(1)
                     #Alternate shotgun attack
-
+                elif defend == True:
+                    Player.b_current_health -= 100
+                    print(f"{Player.name} DEFENDS AND TAKES 100 DAMAGE!")
+                    Wait.wait(1)
+                    #Defend from damage
+                elif dodge == True:
+                    dodge_chance = random.randint(1, 4)
+                    if dodge_chance == 1:
+                        print(f"{Player.name} DODGED ALL INCOMING "
+                              "PROJECTILES!")
+                        Wait.wait(1)
+                    else:
+                        print("DODGE FAILED.")
+                        Wait.wait(1)
+                        Player.b_current_health -= 400
+                        print(f"{Player.name} TAKES 400 DAMAGE!")
+                        Wait.wait(1)
+                    #Dodge from the alt shotgun
         else:
             if "REVOLVER" in b_attack:
                 print(f"{boss_name} AIMS ITS REVOLVER AT YOU!")
@@ -298,7 +330,26 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
                 if defend == False and dodge == False:
                     Player.b_current_health -= 100
                     print(f"{Player.name} TAKES 100 DAMAGE!")
+                    Wait.wait(1)
                     #Revolver attack
+                elif defend == True:
+                    Player.b_current_health -= 25
+                    print(f"{Player.name} DEFENDS AND TAKES 25 DAMAGE.")
+                    Wait.wait(1)
+                    #Defend from damage
+                elif dodge == True:
+                    dodge_chance = random.randint(0, 100)
+                    if dodge_chance <= 75:
+                        print(f"{Player.name} DODGED ALL INCOMING"
+                              "PROJECTILES!")
+                        Wait.wait(1)
+                    else:
+                        print(f"DODGE FAILED.")
+                        Wait.wait(1)
+                        Player.b_current_health -= 100
+                        print(f"{Player.name} TAKES 100 DAMAGE!")
+                        Wait.wait(1)
+                    #75% chance of dodging incoming attack.
 
             elif "SHOTGUN" in b_attack:
                 print(f"{boss_name} CHARGES TOWARDS YOU WITH ITS SHOTGUN!")
@@ -306,14 +357,26 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
                 if defend == False and dodge == False:
                     Player.b_current_health -= 200
                     print(f"{Player.name} TAKES 200 DAMAGE!")
+                    Wait.wait(1)
                     #Shotgun attack
                 elif defend == True:
                     Player.b_current_health -= 50
-                    print(f"{Player.name} TAKES 50 DAMAGE!")
+                    print(f"{Player.name} DEFENDS AND TAKES 50 DAMAGE!")
+                    Wait.wait(1)
+                    #Defend from attack
                 elif dodge == True:
-                    pass
-                    #put dodge code here once I come back.
-
+                    dodge_chance = random.randint(1,3)
+                    if dodge_chance == 1:
+                        print(f"{Player.name} DODGED ALL INCOMING "
+                              "PROJECTILES!")
+                        Wait.wait(1)
+                    else:
+                        print("DODGE FAILED.")
+                        Wait.wait(1)
+                        Player.b_current_health -= 200
+                        print(f"{Player.name} TAKES 200 DAMAGE!")
+                        Wait.wait(1)
+                    #Dodging system, 1 in 3 chance to dodge.
             elif "CHAINGUN" in b_attack:
                 print(f"{boss_name} POINTS ITS CHAINGUN TOWARDS YOU!")
                 Wait.wait(1)
@@ -321,9 +384,24 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
                     Player.b_current_health -= 1000
                     print(f"{Player.name} TAKES 1000 DAMAGE!")
                     #Chaingun attack
+                    Wait.wait(1)
                 elif defend == True:
                     print(f"{Player.name} BLOCKS ALL INCOMING DAMAGE!")
                     #If the player blocks, the chaingun does zero damage.
+                    Wait.wait(1)
                 elif dodge == True:
                     print(f"{Player.name} DODGED ALL INCOMING PROJECTILES!")
                     #If the player dodges, the chaingun does zero damage.
+                    Wait.wait(1)
+        if Player.b_current_health <= 0:
+            print_fast(ASCII.death_screen)
+            loose_condition = True
+            break
+        else:
+            pass
+
+        print(f"{Player.name} HAS {Player.b_current_health} FUEL LEFT.")
+        Wait.wait(1)
+
+        print(f"{boss_name} HAS {boss_health} HEALTH REMAINING.")
+        print("\n")

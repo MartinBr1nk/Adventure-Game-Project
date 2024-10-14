@@ -234,11 +234,6 @@ os.system('mode con: cols=170 lines=50')
 goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
 
-
-Combat.hijacked_boss_fight(Enemies.Hijacked_1.Name, 
-                           Enemies.Hijacked_1.Health,
-                           Enemies.Hijacked_1.Defence)
-
 game_loop = True
 if endless_mode == False:
     while game_loop == True:
@@ -1332,10 +1327,47 @@ you stand a chance against tough enemies.""")
             input("Suddenly...")
             input("The window shatters.")
             input("You stand face to face with the enemy.")
-            
+            while Combat.win_condition != True:
+                Combat.hijacked_boss_fight(Enemies.Hijacked_1.Name, 
+                               Enemies.Hijacked_1.Health)
+                if Combat.loose_condition == True:
+                    print_fast(ASCII.death_screen)
+                    Wait.wait(1)
+                    print("\n")
+                    input("You fall down, defeated but something is off...")
+                    input("The room around you warps and changes.")
+                    input("You have been placed just outside the inner "
+                          "chamber, with no injuries.")
+                    print_slow("AGAIN.")
+                    Wait.wait(1)
+
+            input("The enemy falls to the ground, damaged and defeated.")
+            input("It scrambles to escape back through the window it came "
+                  "from")
+            print_slow("I'LL BE BACK.")
+            input("The moon above shines into the chamber.")
+            input("Suddenly...")
+            input("A chasm beigins to opem up in the center of the chamber!")
+
+            print_slow("PATH AHEAD DETECTED")
+            input("Your suit suddenly begins "
+                  "walking towards the chasm and "
+                  "prepares to jump in")
+            input("The suit controls have been "
+                  "taken over by the suits AI, "
+                  "you cannot prevent its "
+                  "decent.")
+            print_slow("BEGINNING DECENT...")
+            circle += 1
+            choice_loop = False
+            Wait.wait(1)
 
         elif circle == 2:
+            clear_screen()
             print("Circle 2 - Lust, is not finished.")
+            Wait.wait(1)
+            print("DEMO FINISHED!")
+
             #Placeholder for a future level that would be implimented in the full game
         elif circle == 3:
             print("Circle 3 - Gluttony, is not finished")

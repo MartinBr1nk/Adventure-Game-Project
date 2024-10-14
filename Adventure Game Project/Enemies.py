@@ -12,10 +12,9 @@ class Enemy:
 
 #Bosses
 class Boss:
-    def __init__(Self, Name, Health, Defence, Class, Terminal):
+    def __init__(Self, Name, Health, Class, Terminal):
         Self.Name = Name
         Self.Health = Health
-        Self.Defence = Defence
         Self.Class = Class
         Self.Terminal = Terminal
 
@@ -125,7 +124,6 @@ become bored with them""")
 
 Hijacked_1 = Boss("Hijacked",
                  2000,
-                 0.5,
                  "Supreme Machine/Demon",
                  r"""A damaged suit that was reanimated using hell mass.
 The old pilot is still inside being puppeted by hell energy
