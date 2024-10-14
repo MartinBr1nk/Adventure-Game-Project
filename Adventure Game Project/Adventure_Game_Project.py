@@ -170,21 +170,28 @@ def menu():
 def overworld_quicktime(timeout, punish):
     t = Timer(timeout, print, ["You got hit."])
     t.start()
+    #starts the timer.
     start = time.time()
+    #sets the start time.
     prompt = f"YOU HAVE {timeout} SECONDS TO DODGE. PRESS ENTER. \n"
     answer = input(prompt)
     t.cancel()
+    #ends the timer.
     end = time.time()
-    reaction_time = end - start
-    if reaction_time > timeout:
+    #sets the end time.
+    time_taken = end - start
+    #calculates the amount of time taken to react.
+    if time_taken > timeout:
         print(f"DODGE FAILED, {punish} DAMAGE TAKEN.")
         Wait.wait(1)
         Player.current_health -= punish
         Player.DeathCheck()
         print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
+        #if the player fails to react in time then they take damage.
     else:
         print("DODGED.")
         Wait.wait(1)
+        #if the player reacts in time they dont take any damage.
 
 def goose_check():
     goose_message = ["NO GOOSE DETECTED!!!!!! >:(", "BRING BACK MY GOOSE",

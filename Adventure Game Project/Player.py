@@ -36,7 +36,7 @@ def DeathCheck():
         death_screen()
 
 def PlayerBossHPCheck():
-    global boss_fight_current_health
-    if boss_fight_current_health > boss_fight_max_health:
-        boss_fight_current_health = boss_fight_max_health
+    global b_current_health
+    if b_current_health > b_max_health:
+        b_current_health = b_max_health
         #if the player has above the max hp, it sets itself to the max hp

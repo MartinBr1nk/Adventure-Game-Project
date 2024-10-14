@@ -124,7 +124,7 @@ become bored with them""")
 #Bosses
 
 Hijacked_1 = Boss("Hijacked",
-                 1000,
+                 2000,
                  0.5,
                  "Supreme Machine/Demon",
                  r"""A damaged suit that was reanimated using hell mass.

@@ -35,9 +35,13 @@ def death_screen():
     exit()
     #Death screen
 
+
 def attack_quicktime(timeout):
     global crit
-    t = Timer(timeout, #fix this!!!)
+    t = Timer(timeout, print, ["*"])
+    print("PRESS ENTER AFTER THE SPECIFIED NUMBER OF SECONDS, BEFORE THE '*' "
+          "APPEARS.")
+    Wait.wait(2)
     t.start()
     start = time.time()
     prompt = f"PRESS ENTER AFTER {timeout} SECONDS. \n"
@@ -45,8 +49,8 @@ def attack_quicktime(timeout):
     t.cancel()
     end = time.time()
     reaction_time = end - start
-    boundry_1 = timeout - 0.5
-    boundry_2 = timeout + 0.5
+    boundry_1 = timeout - 0.25
+    boundry_2 = timeout + 0.25
     if reaction_time > boundry_1 and reaction_time < boundry_2:
         crit = True
     else:
@@ -194,7 +198,18 @@ def standard_combat(target_name, target_health, target_damage,
             exit()
             #debug message
 
+def hijacked_boss_health_check(boss_name, boss_health):
+    global boss_combat_loop
+    if boss_health <= 0:
+        boss_combat_loop = False
+        print("ENEMY DEFEATED.")
+        Wait.wait(1)
+    else:
+        print(f"{boss_name} HAS {boss_health} HEALTH REMAINING.")
+
+
 def hijacked_boss_fight(boss_name, boss_health, boss_defence):
+    global boss_combat_loop
     defend = False
     dodge = False
 
@@ -205,14 +220,14 @@ def hijacked_boss_fight(boss_name, boss_health, boss_defence):
                     f"{boss_name} prepares to use its ALT REVOLVER",
                     f"{boss_name} prepares to use its ALT SHOTGUN"]
     #Enemy bowing animation
-    combat_loop = True
+    boss_combat_loop = True
     print_slow("PREPARE YOURSELF.")
     print("BOSS FIGHT MODE ACTIVE...")
     Wait.wait(1)
     print(f"{boss_name} APPROACHES")
     print(f"{Player.name} ATTACKS FIRST")
     Wait.wait(1)
-    while combat_loop:
+    while boss_combat_loop:
         b_attack = boss_attacks[random.randint(0, 4)]
         print(b_attack)
         Wait.wait(1)
@@ -221,12 +236,12 @@ def hijacked_boss_fight(boss_name, boss_health, boss_defence):
 ATTACK - Deal 200 base damage, 2x damage if you hit a critical hit.
 DEFEND - Negate 75% of the damage from the incoming attack.
 DODGE - Small chance of dodging the incoming attack, some attacks are easier to dodge than others.""")
-        choice_loop = True
-        while choice_loop:
+#I cannot make raw text follow pep-8 without damaging how it looks in-game
+        while True:
             p_action = input("WHAT ACTION DO YOU PICK?: ").upper()
             if p_action == "ATTACK" or p_action == "DEFEND" or \
             p_action == "DODGE":
-                choice_loop = False
+                break
             else:
                 print("INVALID OPTION.")
                 Wait.wait(1)
@@ -249,5 +264,66 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
         elif p_action == "DODGE":
             print("YOU PREPARE TO DODGE!")
             dodge = True
-
+        hijacked_boss_health_check(boss_name, boss_health)
+        if boss_combat_loop == False:
+            break
         print(f"{boss_name} READIES ITS ATTACK...")
+
+        #Enemy turn
+        if "ALT" in b_attack:
+            #If the "ALT" is in the attack flavour text then the
+            #game will do one of the alt attacks
+            if "REVOLVER" in b_attack:
+                print(f"{boss_name} CHARGES UP ITS REVOLVER...")
+                Wait.wait(1)
+                if defend == False and dodge == False:
+                    Player.b_current_health -= 300
+                    print(f"{Player.name} TAKES 300 DAMAGE!")
+                    Wait.wait(1)
+                    #Alternate revolver attack
+
+            elif "SHOTGUN" in b_attack:
+                print(f"{boss_name}'S SHOTGUN FLOODS WITH HELL ENERGY!")
+                Wait.wait(1)
+                if defend == False and dodge == False:
+                    Player.b_current_health -= 400
+                    print(f"{Player.name} TAKES 400 DAMAGE!")
+                    Wait.wait(1)
+                    #Alternate shotgun attack
+
+        else:
+            if "REVOLVER" in b_attack:
+                print(f"{boss_name} AIMS ITS REVOLVER AT YOU!")
+                Wait.wait(1)
+                if defend == False and dodge == False:
+                    Player.b_current_health -= 100
+                    print(f"{Player.name} TAKES 100 DAMAGE!")
+                    #Revolver attack
+
+            elif "SHOTGUN" in b_attack:
+                print(f"{boss_name} CHARGES TOWARDS YOU WITH ITS SHOTGUN!")
+                Wait.wait(1)
+                if defend == False and dodge == False:
+                    Player.b_current_health -= 200
+                    print(f"{Player.name} TAKES 200 DAMAGE!")
+                    #Shotgun attack
+                elif defend == True:
+                    Player.b_current_health -= 50
+                    print(f"{Player.name} TAKES 50 DAMAGE!")
+                elif dodge == True:
+                    pass
+                    #put dodge code here once I come back.
+
+            elif "CHAINGUN" in b_attack:
+                print(f"{boss_name} POINTS ITS CHAINGUN TOWARDS YOU!")
+                Wait.wait(1)
+                if defend == False and dodge == False:
+                    Player.b_current_health -= 1000
+                    print(f"{Player.name} TAKES 1000 DAMAGE!")
+                    #Chaingun attack
+                elif defend == True:
+                    print(f"{Player.name} BLOCKS ALL INCOMING DAMAGE!")
+                    #If the player blocks, the chaingun does zero damage.
+                elif dodge == True:
+                    print(f"{Player.name} DODGED ALL INCOMING PROJECTILES!")
+                    #If the player dodges, the chaingun does zero damage.
