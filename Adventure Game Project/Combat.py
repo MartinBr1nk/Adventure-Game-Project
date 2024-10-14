@@ -35,24 +35,22 @@ def death_screen():
     exit()
     #Death screen
 
-def attack_quicktime(timeout, punish):
-    t = Timer(timeout, print, ["You got hit."])
+def attack_quicktime(timeout):
+    global crit
+    t = Timer(timeout, #fix this!!!)
     t.start()
     start = time.time()
-    prompt = f"YOU HAVE {timeout} SECONDS TO DODGE. PRESS ENTER. \n"
+    prompt = f"PRESS ENTER AFTER {timeout} SECONDS. \n"
     answer = input(prompt)
     t.cancel()
     end = time.time()
     reaction_time = end - start
-    if reaction_time > timeout:
-        print(f"DODGE FAILED, {punish} DAMAGE TAKEN.")
-        Wait.wait(1)
-        Player.current_health -= punish
-        Player.DeathCheck()
-        print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
+    boundry_1 = timeout - 0.5
+    boundry_2 = timeout + 0.5
+    if reaction_time > boundry_1 and reaction_time < boundry_2:
+        crit = True
     else:
-        print("DODGED.")
-        Wait.wait(1)
+        crit = False
 
 def standard_combat(target_name, target_health, target_damage,
                     enemy_range, enemy_healing_on_defeat):
@@ -197,9 +195,15 @@ def standard_combat(target_name, target_health, target_damage,
             #debug message
 
 def hijacked_boss_fight(boss_name, boss_health, boss_defence):
-    boss_attacks = ["It prepares to use its REVOLVER!", "It prepares to use "
-    "its SHOTGUN!", "It prepares to use its CHAINGUN!", "It prepares to use "
-    "its ALT REVOLVER", "It prepares to use its ALT SHOTGUN"]
+    defend = False
+    dodge = False
+
+    base_damage = 200
+    boss_attacks = [f"{boss_name} prepares to use its REVOLVER!",
+                    f"{boss_name} prepares to use its SHOTGUN!", 
+                    f"{boss_name} prepares to use its CHAINGUN!",
+                    f"{boss_name} prepares to use its ALT REVOLVER",
+                    f"{boss_name} prepares to use its ALT SHOTGUN"]
     #Enemy bowing animation
     combat_loop = True
     print_slow("PREPARE YOURSELF.")
@@ -211,3 +215,39 @@ def hijacked_boss_fight(boss_name, boss_health, boss_defence):
     while combat_loop:
         b_attack = boss_attacks[random.randint(0, 4)]
         print(b_attack)
+        Wait.wait(1)
+        print(r"""Actions:
+
+ATTACK - Deal 200 base damage, 2x damage if you hit a critical hit.
+DEFEND - Negate 75% of the damage from the incoming attack.
+DODGE - Small chance of dodging the incoming attack, some attacks are easier to dodge than others.""")
+        choice_loop = True
+        while choice_loop:
+            p_action = input("WHAT ACTION DO YOU PICK?: ").upper()
+            if p_action == "ATTACK" or p_action == "DEFEND" or \
+            p_action == "DODGE":
+                choice_loop = False
+            else:
+                print("INVALID OPTION.")
+                Wait.wait(1)
+        defend = False
+        dodge = False
+        if p_action == "ATTACK":
+            print("YOU ATTACK!")
+            attack_quicktime(random.randint(3, 6))
+            if crit == True:
+                print("CRITICAL HIT!")
+                boss_health -= base_damage * 2
+            else:
+                print("STANDARD HIT!")
+                boss_health -= base_damage
+            Wait.wait(1)
+        elif p_action == "DEFEND":
+            print("YOU PREPARE YOURSELF FOR THE INCOMING ATTACK!")
+            defend = True
+
+        elif p_action == "DODGE":
+            print("YOU PREPARE TO DODGE!")
+            dodge = True
+
+        print(f"{boss_name} READIES ITS ATTACK...")

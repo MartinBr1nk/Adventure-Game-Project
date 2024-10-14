@@ -1,0 +1,15 @@
+UPPERCASE text passes automatically and is spoken by machines.
+
+lowercase text passes after pressing enter.
+
+Combat is turn based, you take a turn and then the enemy takes their turn.
+During boss fights it will be indicated for what attack the enemy is going to use, allowing you to prepare yourself for the next attack.
+
+The ONLY WAY to restore your fuel (Health) is by fighting enemies and winning.
+
+Stronger enemies with more mass will restore more fuel, while weaker enemies with less mass will restore less hp.
+
+There are no incorrect paths, they will all lead further down through hell.
+
+
+Press any key when you are ready to return to the menu.

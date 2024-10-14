@@ -124,29 +124,9 @@ def menu():
         elif "3" in menu_choice or "tutorial" in menu_choice or \
             "how" in menu_choice:
             clear_screen()
-
-            print("UPPERCASE text passes automatically, "
-                  "it is spoken by machines")
-            Wait.wait(1)
-            print("lowercase text must have you enter any key to "
-                  "continue. Try this now")
-            input()
-            print("Combat is turn based, firstly you take a turn and then "
-                  "the enemy takes their turn, as long as they are not dead.")
-            input()
-            print("The way you restore your fuel (Health) is by "
-                  "sucessfully killing enemies.")
-            input()
-            print("THIS IS THE ONLY WAY TO RESTORE FUEL.")
-            Wait.wait(1)
-            print("Stronger enemies restore more fuel, while weaker "
-                 "enemies will restore less fuel")
-            input()
-            print("Every path in the game will eventually lead to an exit. "
-                  "Every way forward will lead to progress.")
-            input()
-            print("Press any key when you are ready to return to the "
-                  "menu")
+            f = open("Tutorial.txt", "r")
+            print(f.read())
+            f.close()
             input()
             clear_screen()
             #Prints tutorial.
@@ -244,11 +224,13 @@ def goosed():
 os.system('mode con: cols=170 lines=50')
 #Resizes the window to fit ASCII art
 
-
-
 goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
 
+
+Combat.hijacked_boss_fight(Enemies.Hijacked_1.Name, 
+                           Enemies.Hijacked_1.Health,
+                           Enemies.Hijacked_1.Defence)
 
 game_loop = True
 if endless_mode == False:
