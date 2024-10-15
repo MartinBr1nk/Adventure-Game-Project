@@ -8,6 +8,7 @@ class Enemy:
         Self.Damage = Damage
         Self.Range = Range
         Self.Healing = Healing
+        Self.Class = Class
         Self.Terminal = Terminal
 
 #Bosses

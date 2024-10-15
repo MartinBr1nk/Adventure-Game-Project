@@ -11,6 +11,8 @@ import ASCII
 import Combat
 from threading import Timer
 import Score
+from Terminal import terminal
+import Goose
 
 #----------Variables----------
 random_value = random.randint(0, 500)
@@ -34,11 +36,11 @@ village_explored = False
 
 
 #----------Functions----------
+
 def clear_screen():
     for clear_x in range(50):
         print("\n")
         #"Clears" the screen by pushing everything else away
-
 
 def print_slow(str):
     for letter in str:
@@ -69,7 +71,7 @@ def death_screen():
     exit()
     #Death screen
 
-
+#change to menu module when done
 def menu():
     global skip
     global endless_mode
@@ -83,7 +85,9 @@ def menu():
 2 - ENDLESS FIGHTING MODE
 3 - HOW TO PLAY
 4 - SETTINGS
-5 - EXIT GAME
+5 - VIEW SCOREBOARD
+6 - VIEW TERMINAL
+7 - EXIT GAME
 
         """)
         menu_choice = str(input("WHERE DO YOU WANT TO NAVIGATE "
@@ -136,6 +140,7 @@ def menu():
         elif "4" in menu_choice or "settings" in menu_choice:
             print("""Settings:
 1 - Skip waiting
+2 - Wipe Scoreboard
 """)
             setting_choice = input("Pick a setting to modify: ").lower()
             if "1" in setting_choice or "skip" in setting_choice:
@@ -144,6 +149,18 @@ def menu():
                 elif Wait.time_skip == True:
                     Wait.time_skip = False
                 Wait.wait(1)
+            elif "2" in setting_choice or "wipe" in setting_choice:
+                setting_choice = input("Are you sure you want to wip the "
+                                       "scoreboard? This CANNOT BE "
+                                       "REVERSED. Type YES in UPPERCASE "
+                                       "LETTERS if you are CERTAIN you want "
+                                       "to wipe the scoreboard.: ")
+                if "YES" in setting_choice:
+                    Score.scoreboard_wipe()
+                else:
+                    print("WIPE ABORTED.")
+
+                print("SCOREBOARD WIPED!")
             else:
                 print("NO SETTING SELECTED.")
                 Wait.wait(1)
@@ -152,7 +169,21 @@ def menu():
                 #Opens the settings menu.
             clear_screen()
 
-        elif "5" in menu_choice or "exit" in menu_choice:
+        elif "5" in menu_choice or "scoreboard" in menu_choice:
+            clear_screen()
+            f = open("text/Scoreboard.txt", "r")
+            print(f.read())
+            f.close()
+            print("\n \n")
+            input("Press enter when you are ready to return to the menu.")
+            clear_screen()
+
+        elif "6" in menu_choice or "terminal" in menu_choice:
+            clear_screen()
+            terminal()
+            clear_screen()
+
+        elif "7" in menu_choice or "exit" in menu_choice:
             print("CLOSING GAME...")
             exit()
             #Closes the game
@@ -195,45 +226,13 @@ def overworld_quicktime(timeout, punish):
         Wait.wait(1)
         #if the player reacts in time they dont take any damage.
 
-def goose_check():
-    goose_message = ["NO GOOSE DETECTED!!!!!! >:(", "BRING BACK MY GOOSE",
-                     "RETURN THEM!", "RETURN THE GOOSE!!", "my goose :(",
-                     "What about the goose?", "CURSE YOU FOR TAKING MY GOOSE",
-                     "You monster. You took the goose.", "GOOSE GOOSE GOOSE",
-                     "In this world, its honk or be honked.", "HONK (angry)",
-                     "HONK HONK HONK (but angrier)",
-                     "And thy punishment... IS HONK",
-                     "The gaggle will not take kindly to your actions.",
-                     "HONKITY HONK HONK (with evil intent)",
-                     "YOU HONKED.", "HONK HONK HONK HONK HONK",
-                     "RELEASE THE GEESE", "BRING THEM BACK!!!"]
-    path = './Goose.png'
-    gcheck = os.path.isfile(path)
-    if gcheck == False:
-        while True:
-            print(goose_message[random.randint(0, 18)])
-            print(ASCII.the_goose)
-            Wait.wait(1)
-            print("\n")
-    elif gcheck == True:
-        print("GOOSE DETECTED!!!! :D")
-        Wait.wait(0.2)
-        clear_screen()
-    #If the goose is NOT present then the program WILL NOT WORK.
-    #DO NOT REMOVE THIS CODE. THE PROGRAM WILL NOT WORK WITHOUT IT.
-
-def goosed():
-    for x in range(20):
-        os.startfile("Goose.png")
-        print("YOU'VE BEEN GOOSED")
-    os.startfile("text/goosed.txt")
 
 #----------GAME----------
 
 os.system('mode con: cols=180 lines=60')
 #Resizes the window to fit ASCII art
 
-goose_check() #DO NOT REMOVE THE GOOSE CHECK.
+Goose.goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
 
 game_loop = True

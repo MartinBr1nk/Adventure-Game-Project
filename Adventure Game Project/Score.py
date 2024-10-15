@@ -30,3 +30,14 @@ def score_calculate_and_save() -> str:
     f = open("text/Scoreboard.txt", "a")
     f.write(f"\n{Player.name} - {total_score}")
     f.close()
+
+def scoreboard_wipe() -> str:
+    """
+    Wipes the scoreboard.
+    """
+    os.remove("text/Scoreboard.txt")
+    f = open("text/Scoreboard.txt", "x")
+    f.close()
+    f = open("text/Scoreboard.txt", "w")
+    f.write("SCOREBOARD: ")
+    f.close()
