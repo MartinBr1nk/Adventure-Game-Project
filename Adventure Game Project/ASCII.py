@@ -1,4 +1,8 @@
-﻿title = r"""
+﻿def clear_screen():
+    for clear_x in range(50):
+        print("\n")
+        #"Clears" the screen by pushing everything else away
+title = r"""
  ███████████ █████   █████ ██████████    █████   █████ ██████████ █████       █████                              
 ░█░░░███░░░█░░███   ░░███ ░░███░░░░░█   ░░███   ░░███ ░░███░░░░░█░░███       ░░███                               
 ░   ░███  ░  ░███    ░███  ░███  █ ░     ░███    ░███  ░███  █ ░  ░███        ░███                               
@@ -415,7 +419,8 @@ r"""
         print(frames[count])
         count += 1
         time.sleep(0.5)
-        print("\n")
+        if count < 6:
+            clear_screen()
     
 Mykolasaurus = r"""
                      ████                                                                                                            ███████████      

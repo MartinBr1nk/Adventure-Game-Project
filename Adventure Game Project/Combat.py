@@ -100,7 +100,8 @@ def standard_combat(target_name, target_health, target_damage,
                     weapon_loop = False
 
             elif "n" in alt_fire:
-                if "1" in weapon_choice and enemy_range <= Weapons.Revolver.Range:
+                if "1" in weapon_choice and \
+                enemy_range <= Weapons.Revolver.Range:
                     target_health = target_health - \
                         int(Weapons.Revolver.Damage)
                     #If the weapon selected is equal to 1 AND the range is
@@ -108,7 +109,8 @@ def standard_combat(target_name, target_health, target_damage,
                     #you attack
                     weapon_loop = False
 
-                elif "2" in weapon_choice and enemy_range <= Weapons.Shotgun.Range:
+                elif "2" in weapon_choice and \
+                   enemy_range <= Weapons.Shotgun.Range:
                     target_health = target_health - \
                         int(Weapons.Shotgun.Damage)
                     #If the weapon selected is equal to 2 AND the range
@@ -116,8 +118,11 @@ def standard_combat(target_name, target_health, target_damage,
                     #you attack
                     weapon_loop = False
 
-                elif "3" in weapon_choice and enemy_range <= Weapons.Chaingun.Range and Weapons.chaingun_used == False:
-                    target_health = target_health - int(Weapons.Chaingun.Damage)
+                elif "3" in weapon_choice and \
+                    enemy_range <= Weapons.Chaingun.Range \
+                   and Weapons.chaingun_used == False:
+                    target_health = target_health - \
+                            int(Weapons.Chaingun.Damage)
                     #If the weapon selected is equal to 3 AND the range is
                     #greater than or equal to the enemies range value AND the
                     #chaingun is functional, you attack
@@ -135,8 +140,8 @@ def standard_combat(target_name, target_health, target_damage,
                     #been used previously
 
                 else:
-                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE RANGE."
-                         " PICK THE NUMBER RELATED TO THE WEAPON.")
+                    print("PLEASE CHOOSE A VALID WEAPON WITH A SUITABLE "
+                          "RANGE. PICK THE NUMBER RELATED TO THE WEAPON.")
                     print("\n")
                     #In case the user enters a weapon that doesnt exist
 
@@ -167,7 +172,8 @@ def standard_combat(target_name, target_health, target_damage,
                   f"{target_damage} FUEL.")
             Wait.wait(1)
             Player.current_health = Player.current_health - target_damage
-            print(f"{Player.name} HAS {Player.current_health} FUEL REMAINING.")
+            print(f"{Player.name} HAS {Player.current_health} FUEL "
+                  "REMAINING.")
             Wait.wait(1)
             if Player.current_health <= 0:
                 combat_loop = False
@@ -182,7 +188,8 @@ def standard_combat(target_name, target_health, target_damage,
             print(f"{target_name} HAS DIED")
             print("\n")
             Wait.wait(2)
-            Player.current_health = Player.current_health + enemy_healing_on_defeat
+            Player.current_health = Player.current_health + \
+                                    enemy_healing_on_defeat
             Player.HealthCheck()
             print(f"{Player.name} HAS {Player.current_health} "
                   "FUEL REMAINING.")

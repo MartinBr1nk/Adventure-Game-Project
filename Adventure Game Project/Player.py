@@ -32,8 +32,11 @@ def HealthCheck():
         #if the player has above the max hp, it sets itself to the max hp
 
 def DeathCheck():
-    if current_health >= 0:
+    global current_health
+    if current_health <= 0:
         death_screen()
+    else:
+        pass
 
 def PlayerBossHPCheck():
     global b_current_health
