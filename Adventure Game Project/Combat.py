@@ -6,6 +6,7 @@ import random
 import Weapons
 from threading import Timer
 import time
+import Score
 
 def print_slow(str):
     for letter in str:
@@ -197,6 +198,7 @@ def standard_combat(target_name, target_health, target_damage,
             combat_loop = False
             print(f"{Player.name} WINS.")
             print("\n")
+            Score.score_modify(200)
             Wait.wait(1)
             #Victory!!! combat ends and the player heals,
             #determined by the enemies healing factor.
@@ -273,6 +275,7 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
         if boss_health <= 0:
             win_condition = True
             print(f"{boss_name} WAS DEFEATED!")
+            Score.score_modify(5000)
             Wait.wait(1)
             print_very_fast(ASCII.win_screen)
             Wait.wait(3)

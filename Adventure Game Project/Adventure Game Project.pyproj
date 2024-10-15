@@ -28,13 +28,18 @@
     <Compile Include="Introduction.py" />
     <Compile Include="module1.py" />
     <Compile Include="Player.py" />
+    <Compile Include="Score.py" />
     <Compile Include="Wait.py" />
     <Compile Include="Weapons.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Goose.png" />
-    <Content Include="goosed.txt" />
-    <Content Include="Tutorial.txt" />
+    <Content Include="text\goosed.txt" />
+    <Content Include="text\Scoreboard.txt" />
+    <Content Include="text\Tutorial.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="text\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

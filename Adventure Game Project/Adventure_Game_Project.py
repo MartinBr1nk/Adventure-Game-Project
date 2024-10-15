@@ -10,6 +10,7 @@ import Wait
 import ASCII
 import Combat
 from threading import Timer
+import Score
 
 #----------Variables----------
 random_value = random.randint(0, 500)
@@ -125,7 +126,7 @@ def menu():
         elif "3" in menu_choice or "tutorial" in menu_choice or \
             "how" in menu_choice:
             clear_screen()
-            f = open("Tutorial.txt", "r")
+            f = open("text/Tutorial.txt", "r")
             print(f.read())
             f.close()
             input()
@@ -225,7 +226,7 @@ def goosed():
     for x in range(20):
         os.startfile("Goose.png")
         print("YOU'VE BEEN GOOSED")
-    os.startfile("goosed.txt")
+    os.startfile("text/goosed.txt")
 
 #----------GAME----------
 
@@ -234,7 +235,7 @@ os.system('mode con: cols=180 lines=60')
 
 goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
-ASCII.hijacked_intro_animation()
+
 game_loop = True
 if endless_mode == False:
     while game_loop == True:
@@ -1396,7 +1397,12 @@ you stand a chance against tough enemies.""")
             print("Circle 2 - Lust, is not finished.")
             Wait.wait(1)
             print("DEMO FINISHED!")
-
+            Score.score_calculate_and_save()
+            print(f"YOU GOT {Score.total_score} POINTS!")
+            Wait.wait(2)
+            print("YOUR SCORE HAS BEEN SAVED TO 'Scoreboard.txt' IN THE 'text' FOLDER!")
+            input("Press enter when you are ready to exit the game.")
+            exit()
     #Placeholders for future levels that would be implimented in the full game
         elif circle == 3:
             print("Circle 3 - Gluttony, is not finished")
