@@ -27,7 +27,6 @@
     <Compile Include="Enemies.py" />
     <Compile Include="Goose.py" />
     <Compile Include="Introduction.py" />
-    <Compile Include="Menu.py" />
     <Compile Include="module1.py" />
     <Compile Include="Player.py" />
     <Compile Include="Score.py" />

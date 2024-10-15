@@ -14,6 +14,10 @@ import Score
 from Terminal import terminal
 import Goose
 
+
+os.system('mode con: cols=180 lines=60')
+#Resizes the window to fit ASCII art
+
 #----------Variables----------
 random_value = random.randint(0, 500)
 #Random Value generated at the start of every run that can
@@ -71,7 +75,6 @@ def death_screen():
     exit()
     #Death screen
 
-#change to menu module when done
 def menu():
     global skip
     global endless_mode
@@ -200,6 +203,7 @@ def menu():
             Wait.wait(2)
             clear_screen()
 
+
 def overworld_quicktime(timeout, punish):
     t = Timer(timeout, print, ["You got hit."])
     t.start()
@@ -228,9 +232,6 @@ def overworld_quicktime(timeout, punish):
 
 
 #----------GAME----------
-
-os.system('mode con: cols=180 lines=60')
-#Resizes the window to fit ASCII art
 
 Goose.goose_check() #DO NOT REMOVE THE GOOSE CHECK.
 menu()
