@@ -60,6 +60,9 @@ def attack_quicktime(timeout):
 
 def standard_combat(target_name, target_health, target_damage,
                     enemy_range, enemy_healing_on_defeat):
+    """
+    Basic combat system
+    """
     print_slow("THREAT DETECTED")
     print(f"{target_name} APPROACHES")
     print(f"{Player.name} ATTACKS FIRST")
@@ -210,6 +213,9 @@ def standard_combat(target_name, target_health, target_damage,
 
 win_condition = False
 def hijacked_boss_fight(boss_name, boss_health):
+    """
+    Boss fight system
+    """
     global boss_combat_loop
     global win_condition
     global loose_condition

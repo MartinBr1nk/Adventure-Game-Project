@@ -9,6 +9,9 @@ def clear_screen():
 
 
 def goose_check():
+    """
+    Checks for the presence of the very crucial Goose.png file
+    """
     goose_message = ["NO GOOSE DETECTED!!!!!! >:(", "BRING BACK MY GOOSE",
                      "RETURN THEM!", "RETURN THE GOOSE!!", "my goose :(",
                      "What about the goose?", "CURSE YOU FOR TAKING MY GOOSE",
@@ -21,7 +24,7 @@ def goose_check():
                      "YOU HONKED.", "HONK HONK HONK HONK HONK",
                      "RELEASE THE GEESE", "BRING THEM BACK!!!",
                      "You wouldn't steal a goose."]
-    path = './Goose.png'
+    path = '.\Goose.png'
     gcheck = os.path.isfile(path)
     if gcheck == False:
         while True:
@@ -37,10 +40,13 @@ def goose_check():
     #DO NOT REMOVE THIS CODE. THE PROGRAM WILL NOT WORK WITHOUT IT.
 
 def goosed():
+    """
+    YOU'VE BEEN GOOSED
+    """
     for x in range(20):
         os.startfile("Goose.png")
         print("YOU'VE BEEN GOOSED")
-    os.startfile("text/goosed.txt")
+    os.startfile("text\goosed.txt")
 
 wikipedia = r"""A goose (pl.: geese) is a bird of any of several waterfowl species in the family Anatidae. This group comprises the genera Anser (grey geese and white geese) and Branta (black geese). Some members of the Tadorninae subfamily (e.g., Egyptian goose, Orinoco goose) are commonly called geese, but are not considered "true geese" taxonomically. More distantly related members of the family Anatidae are swans, most of which are larger than true geese, and ducks, which are smaller.
 

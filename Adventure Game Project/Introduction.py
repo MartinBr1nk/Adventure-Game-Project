@@ -3,7 +3,7 @@ import random
 import ASCII
 import Wait
 import Player
-import os
+from Goose import goosed
 
 def cool_typing(str):
     for letter in str:
@@ -24,6 +24,9 @@ def death_screen():
 
 
 def intro_sequence():
+    """
+    Introduction sequence
+    """
     cool_typing("BOOT UP SEQUENCE READY")
     cool_typing("CHECKING FIRMWARE VERISON")
     print("LATEST VERSION (15.09.2163)")
@@ -76,7 +79,7 @@ def intro_sequence():
         #stupid easter egg
 
     elif "goose" in Player.name.lower():
-        os.startfile("Goose.png")
+        goosed()
 
     elif "farming" in Player.name.lower() or "martin" in Player.name.lower():
         cool_typing("FARMING MODE INITIATED.")

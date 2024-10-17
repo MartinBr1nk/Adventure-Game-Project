@@ -15,6 +15,9 @@ def print_goose(str):
     #prints text letter-by-letter quickly
 
 def terminal():
+    """
+    Enemy search system
+    """
     while True:
         terminal_choice = input(f"""List of enemies:
         {Enemies.Filth.Name}

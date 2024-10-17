@@ -26,12 +26,18 @@ def death_screen():
     #Death screen
 
 def HealthCheck():
+    """
+    If the player has above the max hp, hp is set to the max hp
+    """
     global current_health
     if current_health > max_health:
         current_health = max_health
         #if the player has above the max hp, it sets itself to the max hp
 
 def DeathCheck():
+    """
+    Checks if the player is dead, and plays the death screen if so.
+    """
     global current_health
     if current_health <= 0:
         death_screen()

@@ -42,11 +42,17 @@ village_explored = False
 #----------Functions----------
 
 def clear_screen():
+    """
+    'Clears' the screen by printing 75 new lines
+    """
     for clear_x in range(75):
         print("\n")
         #"Clears" the screen by pushing everything else away
 
 def print_slow(str):
+    """
+    Prints text letter-by-letter slowly
+    """
     for letter in str:
         print(letter, end = ""),
         Wait.wait(random.uniform(0.1, 0.05))
@@ -55,6 +61,9 @@ def print_slow(str):
 
 
 def print_fast(str):
+    """
+    Prints text letter-by-letter quickly
+    """
     for letter in str:
         print(letter, end = ""),
         Wait.wait(random.uniform(0.0005, 0.0001))
@@ -63,6 +72,9 @@ def print_fast(str):
 
 
 def print_very_fast(str):
+    """
+    Prints text letter-by-letter very quickly
+    """
     for letter in str:
         print(letter, end = ""),
         Wait.wait(random.uniform(0.000005, 0.000001))
@@ -71,11 +83,17 @@ def print_very_fast(str):
 
 
 def death_screen():
+    """
+    prints the death screen and exits the game
+    """
     print_fast(ASCII.death_screen)
     exit()
     #Death screen
 
 def menu():
+    """
+    Loads the menu
+    """
     global skip
     global endless_mode
     global circle
@@ -211,6 +229,9 @@ r"""
 
 
 def overworld_quicktime(timeout, punish):
+    """
+    Quicktime dodging system
+    """
     t = Timer(timeout, print, ["You got hit."])
     t.start()
     #starts the timer.

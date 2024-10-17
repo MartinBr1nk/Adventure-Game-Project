@@ -79,6 +79,9 @@ win_screen = r"""
 #Win screen (Dark souls reference)
 
 def hijacked_intro_animation():
+    """
+    Hijacked intro animation
+    """
     import time
     count = 0
     frames = [
