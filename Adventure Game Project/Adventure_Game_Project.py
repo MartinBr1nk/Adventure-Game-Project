@@ -119,7 +119,7 @@ r"""
 0 - THE MOUTH OF HELL
 1 - LIMBO
 """)
-            menu_choice = str(input(":"))
+            menu_choice = str(input(":")).lower()
             if "0" in menu_choice or "mouth" in menu_choice:
                 menu_loop = False
                 through_menu = False
@@ -232,7 +232,7 @@ def overworld_quicktime(timeout, punish):
     """
     Quicktime dodging system
     """
-    t = Timer(timeout, print, ["You got hit."])
+    t = Timer(timeout, print, ["YOU'VE BEEN HIT. PRESS ENTER TO CONTINUE."])
     t.start()
     #starts the timer.
     start = time.time()
@@ -261,6 +261,7 @@ def overworld_quicktime(timeout, punish):
 #----------GAME----------
 
 Goose.goose_check() #DO NOT REMOVE THE GOOSE CHECK.
+
 menu()
 
 game_loop = True
@@ -394,7 +395,7 @@ if endless_mode == False:
                     input("If you want to get through door B you will have "
                           "to spend 25 - 100 fuel to smash through it.")
                     choice_loop = True
-                    if choice_loop == True:
+                    while choice_loop == True:
                         #Keeps the player in a loop until they make a valid
                         #choice
                         choice = input("Smash through the door?").lower()
@@ -525,7 +526,7 @@ if endless_mode == False:
                     while choice_loop == True:
                         #Keeps the player in a loop until they make a valid
                         #choice
-                        choice = input("Do you go left or right?: ")
+                        choice = input("Do you go left or right?: ").lower()
                         if "l" in choice:
                             choice_loop = False
                             input("You enter a long corridoor, with a large "
@@ -1111,7 +1112,7 @@ you stand a chance against tough enemies.""")
             choice_loop = True
             while choice_loop == True:
                 #Keeps the player in a loop until they make a valid choice
-                choice = input("What path do you take?: ")
+                choice = input("What path do you take?: ").lower()
                 if "left" in choice:
                     choice_loop = False
                     print("\n")
@@ -1134,7 +1135,7 @@ you stand a chance against tough enemies.""")
                         #Keeps the player in a loop until they make a valid
                         #choice
                         choice = input("Do you walk through the corridor or "
-                        "shoot down the corridor? ")
+                        "shoot down the corridor? ").lower()
                         if "walk" in choice:
                             choice_loop = False
                             input("You begin walking through the corridor.")
@@ -1164,7 +1165,7 @@ you stand a chance against tough enemies.""")
                                 #valid choice
                                 choice = input("Do you shoot at a wall "
                                                "ahead of you or directly at "
-                                               "yourself? ")
+                                               "yourself? ").lower()
                                 if "wall" in choice:
                                     input("The bullet mirrored itself, "
                                           "appearing behind you.")
