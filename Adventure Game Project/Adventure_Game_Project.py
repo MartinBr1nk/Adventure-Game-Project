@@ -1468,7 +1468,10 @@ you stand a chance against tough enemies.""")
             print(f"YOU GOT {Score.total_score} POINTS!")
             #Shows how much scoret the player got
             Wait.wait(2)
-            print("YOUR SCORE HAS BEEN SAVED TO 'Scoreboard.txt' IN THE 'text' FOLDER!")
+            print("YOUR SCORE HAS BEEN SAVED TO 'Scoreboard.txt' IN THE "
+                  "'text' FOLDER!")
+            print("Input '9' in the menu to skip the introduction "
+                  "sequence next time you play!")
             input("Press enter when you are ready to exit the game.")
             exit()
 

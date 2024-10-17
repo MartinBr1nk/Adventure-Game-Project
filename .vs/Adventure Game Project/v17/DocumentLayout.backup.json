@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|solutionrelative:Adventure Game Project\\Adventure_Game_Project.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Player.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|solutionrelative:Adventure Game Project\\Player.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Introduction.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|solutionrelative:Adventure Game Project\\Introduction.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Combat.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|solutionrelative:Adventure Game Project\\Combat.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Player.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|solutionrelative:Adventure Game Project\\Player.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC3C0020-C55E-4547-AE16-8348FF38B1B6}|Adventure Game Project\\Adventure Game Project.pyproj|C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Goose.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -72,7 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Player.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Player.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\Player.py",
@@ -99,7 +99,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Combat.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Combat.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\Combat.py",
@@ -113,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Enemies.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Enemies.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\Enemies.py",
@@ -127,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ASCII.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\ASCII.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\ASCII.py",
@@ -141,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Introduction.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Introduction.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\Introduction.py",
@@ -155,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Wait.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Wait.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\Wait.py",
@@ -169,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Score.py",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Adventure-Game-Project\\Adventure Game Project\\Score.py",
               "RelativeDocumentMoniker": "Adventure Game Project\\Score.py",
