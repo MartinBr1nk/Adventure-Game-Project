@@ -243,6 +243,7 @@ DEFEND - Negate 75% of the damage from the incoming attack.
 DODGE - Small chance of dodging the incoming attack, some attacks are easier to dodge than others.""")
 #I cannot make raw text follow pep-8 without damaging how it looks in-game
         while True:
+            #Keeps the player in a loop until they make a valid choice
             p_action = input("WHAT ACTION DO YOU PICK?: ").upper()
             if p_action == "ATTACK" or p_action == "DEFEND" or \
             p_action == "DODGE":
@@ -258,6 +259,7 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
             if crit == True:
                 print("CRITICAL HIT!")
                 boss_health -= base_damage * 2
+                #If the player hits a crit they deal 2x damage.
             else:
                 print("STANDARD HIT!")
                 boss_health -= base_damage
@@ -265,10 +267,12 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
         elif p_action == "DEFEND":
             print("YOU PREPARE YOURSELF FOR THE INCOMING ATTACK!")
             defend = True
+            #Defend option
 
         elif p_action == "DODGE":
             print("YOU PREPARE TO DODGE!")
             dodge = True
+            #dodge option
         if boss_combat_loop == False:
             break
         
@@ -280,12 +284,19 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
             print_very_fast(ASCII.win_screen)
             Wait.wait(3)
             break
+        #if the boss has 0 or lower hp the player wins
         else:
             pass
 
         print(f"{boss_name} READIES ITS ATTACK...")
 
         #Enemy turn
+        #All the enemies attacks are very similar:
+        #-They have different behaviour for each option
+        #-Defending reduces damage for most attacks
+        #-Dodging has a change to not take any damage
+        #-If the player attacked the boss gets to attack normally.
+ 
         if "ALT" in b_attack:
             #If the "ALT" is in the attack flavour text then the
             #game will do one of the alt attacks
@@ -415,3 +426,5 @@ DODGE - Small chance of dodging the incoming attack, some attacks are easier to 
 
         print(f"{boss_name} HAS {boss_health} HEALTH REMAINING.")
         print("\n")
+        #prints how much health the player and boss has, and then loops
+        #for another turn

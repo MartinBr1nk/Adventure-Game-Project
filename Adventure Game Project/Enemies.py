@@ -3,6 +3,9 @@
 class Enemy:
     def __init__(Self, Name, Health, Damage, Range, Healing, Class, Terminal):
         #All the values each enemy can have
+        """
+        Class for basic enemies
+        """
         Self.Name = Name
         Self.Health = Health
         Self.Damage = Damage
@@ -14,6 +17,9 @@ class Enemy:
 #Bosses
 class Boss:
     def __init__(Self, Name, Health, Class, Terminal):
+        """
+        Class for bosses
+        """
         Self.Name = Name
         Self.Health = Health
         Self.Class = Class

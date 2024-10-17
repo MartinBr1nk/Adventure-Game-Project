@@ -2,6 +2,9 @@
 chaingun_used = False
 class Weapon:
     def __init__(Self, Name, Damage, Range, Info, Terminal):
+        """
+        Class for Weapons
+        """
         Self.Name = Name
         Self.Damage = Damage
         Self.Range = Range

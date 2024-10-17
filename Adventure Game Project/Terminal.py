@@ -1,10 +1,18 @@
-import Wait
+﻿import Wait
 import Enemies
-
+import random
+from Goose import wikipedia
 def clear_screen():
     for clear_x in range(50):
         print("\n")
         #"Clears" the screen by pushing everything else away
+
+def print_goose(str):
+    for letter in str:
+        print(letter, end = ""),
+        Wait.wait(random.uniform(0.0005, 0.0001))
+    print("\n")
+    #prints text letter-by-letter quickly
 
 def terminal():
     while True:
@@ -181,8 +189,10 @@ EFFECTIVE RANGE - {Enemies.Goose.Range}
 AMOUNT OF FUEL - {Enemies.Goose.Healing}
 
 TERMINAL ENTRY:
-'{Enemies.Goose.Terminal}'
 """)
+            print(r"LOADING 'https://en.wikipedia.org/wiki/Goose'...")
+            Wait.wait(3)
+            print_goose(wikipedia)
             #Shows the user all information to do with the enemy
             input("Press enter when you are ready to leave this entry.")
             clear_screen()

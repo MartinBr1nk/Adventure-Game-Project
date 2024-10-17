@@ -3,6 +3,18 @@ import Player
 from Weapons import chaingun_used
 total_score = 0
 
+def scoreboard_wipe() -> str:
+    """
+    Wipes the scoreboard.
+    """
+    os.remove("text/Scoreboard.txt")
+    f = open("text/Scoreboard.txt", "x")
+    f.close()
+    f = open("text/Scoreboard.txt", "w")
+    f.write("SCOREBOARD: ")
+    f.close()
+    #Deletes the scoreboard file and creates a new one in the text folder
+
 def score_modify(amount) -> str:
     global total_score
     """
@@ -26,18 +38,10 @@ def score_calculate_and_save() -> str:
         f = open("text/Scoreboard.txt", "w")
         f.write("SCOREBOARD: ")
         f.close()
+        #If Scoreboard.txt doesnt exit, it creates a new one in the text
+        #folder
     
     f = open("text/Scoreboard.txt", "a")
     f.write(f"\n{Player.name} - {total_score}")
     f.close()
-
-def scoreboard_wipe() -> str:
-    """
-    Wipes the scoreboard.
-    """
-    os.remove("text/Scoreboard.txt")
-    f = open("text/Scoreboard.txt", "x")
-    f.close()
-    f = open("text/Scoreboard.txt", "w")
-    f.write("SCOREBOARD: ")
-    f.close()
+    #Writes score onto the Scoreboard.txt file

@@ -42,7 +42,7 @@ village_explored = False
 #----------Functions----------
 
 def clear_screen():
-    for clear_x in range(50):
+    for clear_x in range(75):
         print("\n")
         #"Clears" the screen by pushing everything else away
 
@@ -82,17 +82,16 @@ def menu():
     global through_menu
     menu_loop = True
     while menu_loop == True:
-        print(ASCII.menu_title, r"""
-
+        print(ASCII.menu_title,
+r"""
 1 - START CAMPAIGN
 2 - ENDLESS FIGHTING MODE
 3 - HOW TO PLAY
 4 - SETTINGS
 5 - VIEW SCOREBOARD
 6 - VIEW TERMINAL
-7 - EXIT GAME
+7 - EXIT GAME""")
 
-        """)
         menu_choice = str(input("WHERE DO YOU WANT TO NAVIGATE "
                                 "TO?: ")).lower()
         if "1" in menu_choice or "start" in menu_choice \
@@ -109,14 +108,14 @@ def menu():
                 circle = 0
                 Wait.wait(3)
                 clear_screen()
-                #Starts the game
+                #Starts the game from the first area
             elif "1" in menu_choice or "limbo" in menu_choice:
                 menu_loop = False
                 through_menu = True
                 circle = 1
                 Wait.wait(3)
                 clear_screen()
-                #Starts the game
+                #Starts the game from the second area
             else:
                 print("INVALID OPTION")
                 Wait.wait(1)
@@ -138,7 +137,7 @@ def menu():
             f.close()
             input()
             clear_screen()
-            #Prints tutorial.
+            #Prints tutorial from a text file.
 
         elif "4" in menu_choice or "settings" in menu_choice:
             print("""Settings:
@@ -152,6 +151,7 @@ def menu():
                 elif Wait.time_skip == True:
                     Wait.time_skip = False
                 Wait.wait(1)
+                #Toggles between skipping Wait.wait or not skipping wait.wait
             elif "2" in setting_choice or "wipe" in setting_choice:
                 setting_choice = input("Are you sure you want to wip the "
                                        "scoreboard? This CANNOT BE "
@@ -160,10 +160,13 @@ def menu():
                                        "to wipe the scoreboard.: ")
                 if "YES" in setting_choice:
                     Score.scoreboard_wipe()
+                    #Wipes the scoreboard and creates a new scoreboard file
+                    #withg nothing but the title in it.
+                    print("SCOREBOARD WIPED!")
                 else:
                     print("WIPE ABORTED.")
-
-                print("SCOREBOARD WIPED!")
+                Wait.wait(2)
+                
             else:
                 print("NO SETTING SELECTED.")
                 Wait.wait(1)
@@ -180,11 +183,13 @@ def menu():
             print("\n \n")
             input("Press enter when you are ready to return to the menu.")
             clear_screen()
+            #Outputs the scoreboard from Scoreboard.txt in the text folder.
 
         elif "6" in menu_choice or "terminal" in menu_choice:
             clear_screen()
             terminal()
             clear_screen()
+            #Opens the terminal.
 
         elif "7" in menu_choice or "exit" in menu_choice:
             print("CLOSING GAME...")
@@ -202,6 +207,7 @@ def menu():
             print("ENTER A VALID OPTION.")
             Wait.wait(2)
             clear_screen()
+            #If no valid option is entered, the menu continues to loop.
 
 
 def overworld_quicktime(timeout, punish):
@@ -268,13 +274,16 @@ if endless_mode == False:
             "your left, right and directly in front of you.")
             Wait.wait(1)
 
-            Combat.standard_combat(Enemies.Filth.Name, Enemies.Filth.Health, 
-                Enemies.Filth.Damage,
-                   Enemies.Filth.Range, Enemies.Filth.Healing)
+            Combat.standard_combat(Enemies.Filth.Name,
+                                   Enemies.Filth.Health, 
+                                   Enemies.Filth.Damage,
+                                   Enemies.Filth.Range,
+                                   Enemies.Filth.Healing)
             #Gets the Name, Heath, Damage, Range and player healing for combat
             Wait.wait(1)
             choice_loop = True
             while choice_loop == True:
+                #Keeps the player in a loop until they make a valid choice
                 direction = input("The doors have unlocked, allowing you to "
                                   "progress either left, right "
                                  "or forward. :").lower()
@@ -365,6 +374,8 @@ if endless_mode == False:
                           "to spend 25 - 100 fuel to smash through it.")
                     choice_loop = True
                     if choice_loop == True:
+                        #Keeps the player in a loop until they make a valid
+                        #choice
                         choice = input("Smash through the door?").lower()
 
                         if "y" in choice:
@@ -372,18 +383,22 @@ if endless_mode == False:
                             loss = random.randint(25, 100)
                             Player.current_health = Player.current_health - \
                                 loss
+                            #The player loses 25 - 100 hp if they take this
+                            #route
 
                             if Player.current_health <= 0:
                                 print_slow("FUEL AT CRITICAL LEVELS")
                                 print_slow("POWERING DOWN...")
                                 death_screen()
-
+                                #If the player runs out of fuel, they die.
                             else:
                                 print_slow("ATTEMPT SUCCESSFUL")
                                 print(f"{loss} FUEL LOST IN THE PROCESS. "
-                                      "YOU HAVE {Player.current_health} "
+                                      f"YOU HAVE {Player.current_health} "
                                       "FUEL LEFT")
                                 Wait.wait(1)
+                                #outputs how much fuel the player lost and how
+                                #much they have left
                             input("Behind the door is a large chasm in the "
                                   "ground, there appears to be a path to "
                                   "your left that may be connected to the "
@@ -432,10 +447,10 @@ if endless_mode == False:
 
                             print_slow("LARGE ENEMY AHEAD, PREPARE YOURSELF")
                             Combat.standard_combat(Enemies.Colossus.Name, 
-                                   Enemies.Colossus.Health, 
-                                   Enemies.Colossus.Damage, 
-                                   Enemies.Colossus.Range, 
-                                   Enemies.Colossus.Healing)
+                                                   Enemies.Colossus.Health, 
+                                                   Enemies.Colossus.Damage, 
+                                                   Enemies.Colossus.Range, 
+                                                   Enemies.Colossus.Healing)
 
                             input("Behind the turning is a large chasm in "
                                   "the ground, there appears to be a door "
@@ -487,6 +502,8 @@ if endless_mode == False:
                     input("There is a door to your left and a door to your "
                           "right")
                     while choice_loop == True:
+                        #Keeps the player in a loop until they make a valid
+                        #choice
                         choice = input("Do you go left or right?: ")
                         if "l" in choice:
                             choice_loop = False
@@ -495,10 +512,10 @@ if endless_mode == False:
                             input("You can see a potential exit ahead")
                             input("Suddenly...")
                             Combat.standard_combat(Enemies.Colossus.Name,
-                                Enemies.Colossus.Health, 
-                                Enemies.Colossus.Damage,
-                                Enemies.Colossus.Range,
-                                Enemies.Colossus.Healing)
+                                                   Enemies.Colossus.Health, 
+                                                   Enemies.Colossus.Damage,
+                                                   Enemies.Colossus.Range,
+                                                   Enemies.Colossus.Healing)
                             input("You continue ahead through the corridoor "
                                   "and reach a chasm in the ground")
                             print_slow("PATH AHEAD DETECTED")
@@ -544,6 +561,7 @@ station has been twisted into an industrial hellscape, we just woke up and the s
 rooms have been twisted into a confusing labyrinth of industrial equipment and hellish creations that no sane person would make. 
 We're all so scared and nobody is coming for us. Have we just been abandoned?""")
                                     #raw strings cant follow Pep-8 guidelines
+                                    #without ruining how they look in-game.
                                     Wait.wait(1)
                                     input("Suddenly...")
                                     print_slow("Something wicked this way "
@@ -587,12 +605,16 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                           "enemies.")
                     choice_loop = True
                     while choice_loop == True:
+                        #Keeps the player in a loop until they make a valid
+                        #choice
                         choice = input("Do you use your chaingun?: ").lower()
                         if "y" in choice:
                             choice_loop = False
                             Weapons.chaingun_used = True
                             print("CHAINGUN USED, IT CANNOT BE USED AGAIN "
                                   "UNTIL REPAIRED")
+                            #if the player uses the chaingun, they cant use
+                            #it again
                             Wait.wait(1)
                             input("The staircase ahead crumbles infront of "
                                   "you, leaving a massive gap that you need "
@@ -611,6 +633,8 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                                   "may fall and be shredded.")
                             choice_loop = True
                             while choice_loop == True:
+                                #Keeps the player in a loop until they make a
+                                #valid choice
                                 choice = input("Play it safe and use half "
                                                "your fuel to jump the "
                                                "gap?: ").lower()
@@ -623,6 +647,7 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                                     #they play it safe
                                     print(f"{Player.current_health} FUEL "
                                           "REMAINING.")
+                                    #outputs how much fuel the player has left
                                     Wait.wait(1)
 
                                     input("You have successfuly jumped the "
@@ -790,6 +815,7 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
 
             choice_loop = True
             while choice_loop:
+                #Keeps the player in a loop until they make a valid choice
                 choice = input("Do you go left or right?: ").lower()
                 if "l" in choice:
                     choice_loop = False
@@ -853,6 +879,8 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                                 print_slow("CHAINGUN RESTORED")
                                 input("You can hear shuffling around you...")
                                 input("Suddenly...")
+                                #Repairs the players chaingun, letting them
+                                #use it again.
                                 Combat.standard_combat(Enemies.Crawler.Name,
                                                        Enemies.Crawler.Health,
                                                        Enemies.Crawler.Damage,
@@ -873,6 +901,7 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                     else:
                         input("However, your chaingun does not need to be "
                               "repaired.")
+
                     input("You continue on through the village.")
                     input("You can hear several creatures scurrying "
                           "around you")
@@ -898,6 +927,8 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                           "or explore limbo in hopes of finding an upgrade")
                     choice_loop = True
                     while choice_loop == True:
+                        #Keeps the player in a loop until they make a valid
+                        #choice
                         choice = input("Explore or attempt to go the "
                         "castle: ").lower()
                         if "castle" in choice:
@@ -923,6 +954,8 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                 #explore limbo.
             search_loop = True
             while search_loop == True:
+                #Keeps the player in a loop until they finish the exploration
+                #section
                 print("You can see Ruins, a burning village and a church")
                 choice = input("Where do you go?: ").lower()
                 if "ruins" in choice and ruins_explored == False:
@@ -1020,6 +1053,7 @@ you stand a chance against tough enemies.""")
                         input("You leave the church and close the door "
                               "behind you, leaving the skeleton in peace.")
                         search_loop = False
+                        #Allows the player to leave the exploration section
                         for x in range(3):
                             print("\n")
                 
@@ -1055,6 +1089,7 @@ you stand a chance against tough enemies.""")
 
             choice_loop = True
             while choice_loop == True:
+                #Keeps the player in a loop until they make a valid choice
                 choice = input("What path do you take?: ")
                 if "left" in choice:
                     choice_loop = False
@@ -1075,6 +1110,8 @@ you stand a chance against tough enemies.""")
 
                     choice_loop = True
                     while choice_loop == True:
+                        #Keeps the player in a loop until they make a valid
+                        #choice
                         choice = input("Do you walk through the corridor or "
                         "shoot down the corridor? ")
                         if "walk" in choice:
@@ -1102,6 +1139,8 @@ you stand a chance against tough enemies.""")
                     
                         elif "shoot" in choice:
                             while True:
+                                #Keeps the player in a loop until they make a
+                                #valid choice
                                 choice = input("Do you shoot at a wall "
                                                "ahead of you or directly at "
                                                "yourself? ")
@@ -1203,6 +1242,8 @@ you stand a chance against tough enemies.""")
                           "organised dining room.")
                     choice_loop = True
                     while choice_loop == True:
+                        #Keeps the player in a loop until they make a valid
+                        #choice
                         input("The dining room has two doors on either side "
                               "that could lead you further in.")
                         input("The door to your left follows the design of "
@@ -1233,7 +1274,7 @@ you stand a chance against tough enemies.""")
                             print_slow(f"{Player.name} HAS "
                                        f"{Player.current_health} "
                                   "FUEL REMAINING.")
-                            #print how much health the player restores.
+                            #output how much health the player restores.
                             input("You look behind you.")
                             input("The door back is gone.")
                             input("You couldnt go back if you wanted to.")
@@ -1300,6 +1341,7 @@ you stand a chance against tough enemies.""")
                             Wait.wait(1)
                             print("QUICKTIME OVER.")
                             Wait.wait(1)
+                            #Quicktime even end
 
                             input("You make it out of the cellar.")
                             input("The demon that was chasing you has been "
@@ -1352,6 +1394,7 @@ you stand a chance against tough enemies.""")
             input("The window shatters.")
             input("You stand face to face with the enemy.")
             input("Your cameras flicker on for a brief second!")
+            #Boss fight start!
             ASCII.hijacked_intro_animation()
             Wait.wait(3)
             clear_screen()
@@ -1390,6 +1433,7 @@ you stand a chance against tough enemies.""")
             circle += 1
             choice_loop = False
             Wait.wait(1)
+            #Lets the player go to the next circle
 
         elif circle == 2:
             game_loop = False
@@ -1398,11 +1442,14 @@ you stand a chance against tough enemies.""")
             Wait.wait(1)
             print("DEMO FINISHED!")
             Score.score_calculate_and_save()
+            #Saves the players score to Scoreboard.txt in the text folder
             print(f"YOU GOT {Score.total_score} POINTS!")
+            #Shows how much scoret the player got
             Wait.wait(2)
             print("YOUR SCORE HAS BEEN SAVED TO 'Scoreboard.txt' IN THE 'text' FOLDER!")
             input("Press enter when you are ready to exit the game.")
             exit()
+
     #Placeholders for future levels that would be implimented in the full game
         elif circle == 3:
             print("Circle 3 - Gluttony, is not finished")
@@ -1436,7 +1483,8 @@ elif endless_mode == True:
     Wait.wait(1)
     while endless_mode == True:
         successful_encounter = True
-        random_enemy = random.randint(1, 7)
+        random_enemy = random.randint(1, 8)
+        #Picks a random enemy and starts a combat encounter with them.
         if random_enemy == 1:
             Combat.standard_combat(Enemies.Filth.Name,
                                    Enemies.Filth.Health, 
@@ -1503,6 +1551,7 @@ elif endless_mode == True:
                                        Enemies.Goose.Healing)
                 endless_enemies_killed = endless_enemies_killed + 1
                 successful_encounter = False
+                #Very rare chance of fighting a goose
             else:
                 pass
                 successful_encounter = False
@@ -1528,6 +1577,3 @@ elif endless_mode == True:
                     Wait.wait(2)
                 #If the chaingun has been used, after 5 kills it will be
                 #restored
-
-#end
-

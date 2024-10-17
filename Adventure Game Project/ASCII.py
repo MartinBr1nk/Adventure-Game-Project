@@ -2,6 +2,7 @@
     for clear_x in range(50):
         print("\n")
         #"Clears" the screen by pushing everything else away
+
 title = r"""
  ███████████ █████   █████ ██████████    █████   █████ ██████████ █████       █████                              
 ░█░░░███░░░█░░███   ░░███ ░░███░░░░░█   ░░███   ░░███ ░░███░░░░░█░░███       ░░███                               
@@ -419,9 +420,13 @@ r"""
         print(frames[count])
         count += 1
         time.sleep(0.5)
+        #prints each frame
         if count < 6:
             clear_screen()
+            #once all the frames have been printed the screen clears
     
+
+#---------------Stupid inside jokes below this comment---------------
 Mykolasaurus = r"""
                      ████                                                                                                            ███████████      
              ██████████████████                                                                                               ███████           ███   
@@ -477,7 +482,7 @@ Mykolasaurus = r"""
                                                                       ██              █                                                               
                                                                         ███████████████                                                               
 """
-#this is a stupid inside joke, ignore this.
+
 
 silly_cat = """
 }}}}{{{{}[[[}{{{}[[()<<([[((][}}}}[[[[](<>**^^^^^>)())))))))))<<<)))(((]]]()>><<>^*+==~~~~--~~~~~~~~
