@@ -14,7 +14,6 @@ import Score
 from Terminal import terminal
 import Goose
 
-
 os.system('mode con: cols=180 lines=60')
 #Resizes the window to fit ASCII art
 
@@ -37,7 +36,6 @@ global circle
 
 ruins_explored = False
 village_explored = False
-
 
 #----------Functions----------
 
@@ -257,7 +255,6 @@ def overworld_quicktime(timeout, punish):
         Wait.wait(1)
         #if the player reacts in time they dont take any damage.
 
-
 #----------GAME----------
 
 Goose.goose_check() #DO NOT REMOVE THE GOOSE CHECK.
@@ -398,7 +395,7 @@ if endless_mode == False:
                     while choice_loop == True:
                         #Keeps the player in a loop until they make a valid
                         #choice
-                        choice = input("Smash through the door?").lower()
+                        choice = input("Smash through the door?: ").lower()
 
                         if "y" in choice:
                             print_slow("PREPARING TO DESTROY DOOR")
@@ -894,7 +891,7 @@ We're all so scared and nobody is coming for us. Have we just been abandoned?"""
                         choice_loop = True
                         while choice_loop == True:
                             choice = input("Do you want to use the scrap to "
-                                           "repair your chaingun?").lower()
+                                           "repair your chaingun?: ").lower()
                             if "y" in choice:
                                 Weapons.chaingun_used = False
                                 choice_loop = False
@@ -1135,7 +1132,7 @@ you stand a chance against tough enemies.""")
                         #Keeps the player in a loop until they make a valid
                         #choice
                         choice = input("Do you walk through the corridor or "
-                        "shoot down the corridor? ").lower()
+                        "shoot down the corridor?: ").lower()
                         if "walk" in choice:
                             choice_loop = False
                             input("You begin walking through the corridor.")
@@ -1165,7 +1162,7 @@ you stand a chance against tough enemies.""")
                                 #valid choice
                                 choice = input("Do you shoot at a wall "
                                                "ahead of you or directly at "
-                                               "yourself? ").lower()
+                                               "yourself?: ").lower()
                                 if "wall" in choice:
                                     input("The bullet mirrored itself, "
                                           "appearing behind you.")
